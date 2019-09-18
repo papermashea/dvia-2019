@@ -2,8 +2,9 @@
 function setup() {
   createCanvas(512, 256); // set the size of the canvas
   frameRate(60) // redraw the screen 60 times per second
-  background(0) // fill the canvas with black pixels
+  background(44) // fill the canvas with black pixels
   print("Hello, javascript console.")
+  print('The PS canvas is ${width}px wide and ${height}px tall')
 }
 
 function draw() {
@@ -16,7 +17,7 @@ function draw() {
   // pick random values to decide on location, size, and opacity of the next dot
   var x = random(width),
       y = randomGaussian(height/2, height/8),
-      r = random(3, 30),
+      r = random(4, 200),
       c = color(255, random(100));
 
   // set the color & draw the dot
