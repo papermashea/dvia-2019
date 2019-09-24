@@ -20,21 +20,6 @@ function drawWave(y, amplitude, count, phase){
   endShape(CLOSE)
 }
 
-// measure the current time & calculate the height in pixels of each bar
-// var now = clock()
-// if (discrete){
-  // the map() function lets us *normalize* a value from a starting range then *project* it into another range
-  // var hourHeight = map(now.hour, 1,12, 0, ) // from hours (1-12) to pixels (0–maxWidth)
-  // var minHeight = map(now.min,  0,60, 0)  // from mins (0–60) to pixels (0–maxWidth)
-//   var secsHeight = map(now.sec, 0,60, 0, maxHeight)  // from secs (0–60) to pixels (0–maxWidth)
-// }else{
-    // alternatively, we can use the clock's 'progress' percentages
-    // hourWidth = maxHeight * now.progress.day
-    // minsWidth = maxHeight * now.progress.hour
-  //   secsHeight = maxHeight * now.progress.min
-  // }
-
-
 var phase = 0
 
 function draw() {
@@ -43,24 +28,24 @@ function draw() {
 
   phase += .01 // this controls the speed of the horizontal drift
   var now = clock()
-  var secSpeed = map(now.sec, 0, 60, 0, 10)
+  var secSpeed = map(now.sec, 0, 60)
   var secSpeed = now.progress.min
 
-  var minSpeed = map(now.min, 0, 60, 0, 10)
+  var minSpeed = map(now.min, 0, 60)
   var minSpeed = now.progress.hour
 
-  var hourSpeed = map(now.hour, 0, 60, 0, 10)
+  var hourSpeed = map(now.hour, 1,12)
   var hourSpeed = now.progress.day
 
 
-  let amp = 20 // the vertical size of the largest wave
+  let amp = 100 // the vertical size of the largest wave
 
   fill(255,255,0, 160)
-  drawWave(height*.22, amp*now.progress.day, 4, phase*hourSpeed)
+  drawWave(height*.2, amp*now.progress.day, 2*now.progress.day, phase*hourSpeed)
 
   fill(255,0,255, 160)
-  drawWave(height*.33, amp*now.progress.min, 4, phase*minSpeed)
+  drawWave(height*.3, amp*now.progress.hour, 4*now.progress.hour, phase*minSpeed)
 
   fill(0,255,255, 160)
-  drawWave(height*.44, amp*now.progress.hour, 4, phase*secSpeed)
+  drawWave(height*.4, amp*now.progress.min, 8*now.progress.min, phase*secSpeed)
 }
