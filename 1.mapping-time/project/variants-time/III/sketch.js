@@ -1,68 +1,66 @@
+var maxHeight = 6 // maximum height of wave
+
+
 function setup() {
-  createCanvas(720, 400);
+  createCanvas(800,600)
 }
 
-// define global variables to hold the current rotation of each polygon across draw() calls
-var hRot = 0
-var mRot = 0
-var sRot = 0
+function drawWave(y, amplitude, count, phase){
+  // y: the vertical position of the *middle* of the waveform
+  // amplitude: the height between the top of a peak and depth of a trough
+  // count: the number of peaks to be drawn (a.k.a. 'frequency')
+  // phase: the amount to shift the wave by horizontally
+  beginShape()
+  let resolution = 2
+  for (var x=0; x<=canvas.width+resolution; x+=resolution){
+    vertex(x, amplitude*cos(TWO_PI*count * x/width - phase*count) + y)
+  }
+  vertex(canvas.width, canvas.height)
+  vertex(0, canvas.height)
+  endShape(CLOSE)
+}
+
+// measure the current time & calculate the height in pixels of each bar
+// var now = clock()
+// if (discrete){
+  // the map() function lets us *normalize* a value from a starting range then *project* it into another range
+  // var hourHeight = map(now.hour, 1,12, 0, ) // from hours (1-12) to pixels (0–maxWidth)
+  // var minHeight = map(now.min,  0,60, 0)  // from mins (0–60) to pixels (0–maxWidth)
+//   var secsHeight = map(now.sec, 0,60, 0, maxHeight)  // from secs (0–60) to pixels (0–maxWidth)
+// }else{
+    // alternatively, we can use the clock's 'progress' percentages
+    // hourWidth = maxHeight * now.progress.day
+    // minsWidth = maxHeight * now.progress.hour
+  //   secsHeight = maxHeight * now.progress.min
+  // }
+
+
+var phase = 0
 
 function draw() {
-  var now = clock()
-
-  // set rotational speed limits for each polygon independently
-  var hMax = PI/14;
-  var mMax = PI/14;
-  var sMax = PI/14;
-
-  // divide each time component by its range (to turn it into a 0-1.0 value) then
-  // rotate the polygon by that percent of its max speed
-  hRot += now.hours/24 * hMax;
-  mRot += now.min/60 * mMax;
-  sRot += now.sec/60 * sMax;
-
-  background(102, 70);
+  background(255)
   noStroke()
 
-  /*hour*/
-  push();
-  translate(width*0.2, height*0.5);
-  rotate(hRot);
-  fill(255);
-  polygon(0, 0, 82, 3);
-  pop();
+  phase += .01 // this controls the speed of the horizontal drift
+  var now = clock()
+  var secSpeed = map(now.sec, 0, 60, 0, 10)
+  var secSpeed = now.progress.min
 
-  /*time colons*/
-  push();
-  fill('black');
-  ellipse( 250, 180, 15, 15);
-  ellipse( 250, 210, 15, 15);
-  pop();
+  var minSpeed = map(now.min, 0, 60, 0, 10)
+  var minSpeed = now.progress.hour
 
-  /*minute*/
-  push();
-  translate(width*0.5, height*0.5);
-  rotate(mRot);
-  fill(210);
-  polygon(0, 0, 70, 4);
-  pop();
+  var hourSpeed = map(now.hour, 0, 60, 0, 10)
+  var hourSpeed = now.progress.day
 
-  /*second*/
-  push();
-  translate(width*0.8, height*0.5);
-  rotate(sRot);
-  fill(80);
-  line(5);
-  pop();
-}
 
-function polygon(x, y, radius, npoints) {
-  var angle = TWO_PI / npoints;
-  beginShape();
-  for (var a = 0; a < TWO_PI; a += angle) {
-    var sx = x + cos(a) * radius;
-    var sy = y + sin(a) * radius;
-    vertex(sx, sy);
-  }
-  endShape(CLOSE);
+  let amp = 20 // the vertical size of the largest wave
+
+  fill(255,255,0, 160)
+  drawWave(height*.22, amp*now.progress.day, 4, phase*hourSpeed)
+
+  fill(255,0,255, 160)
+  drawWave(height*.33, amp*now.progress.min, 4, phase*minSpeed)
+
+  fill(0,255,255, 160)
+  drawWave(height*.44, amp*now.progress.hour, 4, phase*secSpeed)
 }

@@ -1,6 +1,7 @@
 /* Adapted from https://processing.org/examples/clock.html */
 
 var cx, cy; // center position of canvas
+var discrete = false // ticking motion?
 
 // Radius for hands of the clock
 var secondsRadius
@@ -15,6 +16,7 @@ var discrete = true
 function setup() {
   createCanvas(640, 360)
   stroke(255)
+  background('white')
 
   var radius = min(width, height) / 2; // this is the maximum possible radius
   secondsRadius = radius * 0.725
@@ -26,39 +28,51 @@ function setup() {
 
   cx = width / 2
   cy = height / 2
+
+
+var dots = min(width, height) / 2; // this is the maximum possible radius
+  seedRowOne = radius * 0.725
+  seedRowTwo = radius * 0.60
+  seedRowThree = radius * 0.50
+  seedRowFour = radius * .7
+  seedRowFive = radius * .75
+  seedRowSix = radius * 1.666
 }
 
 function draw() {
-  background(0)
+  background('white')
 
   // Draw the clock background
-  fill(80)
+  fill('white')
   noStroke()
   ellipse(cx, cy, clockDiameter, clockDiameter)
+  
 
-  // draw 60 dots around the edge corresponding to min/sec angles
-  strokeWeight(2)
-  stroke('white')
-  beginShape(POINTS)
+  // draw petals around the radius
+  stroke(1)
+  stroke('red')
   for (var a = 0; a < 360; a+=6) {
-    var angle = radians(a)
-    var x = cx + cos(angle) * dotRadius
-    var y = cy + sin(angle) * dotRadius
-    vertex(x, y)
-  }
-  endShape()
-
-  // draw 12 lines at the edge to mark the hours
-  stroke(200)
-  for (var a = 0; a < 360; a+=30) {
     let angle = radians(a),
-        x0 = cx + cos(angle) * tickRadius,
-        x1 = cx + cos(angle) * dotRadius,
-        y0 = cy + sin(angle) * tickRadius,
-        y1 = cy + sin(angle) * dotRadius
+        x0 = cx + cos(angle) * minutesRadius,
+        x1 = cx + cos(angle) * minutesRadius,
+        y0 = cy + sin(angle) * minutesRadius,
+        y1 = cy + sin(angle) * minutesRadius
     line(x0, y0, x1, y1)
   }
 
+  stroke(1)
+    stroke('green')
+    for (var a = 0; a < 360; a+=6) {
+      let angle = radians(a),
+          x0 = cx + cos(angle) * secondsRadius,
+          x1 = cx + cos(angle) * secondsRadius,
+          y0 = cy + sin(angle) * secondsRadius,
+          y1 = cy + sin(angle) * secondsRadius
+      line(x0, y0, x1, y1)
+    }
+
+stroke(2)
+stroke('green')
 
   // Angles for sin() and cos() start at 3 o'clock
   // subtract HALF_PI to make them start at the top
@@ -73,18 +87,8 @@ function draw() {
     s = lerp(0, TWO_PI, now.sec/60) - HALF_PI
   }
 
-  // Draw the second hand (thin & orange)
-  stroke('orange')
-  strokeWeight(1)
-  line(cx, cy, cx + cos(s)*secondsRadius, cy + sin(s)*secondsRadius)
-
-  // draw the minute hand (white and slightly thicker)
-  stroke('white')
-  strokeWeight(3)
-  line(cx, cy, cx + cos(m)*minutesRadius, cy + sin(m)*minutesRadius)
-
-  // draw the hour hand (thicker still)
-  strokeWeight(6)
-  line(cx, cy, cx + cos(h)*hoursRadius, cy + sin(h)*hoursRadius)
-
+  // Draw the lit petal
+  ellipse('blue')
+  ellipse(1)
+  ellipse(cx, cy, cx + cos(s)*secondsRadius, cy + sin(s)*secondsRadius)
 }

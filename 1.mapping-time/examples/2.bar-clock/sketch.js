@@ -39,11 +39,11 @@ function draw() {
 
   // draw the hours bar at the top...
   fill(80, 0, 0)
-  rect(x, y,                         hourWidth, barHeight)
+  rect(x, y, hourWidth, barHeight)
 
   // ...the minutes bar in the middle...
   fill(150, 0, 0)
-  rect(x, y +    barHeight+spacing,  minsWidth, barHeight)
+  rect(x, y + barHeight+spacing,  minsWidth, barHeight)
 
   // ...and the seconds bar at the bottom
   fill(255, 0, 0)
