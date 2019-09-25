@@ -2,7 +2,7 @@ var maxHeight = 6 // maximum height of wave
 
 
 function setup() {
-  createCanvas(800,600)
+  createCanvas(800,800)
 }
 
 function drawWave(y, amplitude, count, phase){

@@ -18,17 +18,17 @@ function draw() {
   noStroke()
 
   // measure the current time & calculate the width in pixels of each bar
-  var now = clock()
+  var build = clock()
   if (discrete){
     // the map() function lets us *normalize* a value from a starting range then *project* it into another range
-    var hourWidth = map(now.hour, 1,12, 0,maxWidth) // from hours (1-12) to pixels (0–maxWidth)
-    var minsWidth = map(now.min,  0,60, 0,maxWidth)  // from mins (0–60) to pixels (0–maxWidth)
-    var secsWidth = map(now.sec,  0,60, 0,maxWidth)  // from secs (0–60) to pixels (0–maxWidth)
+    var hourWidth = map(build.hour, 1,12, 0,maxWidth) // from hours (1-12) to pixels (0–maxWidth)
+    var minsWidth = map(build.min,  0,60, 0,maxWidth)  // from mins (0–60) to pixels (0–maxWidth)
+    var secsWidth = map(build.sec,  0,60, 0,maxWidth)  // from secs (0–60) to pixels (0–maxWidth)
   }else{
     // alternatively, we can use the clock's 'progress' percentages
-    hourWidth = maxWidth * now.progress.day
-    minsWidth = maxWidth * now.progress.hour
-    secsWidth = maxWidth * now.progress.min
+    hourWidth = maxWidth * build.progress.day
+    minsWidth = maxWidth * build.progress.hour
+    secsWidth = maxWidth * build.progress.min
   }
 
   //draw 3 background bars to indicate the max width
