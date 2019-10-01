@@ -6,6 +6,7 @@ function setup() {
 var hRot = 0
 var mRot = 0
 var sRot = 0
+var dRot = 0
 
 function draw() {
   var now = clock()
@@ -14,12 +15,14 @@ function draw() {
   var hMax = PI/14;
   var mMax = PI/14;
   var sMax = PI/14;
+  var dMax = PI/14;
 
   // divide each time component by its range (to turn it into a 0-1.0 value) then
   // rotate the polygon by that percent of its max speed
   hRot += now.hours/24 * hMax;
   mRot += now.min/60 * mMax;
   sRot += now.sec/60 * sMax;
+  dRot += now.weekday/7 * dMax;
 
   background(102, 70);
   noStroke()
