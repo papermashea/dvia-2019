@@ -10,6 +10,7 @@ In this project, I wanted to visually explore how time could map to natural elem
 By mapping speed and color to different aspects of time, I hoped to create the impression of an alarm going off and more drastic consequences occuring across many ecosystems and variables. 
 
 In future iterations, I would like to finish up the following elements:
+- mapping sky color to am/pm
 - apply a random wave to the top of the water rising
 - affix the water rising at 50 years and make the water go darker
 - map year.progress to lights and seasons to make an animation that slowly grows dark
