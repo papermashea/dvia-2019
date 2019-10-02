@@ -22,11 +22,12 @@ nav{
   left:14px;
   opacity:0;
   transition:opacity .666s;
-  background:rgba(255,255,255,.6);
+  background:rgba(235,235,235,1);
   padding:12px;
   font-size:13px;
-  font-family:sans-serif;
   border-radius:4px;
+  box-shadow: 8px 10px 2px #bbb;
+  font-family: 'Turret Road', sans-serif;
 }
 
 nav select{
@@ -70,20 +71,15 @@ nav.active{
   max-width: 20px;
 }
 
-nav {
-  font-family: 'Turret Road', Helvetica, mono;
-}
-
 legend {
   margin: 20px;
   display: block;
   background-color: #333;
-    max-width: 20%;
+  max-width: 20%;
   }
 
 table {
     padding: 6%;
-    box-shadow: 8px 10px 2px #bbb;
     font-family: 'Turret Road', Helvetica, mono;
     background-color: #ffffff;
     }

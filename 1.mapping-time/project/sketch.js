@@ -70,8 +70,16 @@ function draw() {
   background(240, 70);
 
 // background
-  fill(faintShade[(now.month)/.5 % 4]);
+  //fill(faintShade[(now.month-1) % 4]);
+  fill (230,230,230);
+  rect(100, 400, 700, 400);
+
+  fill(255,255,255);
   triangle(0, 0, 500, 800, 0, 800);
+
+  fill(faintShade[(now.month)/1 % 4]);
+  triangle(0, 0, 500, 800, 0, 800);
+
 
   //days of the week
   push();
@@ -230,25 +238,19 @@ function draw() {
       fill (255,255,224);
       rect(610, 680, 1, 10);
 
-    //wide building
+    //tall building
       fill (255,255,224);
-      rect(775, 650, 1, 10);
+      rect(750, 450, 1, 10);
       fill (255,255,224);
-      rect(660, 620, 1, 10);
+      rect(720, 500, 1, 10);
       fill (255,255,224);
-      rect(640, 700, 1, 10);
+      rect(760, 425, 1, 10);
       fill (255,255,224);
-      rect(580, 730, 1, 10);
+      rect(730, 420, 1, 10);
       fill (255,255,224);
-      rect(680, 730, 1, 10);
+      rect(765, 480, 1, 10);
       fill (255,255,224);
-      rect(720, 670, 1, 10);
-      fill (255,255,224);
-      rect(700, 640, 1, 10);
-      fill (255,255,224);
-      rect(710, 580, 1, 10);
-      fill (255,255,224);
-      rect(610, 680, 1, 10);
+      rect(720, 460, 1, 10);
 
 
 // front flood
