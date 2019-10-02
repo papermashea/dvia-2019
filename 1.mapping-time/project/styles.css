@@ -1,0 +1,120 @@
+.teaser {
+	font-family: 'Turret Road', Helvetica, mono;
+	color: #333;
+	font-size: 28px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	max-width: 20px;
+}
+
+.teaser:hover {
+		display: none;
+	}
+
+
+nav {
+	font-family: 'Turret Road', Helvetica, mono;
+}
+
+legend {
+	margin: 20px;
+	display: block;
+	background-color: #333;
+    max-width: 20%;
+	}
+
+table {
+    padding: 6%;
+    box-shadow: 8px 10px 2px #bbb;
+    font-family: 'Turret Road', Helvetica, mono;
+    background-color: #ffffff;
+    }
+
+th {
+    padding: 1%;
+    background-color: #ffffff;
+    font-size: 2em;
+    }
+  
+    td {
+        padding-left: 2%;
+        padding-right: 2%;
+        border: 0;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    #trHeader {
+        text-decoration: none;
+    }
+  
+    .centerCell {
+        text-align: center;
+    }
+
+
+ #time-keeper {
+ 	max-width: 100%;
+ }
+
+ .teaser {
+	font-family: 'Turret Road', Helvetica, mono;
+	color: #333;
+	font-size: 28px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	max-width: 20px;
+}
+
+.teaser:hover {
+		display: none;
+	}
+
+
+nav {
+	font-family: 'Turret Road', Helvetica, mono;
+}
+
+legend {
+	margin: 20px;
+	display: block;
+	background-color: #333;
+    max-width: 20%;
+	}
+
+table {
+    padding: 6%;
+    box-shadow: 8px 10px 2px #bbb;
+    font-family: 'Turret Road', Helvetica, mono;
+    background-color: #ffffff;
+    }
+
+th {
+    padding: 1%;
+    background-color: #ffffff;
+    font-size: 2em;
+    }
+  
+    td {
+        padding-left: 2%;
+        padding-right: 2%;
+        border: 0;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    #trHeader {
+        text-decoration: none;
+    }
+  
+    .centerCell {
+        text-align: center;
+    }
+
+
+ #time-keeper {
+ 	max-width: 100%;
+ }
+

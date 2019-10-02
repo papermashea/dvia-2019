@@ -1,34 +1,56 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>ticking time bomb</title>
+  <title>time impacts elements</title>
   <link href="lib/time-keeper.css" rel="stylesheet">
-
-  <!-- if your sketch uses a webfont, be sure to include it here -->
-  <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Turret+Road&display=swap" rel="stylesheet">
 
 </head>
 <body>
+  <a class="teaser"> time impacts elements...</a>
   <nav>
     <label for="multiples">Mode:</label> <select name="multiples"></select>
     <label for="speed">Speed:</label> <input type="range" name="speed" value="1"> <span></span>
+    <br/><br/>
+    <div class="legend">
+        <table>
+          <tr>
+            <th>Time.</th>
+            <th id="impact">Impacts.</th>
+            <th>Elements.</th>
+          </tr>
+          <tr>
+            <td>Hours</td>
+            <td id="impact">rotate</td>
+            <td>Light</td>
+          </tr>
+          <tr>
+            <td>Days</td>
+            <td id="impact">color</td>
+            <td>Sun</td>
+          </tr>
+          <tr>
+            <td>Months</td>
+            <td id="impact">raise</td>
+            <td>Water</td>
+          </tr>
+          <tr>
+            <td>Seasons</td>
+            <td id="impact">change</td>
+            <td>Mountains</td>
+          </tr>
+          <tr>
+            <td>Years</td>
+            <td id="impact">fade</td>
+            <td>lights</td>
+          </tr>
+        </table>
+      </div>
+    <br/><br/>
   </nav>
-  <main id="time-keeper"></main>
+  <main id="time-keeper">
+  </main>
   <script language="javascript" type="text/javascript" src="lib/cash.min.js"></script>
   <script language="javascript" type="text/javascript" src="lib/time-keeper.js"></script>
-  <div class="legend">
-    <table>
-      <tr>
-        <th>Element</th>
-        <th>Variable</th>
-        <th>Impact</th>
-      </tr>
-      <tr>
-        <th>Water</th>
-        <th>Color</th>
-        <th>Rising</th>
-      </tr>
-    </table>
-  </div>
 </body>
 </html>
