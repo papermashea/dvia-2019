@@ -43,9 +43,9 @@ function draw() {
   fill(255,255,0, 160)
   drawWave(height*.2, amp*now.progress.day, 2*now.progress.day, phase*hourSpeed)
 
-  fill(255,0,255, 160)
-  drawWave(height*.3, amp*now.progress.hour, 4*now.progress.hour, phase*minSpeed)
+  // fill(255,0,255, 160)
+  // drawWave(height*.3, amp*now.progress.hour, 4*now.progress.hour, phase*minSpeed)
 
-  fill(0,255,255, 160)
-  drawWave(height*.4, amp*now.progress.min, 8*now.progress.min, phase*secSpeed)
+  // fill(0,255,255, 160)
+  // drawWave(height*.4, amp*now.progress.min, 8*now.progress.min, phase*secSpeed)
 }

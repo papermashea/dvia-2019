@@ -1,28 +1,50 @@
 //sun variables
-var colors = ['darkblue','steelblue','darkslategrey']
+var colors = ['crimson','red','indianred','orangered','tomato','orange','darkorange','coral','yellow','gold','darkgoldenrod','maroon',]
 var gradient = chroma.scale(colors).mode('lab')
 function colorForProgress(pct){
   return gradient(pct).hex()
 }
 var hRot = 0
 
-
 //cloud variables
 var cloudX = 400;
+let yoff = 0.0;
 
 // snow variables
 let snowflakes = []; // array to hold snowflake objects
 var x = 0 // starting x position to draw
 var y = 800  // starting y position to draw
-var barWidth = 800 // height of each bar
+var floodWidth = 800 // height of each bar
 var maxHeight = -200 // maximum height of each bar (the actual width will always be ≤ this)
 var spacing = 10 // the vertical space to skip between bars
 var discrete = false
 
+// flood variables
+//var pile = ['powder','aliceblue','lightblue','steelblue','slategrey']
+let amt, startColor, newColor;
+
+// mountain variables
+var palette 
+var shade
+
+// building variable
+
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(800,800);
   colorMode(RGB, 255, 255, 255, 1)
+    palette = [
+      color(206, 250, 110, 1),  // Spring
+      color(8, 153, 112, 1), // Summer
+      color(255, 245, 151, 1),  // Autumn
+      color(184, 125, 13, 1),  // Winter
+    ]
+    shade = [
+      color(117, 143, 63, 1),  // Spring dark
+      color(5, 97, 71, 1), // Summer dark
+      color(179, 171, 105, 1),  // Autumn dark
+      color(135, 91, 9, 1),  // Winter dark
+    ]
 }
 
 function draw() {
@@ -30,7 +52,7 @@ function draw() {
   noStroke()
 
 //sun
-  var color = colorForProgress(now.progress.hour)
+  var light = colorForProgress(now.progress.month)
   var hMax = PI/14;
   hRot += now.hour/24 * hMax;
   background(240, 70);
@@ -40,8 +62,8 @@ function draw() {
   push();
   translate(width*0.5, height*0.25);
   rotate(hRot);
-  fill(color);
-  polygon(0, 0, 60, 20);
+  fill(light);
+  polygon(0, 0, 100, 20);
   pop();
 
 // clouds 
@@ -81,8 +103,9 @@ function draw() {
 
 //snowfall
   // snowflakes falling 
-    let t = frameCount*.1 / map(now.month, 0, 60, 0, 10); 
-    for (let i = 0; i < random(3); i++) {
+    fill(112, 128, 144,.5)
+    let t = frameCount*.1 / map(now.weekday, 0, 7, 0, 7); 
+    for (let i = 0; i < random(1); i++) {
       snowflakes.push(new snowflake()); 
     }
 
@@ -92,34 +115,47 @@ function draw() {
       snowflake.display(); // draw snowflake
     }
 
-  // snowflake pile
+  // water rising
     if (discrete){
-      // the map() function lets us *normalize* a value from a starting range then *project* it into another range
-      var snowHeight = map(now.month, 1,12, 0,maxHeight) // from hours (1-12) to pixels (0–maxWidth)
+      var snowHeight = map(now.weekday, 1,12, 0, maxHeight) // from hours (1-12) to pixels (0–maxWidth)
      }else{
-      // alternatively, we can use the clock's 'progress' percentages
-      snowHeight = maxHeight * now.progress.month
+      snowHeight = maxHeight * now.progress.year
     }
+    fill(112, 128, 144,.5);
+    rect(x, y, floodWidth, snowHeight)
 
-    // ...the minutes for the snowflake pile in the middle...
-    fill('lightblue')
-    rect(x, y,  barWidth, snowHeight)
+// mountain clouds
+    // fill(124,4,0,.01);
+    // beginShape();
+    // let xoff = 0;
+    // for (let x = 0; x <= width; x += 10) {
+    //   let y = map(noise(xoff, yoff), 0, 1, 200, 800);
+    //   vertex(x, y);
+    //   xoff += 0.05;
+    // }
+    // yoff += 0.01;
+    // vertex(width, y);
+    // vertex(0, y);
+    // endShape(CLOSE);
+
 
 // mountains
   // mountain 1
-    fill(206, 122, 137);
+    fill(shade[(now.month) % 4]);
     triangle(51, 554, -13, 874, -73, 894);
-    fill(232, 151, 168);
+    fill(palette[(now.month) % 4]);
     triangle(51, 554, -13, 874, 119, 894);
   // mountain 2
-    fill(10, 30, 49);
+    fill(shade[(now.month-1) % 4]);
     triangle(111, 526, 157, 816, -3, 816);
-    fill(31, 60, 78);
+    fill(palette[(now.month-1) % 4]);
     triangle(111, 526, 257, 816, 89, 816);
   // mountain 3
-    fill(127, 201, 201);
+    //fill(127, 201, 201);
+    fill(shade[(now.month) % 4]);
     triangle(158, 634, 143, 880, 20, 880);
-    fill(175, 232, 229);
+    fill(palette[(now.month) % 4]);
+    noiseDetail(8, 0.5);
     triangle(158, 634, 133, 880, 303, 880);
 
 
@@ -158,6 +194,29 @@ function draw() {
       vertex(760, 800);
       vertex(750, 800);
       endShape(CLOSE);
+  //lights
+    //wide building
+      fill (255,255,224);
+      rect(600, 600, 1, 10);
+      fill (255,255,224);
+      rect(660, 620, 1, 10);
+      fill (255,255,224);
+      rect(640, 700, 1, 10);
+      fill (255,255,224);
+      rect(580, 730, 1, 10);
+      fill (255,255,224);
+      rect(680, 730, 1, 10);
+      fill (255,255,224);
+      rect(720, 670, 1, 10);
+      fill (255,255,224);
+      rect(700, 640, 1, 10);
+      fill (255,255,224);
+      rect(710, 580, 1, 10);
+      fill (255,255,224);
+      rect(610, 680, 1, 10);
+
+   fill(112, 128, 144,.5);
+    rect(x, y, floodWidth, snowHeight+20)
 
 }
 
@@ -173,7 +232,6 @@ function polygon(x, y, radius, npoints) {
 }
 
 function snowflake() {
-  // initialize coordinates
   this.posX = 0;
   this.posY = random(-50, 0);
   this.initialangle = random(0, 2 * PI);
@@ -203,3 +261,8 @@ function snowflake() {
     ellipse(this.posX, this.posY, this.size);
   };
 }
+
+function smoothstep(edge0, edge1, x) {
+    x = constrain((x - edge0) / (edge1 - edge0), 0.0, 1.0); 
+    return x * x * (3 - 2 * x);
+  }

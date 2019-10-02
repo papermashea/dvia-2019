@@ -10,7 +10,7 @@ function setup() {
     color(.23, 1, .6),  // Spring
     color(.13, 1, .85), // Summer
     color(.1,  1, .5),  // Autumn
-    color(.6, .4, .95)  // Winter
+    color(.6, .4, .95),  // Winter
   ]
 
   // configure line drawing
