@@ -11,6 +11,7 @@ By mapping speed and color to different aspects of time, I hoped to create the i
 
 In future iterations, I would like to finish up the following elements:
 - mapping sky color to am/pm
+- translate clouds to seconds
 - apply a random wave to the top of the water rising
 - affix the water rising at 50 years and make the water go darker
-- map year.progress to lights and seasons to make an animation that slowly grows dark
+- map year.progress to lights and seasons to make an animation that slowly grows dark after 2060

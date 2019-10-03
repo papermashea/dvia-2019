@@ -77,7 +77,7 @@ function draw() {
   fill(255,255,255);
   triangle(0, 0, 500, 800, 0, 800);
 
-  fill(faintShade[(now.month)/1 % 4]);
+  fill(faintShade[(now.season)/1 % 4]);
   triangle(0, 0, 500, 800, 0, 800);
 
 
@@ -126,7 +126,7 @@ function draw() {
 
 //snowfall
   // snowflakes falling 
-    let t = frameCount*.1 / map(now.month, 0, 12, 0, 10); 
+    let t = frameCount*.1 / map(now.year, 0, 12, 0, 10); 
     for (let i = 0; i < random(3); i++) {
       snowflakes.push(new snowflake()); 
     }
@@ -139,7 +139,7 @@ function draw() {
 
   // water rising
     if (discrete){
-      var snowHeight = map(now.month, 1,12, 0,maxHeight) // from hours (1-12) to pixels (0–maxWidth)
+      var snowHeight = map(now.year, 1,12, 0,maxHeight) // from hours (1-12) to pixels (0–maxWidth)
      }else{
       snowHeight = maxHeight * now.progress.month
     }
@@ -164,20 +164,20 @@ function draw() {
 
 // mountains
   // mountain 1
-    fill(shade[(now.month) % 4]);
+    fill(shade[(now.season) % 4]);
     triangle(51, 554, -13, 874, -73, 894);
-    fill(palette[(now.month) % 4]);
+    fill(palette[(now.season) % 4]);
     triangle(51, 554, -13, 874, 119, 894);
   // mountain 2
-    fill(shade[(now.month-1) % 4]);
+    fill(shade[(now.season-1) % 4]);
     triangle(111, 526, 157, 816, -3, 816);
-    fill(palette[(now.month-1) % 4]);
+    fill(palette[(now.season-1) % 4]);
     triangle(111, 526, 257, 816, 89, 816);
   // mountain 3
     //fill(127, 201, 201);
-    fill(shade[(now.month) % 4]);
+    fill(shade[(now.season) % 4]);
     triangle(158, 634, 143, 880, 20, 880);
-    fill(palette[(now.month) % 4]);
+    fill(palette[(now.season) % 4]);
     noiseDetail(8, 0.5);
     triangle(158, 634, 133, 880, 303, 880);
 
