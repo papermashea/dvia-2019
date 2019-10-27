@@ -1,7 +1,8 @@
 var nuclearData
 
 function preload(){
-  data = loadJSON('data/totals.csv', 'csv', 'header')
+//  data = loadJSON('data/totals.csv', 'csv', 'header')
+	totals = loadTable('data/totals.csv', 'csv', 'header')
 }
 
 function setup(){
