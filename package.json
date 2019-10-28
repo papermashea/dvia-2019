@@ -1,20 +1,24 @@
 {
-  "name": "important",
+  "name": "pwd",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node your-script.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/papermashea/dvia-2019.git"
   },
-  "author": "",
+  "author": "shea",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/papermashea/dvia-2019/issues"
   },
   "homepage": "https://github.com/papermashea/dvia-2019#readme",
-  "description": ""
+  "description": "testing new json file",
+  "keywords": [
+    "testing",
+    "debug"
+  ]
 }
