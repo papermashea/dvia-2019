@@ -11,9 +11,12 @@ function preload(){
 
 }
 
+
 function setup(){
 	createCanvas(3200, 600)
 	background(250)
+
+// title
 	textAlign(CENTER);
 	textSize(50)
 	fill(150)
@@ -22,45 +25,51 @@ function setup(){
 	var table = atmospheric
 	print(table)
 
-	  textFont("Rokkitt")
-	  textSize(16)
-	  fill(30)
-	  noStroke()
-
-
-	var x = 200
-	var y = 100
-	var rowHeight = 60
-	var colWidth = 40
-
-	x = 200
-	y = 100
-	textStyle(NORMAL)
-	textAlign(BOLD)
-	  for (var r=0; r<table.getRowCount(); r++){
-	    var year = table.getString(r, 0)
-	    text(year, x, y-rowHeight)
-	    x += colWidth
-	  }
-
-
-// draw timeframe
-	line(100, 100, 200, 200)
-
-
+// typography
+	textFont("Rokkitt")
+	textSize(16)
+	fill(30)
+	noStroke()
 
 // draw tests
- //  for (var i = 0; i < data.getRowCount(); i++) {
- //  	let size = colValsMinMax(data,"yield");
-	// let testSize = map(size.values[i], size.min, size.max, 1, 400);
- //    //let xpos = map(x.values[i], x.min, x.max, 0+padding, width-padding);
- //    //let ypos = map(y.values[i], y.min, y.max, height-padding, 0+padding);
-	// }
-    
- //    circle(xpos, ypos, circleSize)
+var x = 200
+  var y = 100
+  var rowHeight = 60
+  var colWidth = 130
+
+  // draw country name labels on the left edge of the table
+  textStyle(NORMAL)
+  textAlign(RIGHT)
+  for (var c=1; c<table.getColumnCount(); c++){
+    text(table.columns[c], x-colWidth, y)
+    y += rowHeight
+  }
 
 
-// map colors
-//  let colorScale  = chroma.scale(['green', 'blue']).mode('lch');
+  // draw year labels in the header row
+  x = 200
+  y = 100
+  textStyle(NORMAL)
+  textAlign(CENTER)
+  for (var r=0; r<table.getRowCount(); r++){
+    var year = table.getString(r, 0)
+    text(year, x, y-rowHeight)
+    x += colWidth
+  }
+
+  // print out the total for each country, one column at a time
+  x = 200
+  for (var r=0; r<table.getRowCount(); r++){
+    y = 100
+    for (var c=1; c<table.getColumnCount(); c++){
+      var value = table.getNum(r, c)  
+      if (value > 0) { 
+          fill(50)
+          circle(x, y, value+25)
+        } 
+      y += rowHeight
+    }
+    x += colWidth
+     }
 
 }
