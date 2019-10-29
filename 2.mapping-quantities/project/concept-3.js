@@ -1,71 +1,102 @@
-var years
+var data
+var padding = 50
+var totals 
+var atmospheric
+var timeframe 
+
 
 function preload(){
-  years = loadTable('data/1994-2003.csv','csv', 'header'); 
+  totals = loadTable('data/totals.csv', 'csv', 'header')
+  atmospheric = loadTable('data/atmospheric.csv', 'csv', 'header')
+  underground = loadTable('data/underground.csv', 'csv', 'header')
+  hydronuclear = loadTable('data/hydronuclear.csv', 'csv', 'header')
 }
 
+
 function setup(){
-  createCanvas(1460, 800)
+  createCanvas(11000, 800)
   background(250)
 
-  // pick one of the three data files to work with and call it 'table'
-  var table = years
+// title
+  push(); 
+  let t = 'What kinds of nuclear tests are being run?'
+  textSize(40)
+  textStyle(BOLD)
+  textFont("Open Sans")
+  fill(30)
+  text(t, 65, 30, 500, 200)
+  textAlign(LEFT)
+  pop(); 
 
-  // log the whole dataset to the console so we can poke around in it
-  print(table)
+  var atmosData = atmospheric
+  var underData = underground
+  var hydroData = hydronuclear
+  print(totals)
 
-  // set up typography
-  textFont("Rokkitt")
-  textSize(14)
+// axes text
+  textFont("Open Sans 300")
+  textSize(10)
+  textStyle(NORMAL)
   fill(30)
   noStroke()
 
-  var x = 200
-  var y = 100
+// draw table
+var x = 200
+  var y = 200
   var rowHeight = 60
-  var colWidth = 130
+  var colWidth = 140
 
-  //draw a title
-  push(); 
-  let s = 'Nuclear testing';
-  fill(50);
-  textSize(20)
-  textStyle(BOLD)
-  text(s, 65, 30, 500, 200);
-  pop(); 
-
-  // draw years labels on the left edge of the table
-  textStyle(NORMAL)
+// place country names to the left
+  textFont("Open Sans")
   textAlign(LEFT)
-  for (var c=1; c<table.getColumnCount(); c++){
-    text(table.columns[c], x-colWidth, y)
+  for (var c=1; c<totals.getColumnCount(); c++){
+    text(totals.columns[c], x-colWidth, y)
     y += rowHeight
   }
 
-  // draw country labels below
+  // place years at the bottom
   x = 200
-  y = 800
+  y = 750
   textStyle(NORMAL)
   textAlign(CENTER)
-  for (var r=0; r<table.getRowCount(); r++){
-    var year = table.getString(r, 0)
+  for (var r=0; r<totals.getRowCount(); r++){
+    var year = totals.getString(r, 0)
     text(year, x, y-rowHeight)
     x += colWidth
   }
 
-
-  // add a shape for each countries values, one column at a time
+// map tests to circles
+// atmospheric tests
   x = 200
-  for (var r=0; r<table.getRowCount(); r++){
-    y = 100
-    for (var c=1; c<table.getColumnCount(); c++){
-      var value = table.getNum(r, c)  
+  for (var r=0; r<atmosData.getRowCount(); r++){
+    y = 200
+    for (var c=1; c<atmosData.getColumnCount(); c++){
+      var value = atmosData.getNum(r, c)  
       if (value > 0) { 
-          fill(50)
+          fill('purple')
           circle(x, y, value+25)
         } 
       y += rowHeight
     }
     x += colWidth
-  }
+     }
+
+
+// hydronuclear tests
+  x = 200
+  for (var r=0; r<hydroData.getRowCount(); r++){
+    y = 200
+    for (var c=1; c<hydroData.getColumnCount(); c++){
+      var value = hydroData.getNum(r, c)  
+      if (value > 0) { 
+          fill('blue')
+          square(x, y, value+25)
+        } 
+      y += rowHeight
+    }
+    x += colWidth
+     }
+
+//save('concept_3.svg')
+
 }
