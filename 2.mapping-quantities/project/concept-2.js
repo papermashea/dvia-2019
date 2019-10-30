@@ -14,31 +14,31 @@ function preload(){
 
 
 function setup(){
-	createCanvas(11000, 800)
-	background(250)
+  createCanvas(11000, 800)
+  background(250)
 
 // title
   push(); 
-  let t = 'What kinds of nuclear tests are being run?'
-	textSize(40)
+  let t = 'What kinds of nuclear tests do they run?'
+  textSize(40)
   textStyle(BOLD)
   textFont("Open Sans")
-	fill(30)
-	text(t, 65, 30, 500, 200)
+  fill(30)
+  text(t, 65, 30, 500, 200)
   textAlign(LEFT)
   pop(); 
 
-	var atmosData = atmospheric
+  var atmosData = atmospheric
   var underData = underground
   var hydroData = hydronuclear
-	print(totals)
+  print(totals)
 
 // axes text
-	textFont("Open Sans 300")
-	textSize(10)
+  textFont("Open Sans 300")
+  textSize(10)
   textStyle(NORMAL)
-	fill(30)
-	noStroke()
+  fill(30)
+  noStroke()
 
 // draw table
 var x = 200
@@ -81,20 +81,6 @@ var x = 200
     x += colWidth
      }
 
-// underground tests
-  x = 200
-  for (var r=0; r<underData.getRowCount(); r++){
-    y = 200
-    for (var c=1; c<underData.getColumnCount(); c++){
-      var value = underData.getNum(r, c)  
-      if (value > 0) { 
-          fill('green')
-          circle(x, y, value+25)
-        } 
-      y += rowHeight
-    }
-    x += colWidth
-     }
 
 // hydronuclear tests
   x = 200
@@ -104,6 +90,21 @@ var x = 200
       var value = hydroData.getNum(r, c)  
       if (value > 0) { 
           fill('blue')
+          circle(x, y, value+25)
+        } 
+      y += rowHeight
+    }
+    x += colWidth
+     }
+
+// underground tests
+  x = 200
+  for (var r=0; r<underData.getRowCount(); r++){
+    y = 200
+    for (var c=1; c<underData.getColumnCount(); c++){
+      var value = underData.getNum(r, c)  
+      if (value > 0) { 
+          fill('green')
           circle(x, y, value+25)
         } 
       y += rowHeight

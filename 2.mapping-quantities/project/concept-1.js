@@ -1,6 +1,8 @@
 var data
 var padding = 50
 var totals 
+var timeframe 
+
 
 function preload(){
   totals = loadTable('data/totals.csv', 'csv', 'header')
@@ -16,7 +18,7 @@ function setup(){
 
 // title
   push(); 
-  let t = 'Who is running nuclear tests?'
+  let t = 'What kinds of nuclear tests do they run?'
   textSize(40)
   textStyle(BOLD)
   textFont("Open Sans")
@@ -25,9 +27,6 @@ function setup(){
   textAlign(LEFT)
   pop(); 
 
-  var atmosData = atmospheric
-  var underData = underground
-  var hydroData = hydronuclear
   print(totals)
 
 // axes text
@@ -43,28 +42,41 @@ var x = 200
   var rowHeight = 60
   var colWidth = 140
 
-// place countries at the bottom
-  x = 200
-  y = 450
+// place country names to the left
   textFont("Open Sans")
+  textAlign(LEFT)
+  for (var c=1; c<totals.getColumnCount(); c++){
+    text(totals.columns[c], x-colWidth, y)
+    y += rowHeight
+  }
+
+  // place years at the bottom
+  x = 200
+  y = 750
   textStyle(NORMAL)
   textAlign(CENTER)
-  for (var c=1; c<totals.getColumnCount(); c++){
-    text(totals.columns[c], x, y)
+  for (var r=0; r<totals.getRowCount(); r++){
+    var year = totals.getString(r, 0)
+    text(year, x, y-rowHeight)
     x += colWidth
   }
 
-// map tests to circles
-  x = 100
-  y = 200 
-  for (var i=0; i<totals.getColumn(); i++){
-    var value = totals.getNum(i, 0)  
-          fill('purple')
-          circle(x += colWidth, y, value/10)
+// map all to circles
+  x = 200
+  for (var r=0; r<totals.getRowCount(); r++){
+    y = 200
+    for (var c=1; c<totals.getColumnCount(); c++){
+      var value = totals.getNum(r, c)  
+      if (value > 0) { 
+          fill('yellow')
+          circle(x, y, value+25)
+        } 
+      y += rowHeight
+    }
+    x += colWidth
      }
 
 
-
-//save('concept_2.svg')
+save('concept_1.svg')
 
 }
