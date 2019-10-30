@@ -1,0 +1,13 @@
+// draw spend line
+  var spendYear = colValsMinMax(spend,"year");
+  var milex = colValsMinMax(spend,"bilex");
+
+  for (var i = 1; i < spend.getRowCount(); i++) {
+    let xpos = map(spendYear.values[i], x.min, x.max, 0+padding, width-padding);
+    let ypos = map(milex.values[i], 0, milex.max, graphCenter, 0+padding);
+    let xpos2 = map(spendYear.values[i+1], x.min, x.max, 0+padding, width-padding);
+    let ypos2 = map(milex.values[i+1], 0, milex.max, graphCenter, 0+padding);
+    stroke(0,200,0)
+    line(xpos, ypos, xpos2, ypos2);
+    console.log(milex.values[i], ypos);
+  }
