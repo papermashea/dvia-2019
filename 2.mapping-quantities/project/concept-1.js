@@ -13,12 +13,12 @@ function preload(){
 
 
 function setup(){
-  createCanvas(11000, 800)
+  createCanvas(11000, 800, SVG)
   background(250)
 
 // title
   push(); 
-  let t = 'What kinds of nuclear tests do they run?'
+  let t = 'Who runs nuclear tests?'
   textSize(40)
   textStyle(BOLD)
   textFont("Open Sans")

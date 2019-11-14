@@ -8,7 +8,7 @@ function preload(){
 
 
 function setup(){
-	createCanvas(1100, 800)
+	createCanvas(1100, 800, SVG)
 	background(250)
   var energy = electricity
 

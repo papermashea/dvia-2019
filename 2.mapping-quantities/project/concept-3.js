@@ -6,7 +6,7 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(4000, 1000)
+  createCanvas(4000, 1000, SVG)
   background(230)
 
   // pick one of the three data files to work with and call it 'table'

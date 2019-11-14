@@ -14,7 +14,7 @@ function preload(){
 
 
 function setup(){
-  createCanvas(11000, 800)
+  createCanvas(11000, 800, SVG)
   background(250)
 
 // title
