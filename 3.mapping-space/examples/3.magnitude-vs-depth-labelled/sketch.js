@@ -12,6 +12,7 @@ var depths;
 var magnitudeMin, magnitudeMax;
 var depthMin, depthMax;
 
+// changes these to affect axes
 var magnitudeInterval = 1.0;
 var depthInterval = 50.0;
 

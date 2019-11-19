@@ -50,6 +50,7 @@ function setup() {
   timeMin = columnMin(table, 'timestamp')
   timeMin = moment(timeMin).startOf('day')
 
+// two step process
   timeMax = columnMax(table, 'timestamp')
   timeMax = moment(timeMax).endOf('day')
 

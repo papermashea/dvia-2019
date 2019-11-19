@@ -7,6 +7,7 @@ function preload() {
 function setup() {
   createCanvas(720, 405)
   background(200)
+  colorMode(RGB);
 
   // define top left and bottom right corner of our plot
   var x_left = 50;
@@ -38,10 +39,17 @@ function setup() {
     // map the y position to magnitude
     var y = map(magnitudes[i],magnitudeMin, magnitudeMax, y_bot, y_top)
 
+  // define a color palette for magnitude
+  let from = color(0,0,0);
+  let to = color(255,0,0);
+  let magScale = map(magnitudes, magnitudeMin, magnitudeMax, .1, 1.0);
+  let magColor = lerpColor(from, to, magScale);
+
     // draw the dot
-    strokeWeight(5)
-    stroke(255,0,0)
-    point(x,y)
+    fill(magColor)
+    circle(x,y,4)
+
+//    point(x,y)
   }
 
   // // alternatively, iterate through the rows of the table and request 
