@@ -40,9 +40,9 @@ function setup() {
     var y = map(magnitudes[i],magnitudeMin, magnitudeMax, y_bot, y_top)
 
   // define a color palette for magnitude
-  let from = color(0,0,0);
-  let to = color(255,0,0);
-  let magScale = map(magnitudes, magnitudeMin, magnitudeMax, .1, 1.0);
+  let from = color(255,36,160);
+  let to = color(138, 0, 0);
+  let magScale = map(magnitudes[i], magnitudeMin, magnitudeMax, .1, 1.0);
   let magColor = lerpColor(from, to, magScale);
 
     // draw the dot
