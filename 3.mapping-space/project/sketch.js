@@ -29,18 +29,18 @@ var mymap;
 function preload() {
     // load the CSV data into our `table` variable and clip out the header row
     table = loadTable("data/all_day.csv", "csv", "header");
-//    hosTable = loadTable("data/HospitalLocationsLg.csv", "csv", "header");    
-    // plaTable = loadTable("data/PlantLocations.csv", "csv", "header");
+    hosTable = loadTable("data/HospitalLocationsLg.csv", "csv", "header");    
+    plaTable = loadTable("data/PlantLocations.csv", "csv", "header");
 }
 
 function setup() {
-  colorMode(RGB);
+  // colorMode(RGB);
 
 // leafletmap
     mymap = L.map('quake-map').setView([50,-98], 3).setZoomAround([50,-98], 3);
     L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=d1b312dda4c7451a863575eb94938bc4 ', {
         attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 18,
+        maxZoom: 26,
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoiZHZpYTIwMTciLCJhIjoiY2o5NmsxNXIxMDU3eTMxbnN4bW03M3RsZyJ9.VN5cq0zpf-oep1n1OjRSEA'
     }).addTo(mymap);
@@ -48,22 +48,14 @@ function setup() {
 // color for earthquake magnitude
   var magnitudeMin = 0.0;
   var magnitudeMax = columnMax(table, "mag")
-
-  var depthMin = 0.0;
-  var depthMax = columnMax(table, "depth")
-
-  // get the two arrays of interest: depth and magnitude
-  // then cycle through the parallel arrays
-  var depths = columnValues(table, "depth")
   var magnitudes = columnValues(table, "mag")
-  for(var i=0; i<depths.length; i++){
 
   // define a color palette for magnitude
-  let from = color(255,36,160);
-  let to = color(138, 0, 0);
+  let from = color('pink');
+  let to = color('red');
   let magScale = map(magnitudes[i], magnitudeMin, magnitudeMax, .1, 1.0);
-  let magColor = lerpColor(from, to, magScale);
-    }
+  var magColor = lerpColor(from, to, magScale);
+    // }
 
 // scale for earthquake magnitude
     for (var i=0; i<table.getRowCount(); i++){
@@ -76,8 +68,10 @@ function setup() {
 
         // create a new dot
         var magCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
-            fill: 'red',
-            radius: row.getNum(1) * 10
+            color: magColor,      // the dot stroke color
+            fillColor: magColor, // the dot fill color
+            fillOpacity: 1,  // use some transparency so we can see overlaps
+            radius: row.getNum('mag') * 10000
         })
 
 
@@ -87,56 +81,56 @@ function setup() {
 
 
 // hospitals
-    // for (var i=0; i<hosTable.getRowCount(); i++){
-    //     var row = hosTable.getRow(i)
+    for (var i=0; i<hosTable.getRowCount(); i++){
+        var row = hosTable.getRow(i)
 
-    //     // skip over any rows where the magnitude data is missing
-    //     if (row.get('latitude')==''){
-    //         continue
-    //     }
+        // skip over any rows where the magnitude data is missing
+        if (row.get('latitude')==''){
+            continue
+        }
 
-    //     // skip over any rows where the magnitude data is missing
-    //     if (row.get('longitude')==''){
-    //         continue
-    //     }
+        // skip over any rows where the magnitude data is missing
+        if (row.get('longitude')==''){
+            continue
+        }
 
-    //     // create a new dot
-    //     var hosCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
-    //         color: 'yellow',      // the dot stroke color
-    //         fillColor: 'yellow', // the dot fill color
-    //         fillOpacity: 0.25,  // use some transparency so we can see overlaps
-    //         radius: 5
-    //     })
+        // create a new dot
+        var hosCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
+            color: 'red',      // the dot stroke color
+            fillColor: 'red', // the dot fill color
+            fillOpacity: 0.25,  // use some transparency so we can see overlaps
+            radius: 2
+        })
 
-    //     // place the new dot on the map
-    //     hosCircle.addTo(mymap);
-    // }
+        // place the new dot on the map
+        hosCircle.addTo(mymap);
+    }
 
 // energy plants
-    // for (var i=0; i<plaTable.getRowCount(); i++){
-    //     var row = plaTable.getRow(i)
+    for (var i=0; i<plaTable.getRowCount(); i++){
+        var row = plaTable.getRow(i)
 
-    //     // skip over any rows where the magnitude data is missing
-    //     if (row.get('latitude')==''){
-    //         continue
-    //     }
+        // skip over any rows where the magnitude data is missing
+        if (row.get('latitude')==''){
+            continue
+        }
 
-    //     // skip over any rows where the magnitude data is missing
-    //     if (row.get('longitude')==''){
-    //         continue
-    //     }
+        // skip over any rows where the magnitude data is missing
+        if (row.get('longitude')==''){
+            continue
+        }
 
-    //     // create a new dot
-    //     var plantSquare = L.square([row.getNum('latitude'), row.getNum('longitude')], {
-    //         color: 'orange',      // the dot stroke color
-    //         fillColor: 'orange  ', // the dot fill color
-    //         fillOpacity: 0.25,  // use some transparency so we can see overlaps
-    //         radius: 5
-    //     })
+        // create a new dot
+        var plantCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
+            color: 'yellow',      // the dot stroke color
+            fillColor: 'yellow', // the dot fill color
+            fillOpacity: 0.25,  // use some transparency so we can see overlaps
+            radius: 2
+        })
 
-    //     // place the new dot on the map
-    //     plantSquare.addTo(mymap);
-    // }
+        // place the new dot on the map
+        plantCircle.addTo(mymap);
+    }
 
 
 }
