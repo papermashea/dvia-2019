@@ -23,7 +23,7 @@ function columnMin(tableObject, columnName){
     return _.min(columnValues(tableObject, columnName))
 }
 
-// my leaflet.js map
+//leaflet.js map
 var mymap;
 
 function preload() {
@@ -31,20 +31,57 @@ function preload() {
     table = loadTable("data/all_day.csv", "csv", "header");
     hosTable = loadTable("data/HospitalLocationsLg.csv", "csv", "header");    
     plaTable = loadTable("data/PlantLocations.csv", "csv", "header");
+    watTable = loadTable("data/WastewaterLocations.csv", "csv", "header");
 }
 
 function setup() {
-  // colorMode(RGB);
+    
+    // first, call our map initialization function (look in the html's style tag to set its dimensions)
+    setupMap()
+
+    // call our function (defined below) that populates the maps with markers based on the table contents
+    addCircles();
+
+//title
+    fill(0)
+    noStroke()
+    textSize(16)
+    text(`Plotting live earthquakes and critical facilities`, 20, 40)
+
+// generate a p5 diagram that complements the map, communicating the earthquake data non-spatially
+    let diagram = createCanvas(600, 400);
+    diagram.parent('diagram');
+    diagram.position(100,100);
+
+    let txt = createDiv('This is an HTML string!');
+    txt.position(50, 50);
+
+
+}
+
+function draw() {
+  // These commands are applied to the graphics canvas as normal.
+    background(220, 180, 200);
+    ellipse(width/2, height/2, 100, 100);
+    ellipse(width/4, height/2, 50, 50);
+}
+
+function setupMap() {
+// colorMode(RGB);
 
 // leafletmap
     mymap = L.map('quake-map').setView([50,-98], 3).setZoomAround([50,-98], 3);
     L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=d1b312dda4c7451a863575eb94938bc4 ', {
         attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 26,
+        zoomSnap: 0,
+        zoomDelta: 22,
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoiZHZpYTIwMTciLCJhIjoiY2o5NmsxNXIxMDU3eTMxbnN4bW03M3RsZyJ9.VN5cq0zpf-oep1n1OjRSEA'
     }).addTo(mymap);
+}
 
+function addCircles(){
 // color for earthquake magnitude
   var magnitudeMin = 0.0;
   var magnitudeMax = columnMax(table, "mag")
@@ -84,12 +121,12 @@ function setup() {
     for (var i=0; i<hosTable.getRowCount(); i++){
         var row = hosTable.getRow(i)
 
-        // skip over any rows where the magnitude data is missing
+        // skip over any rows where the latitude data is missing
         if (row.get('latitude')==''){
             continue
         }
 
-        // skip over any rows where the magnitude data is missing
+        // skip over any rows where the longitude data is missing
         if (row.get('longitude')==''){
             continue
         }
@@ -99,12 +136,39 @@ function setup() {
             color: 'red',      // the dot stroke color
             fillColor: 'red', // the dot fill color
             fillOpacity: 0.25,  // use some transparency so we can see overlaps
-            radius: 2
+            radius: 1
         })
 
         // place the new dot on the map
         hosCircle.addTo(mymap);
     }
+
+// wastewater treatment
+    for (var i=0; i<watTable.getRowCount(); i++){
+        var row = watTable.getRow(i)
+
+        // skip over any rows where the latitude data is missing
+        if (row.get('latitude')==''){
+            continue
+        }
+
+        // skip over any rows where the longitude data is missing
+        if (row.get('longitude')==''){
+            continue
+        }
+
+        // create a new dot
+        var watCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
+            color: 'blue',      // the dot stroke color
+            fillColor: 'blue', // the dot fill color
+            fillOpacity: 0.25,  // use some transparency so we can see overlaps
+            radius: 1
+        })
+
+        // place the new dot on the map
+        watCircle.addTo(mymap);
+    }
+
 
 // energy plants
     for (var i=0; i<plaTable.getRowCount(); i++){
@@ -125,7 +189,7 @@ function setup() {
             color: 'yellow',      // the dot stroke color
             fillColor: 'yellow', // the dot fill color
             fillOpacity: 0.25,  // use some transparency so we can see overlaps
-            radius: 2
+            radius: 1
         })
 
         // place the new dot on the map

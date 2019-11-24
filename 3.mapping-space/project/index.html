@@ -1,7 +1,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../libraries/leaflet/leaflet.css" /> <!-- default styles -->
+  <link rel="stylesheet" href="../libraries/leaflet/leaflet.css" /> 
+  <link rel="stylesheet" href="styles.css" /> 
   <style>
     html, body {
       padding: 0;
@@ -16,13 +17,14 @@
   </style>
 </head>
 <body>
-  <!-- The container div for our leaflet map -->
+  <!-- The container div for the leaflet map -->
   <div id="quake-map"></div>
+  <!-- The container div for the diagram -->
   <div id='diagram'></div>
 
   <!-- load our dependencies and sketch file -->
   <script src="../libraries/leaflet/leaflet.js"></script>
-  <script src="../libraries/p5.dom.js"></script>
+  <script src="../libraries/p5.dom.min.js"></script>
   <script src="js/leaflet-providers.js"></script>
   <script src="../libraries/p5.min.js"></script>
   <script src="../libraries/lodash.min.js"></script>
