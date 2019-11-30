@@ -29,7 +29,7 @@ var mymap;
 function preload() {
     // load the CSV data into our `table` variable and clip out the header row
     table = loadTable("data/all_day.csv", "csv", "header");
-    hosTable = loadTable("data/HospitalLocationsLg.csv", "csv", "header");    
+    hosTable = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     plaTable = loadTable("data/PlantLocations.csv", "csv", "header");
     watTable = loadTable("data/WastewaterLocations.csv", "csv", "header");
 }
@@ -130,6 +130,16 @@ function addCircles(){
         if (row.get('longitude')==''){
             continue
         }
+
+
+   // for (var i=0; i<table.getColumnCount(); i++){
+   //      var col = table.getColumn(NAICS_DESC)
+
+   //      // skip over any rows for which the hospital is a specialized hospital
+   //      if (col.get('NAICS_DESC')=='GENERAL MEDICAL AND SURGICAL HOSPITALS'){
+   //          continue
+   //      } else {return null}
+
 
         // create a new dot
         var hosCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
