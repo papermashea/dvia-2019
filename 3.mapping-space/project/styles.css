@@ -1,3 +1,58 @@
-#diagram {
-	position: absolute;
+/* fonts */
+@font-face {
+    font-family:'futuralight';
+    src: local('design/futuralight.ttf'), format('TrueType');
+    font-weight: normal;
+    font-style: normal;
 }
+
+@font-face{
+font-family: 'futura-pt',sans-serif;
+font-weight: 300;
+font-style: normal;
+}
+
+/* styles */
+html, body {
+      padding: 0;
+      margin: 0;    
+}
+.diagram {
+	width: 20%;
+	float: left;
+}
+
+	#title {
+		height: 50px;
+		padding: 35px;
+		font-family: 'futuralight', 'futura-pt',sans-serif;
+		font-size: 28px;
+	}
+
+	#data {
+		padding: 35px;
+		font-family: 'futuralight', 'futura-pt',sans-serif;
+		font-size: 16px;
+	}
+	#data p {
+		font-size: 21px;
+		} 
+
+#quake-map{
+	width:80%;
+	height:100%;
+	float: right;
+	font-family: futura-pt, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+}
+
+#defaultCanvas0 {
+	width:20%;
+	height:80%;
+	float: left;
+	font-family: 'futuralight', 'futura-pt', sans-serif;
+	font-weight: 300;
+	font-style: normal;	
+}
+

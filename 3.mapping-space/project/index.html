@@ -1,37 +1,35 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../libraries/leaflet/leaflet.css" /> 
+  <link rel="stylesheet" href="libraries/leaflet/leaflet.css" /> 
+  <link rel="stylesheet" href="https://use.typekit.net/bkj1mmg.css">
   <link rel="stylesheet" href="styles.css" /> 
-  <style>
-    html, body {
-      padding: 0;
-      margin: 0;
-    }
-
-    /* default dimensions for the leaflet map */
-    #quake-map{
-      width: 1000px;
-      height: 800px;
-    }
-  </style>
 </head>
+
 <body>
   <!-- The container div for the leaflet map -->
+  <div class="diagram">
+    <div id="title">
+        <p>Earthquakes + Critical Facilities</p>
+      </div>
+    <div id="data">
+      <p>See all Critical Facilities</p>
+      <input type="checkbox" id="hosBox" value="hospitals" onclick="addHospitals()"><span class="icon" id="hosIcon"></span>Hospitals<br>
+      <input type="checkbox" id="watBox" value="waters" onclick="addWater()"><span class="icon" id="watIcon"></span>Water treatment centers<br>
+      <input type="checkbox" id="plaBox" value="plants" onclick="addPlants()"><span class="icon" id="plaIcon"></span>Energy plants<br>
+    </div>
+  </div>  
   <div id="quake-map"></div>
-  <!-- The container div for the diagram -->
-  <div id='diagram'></div>
-
+ 
   <!-- load our dependencies and sketch file -->
-  <script src="../libraries/leaflet/leaflet.js"></script>
-  <script src="../libraries/p5.dom.min.js"></script>
+  <script src="libraries/leaflet/leaflet.js"></script>
+  <script src="libraries/p5.dom.min.js"></script>
   <script src="js/leaflet-providers.js"></script>
-  <script src="../libraries/p5.min.js"></script>
-  <script src="../libraries/lodash.min.js"></script>
-  <script src="../libraries/brewer.js"></script>
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/lodash.min.js"></script>
+  <script src="libraries/brewer.js"></script>
   <script src="sketch.js"></script>
+  <script src='https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.js'></script>
 
-
-  <!-- p5.js will create a canvas element here at runtime -->
 </body>
 </html>
