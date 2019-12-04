@@ -3,9 +3,10 @@ var table;
 var quakes;
 var magTable;
 var hosTable;
-var plaTable;
 var watTable;
+var plaTable;
 var mymap;
+let count;
 let lowMag, highMag;
 
 
@@ -29,13 +30,14 @@ function columnMin(tableObject, columnName){
 
 function preload() {
     //fonts
-    //font = loadFont("design/futuralight.ttf");
+    // font = loadFont("design/futuralight.ttf");
     // load the CSV data into our `table` variable and clip out the header row
     table = loadTable("data/all_day.csv", "csv", "header");
+    // table = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.csv", "csv", "header");
     quakes = loadTable("data/significant_month.csv", "csv","header");
     hosTable = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     watTable = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");
-    plaTable = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
+    //plaTable = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
 
 }
 
@@ -46,7 +48,7 @@ function setup() {
     addHospitals();
     addvulnerableFacilities();
     addWater();
-    addPlants();
+    // addPlants();
     lowMag = color(255,36,160);
     highMag = color(138, 0, 0);
       noLoop();
@@ -61,18 +63,19 @@ function draw() {
     //mag key
     fill(0,0,0);
     textSize(21);
-    text(`Magnitude`, 40, 180)
+    text(`Magnitude`, 40, 180);
     setGradient(40, 200, 200, 0, lowMag, highMag, 1);
 
     fill(0,0,0);
     textSize(16);
-    text('1', 40, 260)
-    text('8', 280, 260)
+    text('1', 40, 260);
+    text('8', 280, 260);
 
     //weekly vulnerable facilities
     fill(0,0,0);
     textSize(21);
     text(`Weekly Vulnerable Facilities`, 40, 320)
+    // createP('Weekly Vulnerable Facilities');
 
     fill(0,0,0);
     textSize(16);
@@ -178,7 +181,7 @@ function addQuakes(){
 }
 
 function addvulnerableFacilities(){
-        var quake = quakes.getRow(8)
+        var quake = quakes.getRow(8);
         
         // test quakedot
         L.circleMarker([quake.getNum('latitude'), quake.getNum('longitude')], {
@@ -190,8 +193,8 @@ function addvulnerableFacilities(){
 
         // vulnerable hospitals 
         for (var r=0; r<hosTable.getRowCount(); r++){
-            var hospital = hosTable.getRow(r)
-            
+            var hospital = hosTable.getRow(r);
+
             // within 50 km
             var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
             if (disancetInKm < 50){
@@ -206,8 +209,8 @@ function addvulnerableFacilities(){
 
         // vulnerable water treatment facilities 
         for (var r=0; r<watTable.getRowCount(); r++){
-            var treatment = watTable.getRow(r)
-            
+            var treatment = watTable.getRow(r);
+    
             // within 50 km
             var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
             if (disancetInKm < 50){
@@ -221,25 +224,42 @@ function addvulnerableFacilities(){
         }  
 
         // vulnerable energy plants 
-        for (var r=0; r<plaTable.getRowCount(); r++){
-            var plant = plaTable.getRow(r)
+        // for (var r=0; r<plaTable.getRowCount(); r++){
+        //     var plant = plaTable.getRow(r)
             
-            // within 50 km
-            var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
-            if (disancetInKm < 50){
-                L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
-                    weight:0,
-                    fillColor:'yellow',
-                    fillOpacity:1,
-                    radius:4
-                }).addTo(mymap)
-            }
-        }  
-    }
+        //     // within 50 km
+        //     var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
+        //     if (disancetInKm < 50){
+        //         L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
+        //             weight:0,
+        //             fillColor:'yellow',
+        //             fillOpacity:1,
+        //             radius:4
+        //         }).addTo(mymap)
+        //     }
+        // } 
+}
+
+// function getCount() {
+//     var = addvulnerableFacilities()
+//     for (var i=0; i<watTable.getRowCount(); r++){
+//         var watFac = watTable.getRow(r)
+
+//         // count it if it is near 
+//         var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
+//         if (disancetInKm < 50){
+//             count++;} return 
+//     }
+
+// }
+
+function distanceFrom(srcLat, srcLng, dstLat, dstLng){
+    return L.latLng(srcLat, srcLng).distanceTo(L.latLng(dstLat, dstLng)) / 1000 // in km
+}
 
 
 function addHospitals(){
-//    hospitals circles
+    //all hospitals 
     for (var i=0; i<hosTable.getRowCount(); i++){
         var row = hosTable.getRow(i)
 
@@ -339,6 +359,3 @@ function addWater(){
 
     // }
 
-function distanceFrom(srcLat, srcLng, dstLat, dstLng){
-    return L.latLng(srcLat, srcLng).distanceTo(L.latLng(dstLat, dstLng)) / 1000 // in km
-}
