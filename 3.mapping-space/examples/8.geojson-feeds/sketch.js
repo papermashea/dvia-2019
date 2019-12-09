@@ -18,7 +18,7 @@ function setup() {
   // quakes = sortQuakes(quakes, 'depth') // '-depth' means sort from deepest to shallowest
   quakes = sortQuakes(quakes, '-mag') // 'mag' means sort from smallest to largest
 
-  print(`${quakes.length} seismic events found`)
+  print(`${quakes.length} seismic events found`) //anything within curly braces is just javascript
   print(`largest magnitude: ${maxValue(quakes, 'mag')}`)
   print(`intensity range: ${minValue(quakes, 'mmi')}–${maxValue(quakes, 'mmi')}`)
   print('a sample item from the quakes array:', quakes[0])

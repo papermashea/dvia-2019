@@ -1,4 +1,4 @@
-﻿name,latitude,longitude,authority,source,owner
+name,latitude,longitude,authority,source,owner
 Bankhead Dam,33.458665,-87.356823,"Southern Company Services, Inc. - Trans",Black Warrior River,Alabama Power Co
 Barry,31.006900,-88.010300,"Southern Company Services, Inc. - Trans",Mobile River,Alabama Power Co
 Walter Bouldin Dam,32.583889,-86.283056,"Southern Company Services, Inc. - Trans",Coosa River,Alabama Power Co
@@ -2022,8 +2022,8 @@ Fontenelle,42.027013,-110.063973,Western Area Power Administration UGP West,Font
 Powerlane Plant,33.170700,-96.126400,"Electric Reliability Council of Texas, Inc.",No 4 Resevoir,City of Greenville - (TX)
 Combined Locks,44.273511,-88.300548,"Midcontinent Independent Transmission System Operator, Inc..",Fox River,City of Kaukauna
 Island Park,44.418293,-111.395971,Bonneville Power Administration,Island Park,Fall River Rural Elec Coop Inc
-PHP 1,45.481708,-122.083188,Portland General Electric Company,Bull Run River,Portland General Electric Co
-PHP 2,45.448977,-122.151257,Portland General Electric Company,Bull Run River,Portland General Electric Co
+PHP1.00,45.481708,-122.083188,Portland General Electric Company,Bull Run River,Portland General Electric Co
+PHP2.00,45.448977,-122.151257,Portland General Electric Company,Bull Run River,Portland General Electric Co
 Logan City,41.725833,-111.843300,PacifiCorp - East,Municipality,City of Logan - (UT)
 Walnut,37.490300,-120.904400,Turlock Irrigation District,,Turlock Irrigation District
 Easton 2,38.795000,-76.070000,"PJM Interconnection, LLC",Municipality,Easton Utilities Comm
@@ -2401,7 +2401,6 @@ Upper Salmon B,42.766397,-114.908236,Idaho Power Company,Snake River,Idaho Power
 St George Red Rock,37.113736,-113.568944,PacifiCorp - East,Municipality Cooling Tower,City of St George
 Harry Allen,36.430554,-114.902405,Nevada Power Company,Wells,Nevada Power Co
 J K Spruce,29.309722,-98.320300,"Electric Reliability Council of Texas, Inc.",San Antonio River,City of San Antonio - (TX)
-NA 1 (SC), , ,,,
 Heber City,40.503680,-111.425246,PacifiCorp - East,Municipality,Heber Light & Power Company
 Centennial,55.121433,-131.560267,,,Metlakatla Power & Light
 PEC Headworks,47.159553,-119.896306,"Public Utility District No. 2 of Grant County, Washington",Potholes Reservoir,PUD No 2 of Grant County
@@ -2446,7 +2445,6 @@ South Fond Du Lac,43.735300,-88.496667,"Midcontinent Independent Transmission Sy
 Cope,33.364400,-81.030000,South Carolina Electric & Gas Company,Wells,South Carolina Electric&Gas Company
 Darbytown,37.498223,-77.368544,"PJM Interconnection, LLC",,Virginia Electric & Power Co
 Clover,36.869000,-78.704000,"PJM Interconnection, LLC",Roanoke River,Virginia Electric & Power Co
-NA 1 (IN), , ,,,
 Black Butte,39.814905,-122.332335,California Independent System Operator,Black Butte Lake,City of Santa Clara - (CA)
 Gianera,37.401000,-121.968670,California Independent System Operator,Municipality Water,City of Santa Clara - (CA)
 Santa Clara Cogen,37.364297,-121.944238,California Independent System Operator,Municipality Water,City of Santa Clara - (CA)
@@ -2457,7 +2455,6 @@ Polk,27.728600,-81.989700,Tampa Electric Company,Lake,Tampa Electric Co
 Dam 2,33.986501,-91.315788,"Midcontinent Independent Transmission System Operator, Inc..",Arkansas River,Entergy Arkansas Inc
 Watertown Power Plant,44.901667,-97.108333,Southwest Power Pool,,WAPA-- Western Area Power Administration
 Auke Bay,58.387500,-134.644600,,,Alaska Electric Light&Power Co
-NA 5, , ,,,
 Skookumchuck,46.784400,-122.719700,Bonneville Power Administration,Skookumchuck River,Bonneville Power Administration
 Miki Basin,20.790000,-156.934200,,NA,Maui Electric Co Ltd
 Woodland,37.652602,-121.020397,Balancing Authority of Northern California,Municipality,Modesto Irrigation District
@@ -2471,7 +2468,6 @@ Richard Gorsuch,39.366400,-81.521100,"PJM Interconnection, LLC",Ohio River,Ohio 
 Sherman Avenue,39.451000,-75.057800,"PJM Interconnection, LLC",,Atlantic City Electric Co
 Central Energy Plant,28.426300,-81.580900,Progress Energy Florida,Municipality,Reedy Creek Improvement Dist
 State Line Combined Cycle,37.065900,-94.614000,Southwest Power Pool,"Municipality, Wells",Empire District Electric Co
-NA 8, , ,,,
 Hines Energy Complex,27.788215,-81.869983,Progress Energy Florida,Cooling Ponds,"Duke Energy Florida, Inc"
 Redding Power,40.507292,-122.423281,Balancing Authority of Northern California,City Of Redding,City of Redding - (CA)
 Richard M Flynn,40.815800,-73.064000,New York Independent System Operator,Wells,Public Service Elec & Gas Co
@@ -2566,7 +2562,6 @@ Solano Wind,38.116415,-121.769031,California Independent System Operator,,Pacifi
 Carson Ice-Gen Project,38.445681,-121.462387,Balancing Authority of Northern California,Sacramento County Water,Sacramento Municipal Util Dist
 North Branch (WV),39.263300,-79.330800,"PJM Interconnection, LLC",Air Cooled Condensor,Virginia Electric & Power Co
 Wayne County,35.375789,-78.098052,Duke Energy Progress East,Quaker Neck Lake,Duke Energy Progress - (NC)
-NA 1 (NC), , ,Duke Energy Progress East,,Progress Energy Carolinas Inc
 Spirit Mountain,44.512699,-109.129878,Western Area Power Administration UGP West,Shoshone River,WAPA-- Western Area Power Administration
 Kaw Hydro,36.699400,-96.927800,Southwest Power Pool,Kaw Reservoir,City of Ponca City - (OK)
 Ponca City,36.719790,-97.085758,Southwest Power Pool,Municipality,City of Ponca City - (OK)
@@ -2604,26 +2599,17 @@ Tiger Bay,27.746369,-81.849446,Progress Energy Florida,Cooling Towers,"Duke Ener
 Fairless Hills,40.140500,-74.750600,"PJM Interconnection, LLC",Delaware River,PECO Energy Co
 Girvin Landfill,30.335600,-81.463900,JEA,,JEA
 Agency GT,40.816736,-91.146667,"Midcontinent Independent Transmission System Operator, Inc..",,ITC Midwest LLC
-APC1, , ,"Southern Company Services, Inc. - Trans",,
 Dahlberg,34.042267,-83.397721,"Southern Company Services, Inc. - Trans",,Georgia Power Co
 H Allen Franklin Combined Cycle,32.607800,-85.097500,"Southern Company Services, Inc. - Trans",Chattahoochee River,Georgia Power Co
-GPC3, , ,,,
-GPC4, , ,,,
-GPC5, , ,,,
-GPC6, , ,,,
 Pea Ridge,30.592080,-87.135391,"Southern Company Services, Inc. - Trans",Well,Gulf Power Co
 Meridian,32.550780,-88.606690,Tennessee Valley Authority,,Tennessee Valley Authority
 Theodore Cogen Facility,30.525445,-88.128477,"Southern Company Services, Inc. - Trans",Deer River,Alabama Power Co
 Watts Bar Nuclear Plant,35.602100,-84.789500,Tennessee Valley Authority,Chickamauga Lake,Tennessee Valley Authority
 Nymans Plant Microgrid,57.731608,-152.507044,,,Kodiak Electric Assn Inc
 Coffin Butte,44.696900,-123.223400,Bonneville Power Administration,,Bonneville Power Administration
-Future Gen Plant 1, , ,Duke Energy Progress East,,Progress Energy Carolinas Inc
-Future Gen Plant 2, , ,Duke Energy Progress East,,Progress Energy Carolinas Inc
 SECC,38.881667,-104.818056,Western Area Power Administration - Rocky Mountain Region,,Colorado Springs City of
-Turbine, , ,El Paso Electric Company,,El Paso Electric Co
 Kapstone,32.900000,-79.966700,South Carolina Electric & Gas Company,Edisto River,South Carolina Electric&Gas Company
 Unknown,27.627778,-81.845000,,,
-Unsited, , ,,,
 Essex,36.868206,-89.840173,"Associated Electric Cooperative, Inc.",Wells,"Associated Electric Coop, Inc"
 Goat Lake Hydro,59.535700,-135.212300,,Goat Lake,Alaska Power and Telephone Co
 Black Bear Lake,55.476472,-133.147720,,Black Bear Lake,Alaska Power and Telephone Co
@@ -2709,22 +2695,12 @@ Encogen,48.746000,-122.486000,Puget Sound Energy,Lake Whatcom,Puget Sound Energy
 Robert P Mone Plant,40.929700,-84.739200,"PJM Interconnection, LLC",,Ohio Power Co
 H L Culbreath Bayside Power Station,27.907200,-82.423100,Tampa Electric Company,Hillsborough Bay,Tampa Electric Co
 Edgerton,41.449992,-84.767208,"PJM Interconnection, LLC",,Village of Edgerton - (OH)
-MPC1, , ,,,
-APC2, , ,"Southern Company Services, Inc. - Trans",,
-APC3, , ,"Southern Company Services, Inc. - Trans",,
 Wellington,41.163069,-82.227208,"PJM Interconnection, LLC",,Village of Wellington - (OH)
-MEAG1, , ,,,
-MEAG2, , ,,,
-MEAG3, , ,,,
 Glenmore Turbines,44.355600,-87.983900,"Midcontinent Independent Transmission System Operator, Inc..",,Wisconsin Public Service Corp
 Powell Valley,36.574800,-83.032100,Tennessee Valley Authority,,Powell Valley Electric Coop
 Dakota Magic,45.938611,-96.835833,"Midcontinent Independent Transmission System Operator, Inc..",,Otter Tail Power Co
 Wind Turbine,44.669400,-87.633300,"Midcontinent Independent Transmission System Operator, Inc..",,Wisconsin Public Service Corp
 Terry Bundy Generating Station,40.909653,-96.613086,Southwest Power Pool,Effluent,Lincoln Electric System
-NA 1, , ,,,
-Unnamed, , ,Seminole Electric Cooperative,,
-Midway, , ,,,
-Unknown, , ,,,
 E B Harris Electric Generating Plant,32.381352,-86.574366,"Southern Company Services, Inc. - Trans",Alabama River,Alabama Power Co
 New Knoxville,40.499364,-84.309201,"PJM Interconnection, LLC",,Village of New Knoxville - (OH)
 Sand Hill,30.209800,-97.612900,"Electric Reliability Council of Texas, Inc.",Colorado River/ SA Reg WWTP,Austin Energy
@@ -4943,7 +4919,6 @@ Bavarian LFGTE,38.860800,-84.655600,"PJM Interconnection, LLC",,"East Kentucky P
 Green Valley LFGTE,38.396737,-82.808819,"PJM Interconnection, LLC",,"East Kentucky Power Coop, Inc"
 Laurel Ridge LFGTE,37.035000,-84.093300,"PJM Interconnection, LLC",,"East Kentucky Power Coop, Inc"
 Hardin County LFGTE,37.725800,-85.725800,"PJM Interconnection, LLC",,"East Kentucky Power Coop, Inc"
-SPI - Everett, , ,,,
 Hargis-Hebert Electric Generating,30.169400,-91.992300,"Midcontinent Independent Transmission System Operator, Inc..",Municipality,City of Lafayette - (LA)
 Santa Maria EPG,35.040833,-120.636667,California Independent System Operator,Air Cooled Condensor,Pacific Gas & Electric Co
 Salem Water Plant,37.287500,-80.077100,"PJM Interconnection, LLC",,City of Salem - (VA)
@@ -5007,7 +4982,6 @@ Colorado Bend Energy Center,29.287800,-96.068300,"Electric Reliability Council o
 Spearville,37.864100,-99.752800,Southwest Power Pool,,Kansas City Power & Light Co
 Tampa Electric Co NA 2,27.907200,-82.423100,Tampa Electric Company,Hillsborough Bay,Tampa Electric Co
 Tampa Electric Co NA 3,27.796255,-82.399486,,Tampa Bay,
-Tampa Electric Co NA 4, , ,,,
 Whispering Willow Wind Farm - East,42.630513,-93.206389,"Midcontinent Independent Transmission System Operator, Inc..",,ITC Midwest LLC
 Clearwater Power Plant,33.891200,-117.608500,California Independent System Operator,Municipality,Southern California Edison Co
 FPL Energy Burleigh County Wind,47.116700,-100.733300,"Midcontinent Independent Transmission System Operator, Inc..",,"Central Power Elec Coop, Inc"
@@ -8404,7 +8378,6 @@ Rio Communities Solar Energy Center,34.582598,-106.682975,Public Service Company
 "Laurinburg Solar, LLC (Heelstone)",34.707644,-79.295380,Duke Energy Carolinas,,Duke Energy Progress - (NC)
 CES Cherry Hill Solar,39.941853,-75.026208,"PJM Interconnection, LLC",,Pacific Gas & Electric Co
 ESC Brooke County Power I,40.340450,-80.525963,"PJM Interconnection, LLC",Ohio River,Monongahela Power Co
-Wheaton Solar, , ,,,Northern States Power Co
 ESC Tioga County Power,41.767213,-77.035386,New York Independent System Operator,Air Cooled Condensor,New York State Elec & Gas Corp
 ESC Harrison County Power,39.287039,-80.322869,"PJM Interconnection, LLC",,Monongahela Power Co
 Hemlock Solar,36.469089,-77.597517,"PJM Interconnection, LLC",,Virginia Electric & Power Co

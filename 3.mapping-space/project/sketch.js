@@ -1,15 +1,14 @@
-// the data loaded from a USGS-provided CSV file
+// VARIABLES
 var table;
 var quakes;
-var magTable;
-var hosTable;
-var watTable;
-var plaTable;
+var quake;
+var hospitals;
+var water;
+var energy;
 var mymap;
 let count;
-let lowMag, highMag;
 
-
+//COL MIN AND MAX FOR MAG
 // get the values of a given column as an array of numbers
 function columnValues(tableObject, columnName){
   // get the array of strings in the specified column
@@ -29,104 +28,45 @@ function columnMin(tableObject, columnName){
 }
 
 function preload() {
-    //fonts
-    // font = loadFont("design/futuralight.ttf");
-    // load the CSV data into our `table` variable and clip out the header row
-    table = loadTable("data/all_day.csv", "csv", "header");
-    // table = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.csv", "csv", "header");
-    quakes = loadTable("data/significant_month.csv", "csv","header");
-    hosTable = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
-    watTable = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");
-    //plaTable = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
+    // LOAD DATA
+    quakes = loadTable("data/all_day.csv", "csv","header");
+    hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
+    water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
+    energy = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
+
+    // QUAKE COLOR SCALE
+    lowMag = color(255,36,160);
+    highMag = color(138, 0, 0);
+      noLoop();
 
 }
 
 function setup() {
-    colorMode(RGB);
+    color(RGB);
+    // THIS IS THE SIDEBAR
+    sidebar();
+
+    // THIS IS THE MAP
     setupMap();
-    addQuakes();
-    addHospitals();
-    addvulnerableFacilities();
-    addWater();
-    // addPlants();
-    lowMag = color(255,36,160);
-    highMag = color(138, 0, 0);
-      noLoop();
+    
+    // THIS IS THE COMPLETE DATA
+    addQuake();
+        lowDepth = color(255,36,160);
+        highDepth = color(138, 0, 0);
+          noLoop();
+
+    // THIS IS THE FILTERED DATA
+    addFacility();
 }
 
-function draw() {
-  // These commands are applied to the graphics canvas as normal.
-    createCanvas(300, 800);
-    background(999);
+function sidebar() {
+    let canvas = createCanvas(300, 800);
+    canvas.parent('data'); 
+    background('black');
     noStroke();
-
-    //mag key
-    fill(0,0,0);
-    textSize(21);
-    text(`Magnitude`, 40, 180);
-    setGradient(40, 200, 200, 0, lowMag, highMag, 1);
-
-    fill(0,0,0);
-    textSize(16);
-    text('1', 40, 260);
-    text('8', 280, 260);
-
-    //weekly vulnerable facilities
-    fill(0,0,0);
-    textSize(21);
-    text(`Weekly Vulnerable Facilities`, 40, 320)
-    // createP('Weekly Vulnerable Facilities');
-
-    fill(0,0,0);
-    textSize(16);
-    text('Hospitals', 40, 360)
-    text('Water Treatment', 40, 380)
-    text('Energy Plants', 40, 400)
-
-    //yearly vulnerable facilities
-    fill(0,0,0);
-    textSize(21);
-    text(`Yearly Vulnerable Facilities`, 40, 520)
-
-    fill(0,0,0);
-    textSize(16);
-    text('January', 40, 560);
-    text('February', 40, 580);
-    text('March', 40, 600);
-
-
-    //showing different data checkboxes
-        // var hosBox = document.createElement("INPUT");
-        // hosBox.setAttribute("type", "checkbox");
-        // document.body.appendChild(hosBox);
-        // fill(0,0,0);
-        // text('Hospitals', 40, 20);
-
-        // var watBox = document.createElement("INPUT");
-        // watBox.setAttribute("type", "checkbox");
-        // document.body.appendChild(watBox);
-        // fill(0,0,0);
-        // text('Water treatment', 40, 40);
-
-        // var plaBox = document.createElement("INPUT");
-        // plaBox.setAttribute("type", "checkbox");
-        // document.body.appendChild(plaBox);
-        // fill(0,0,0);
-        // text('Energy plants', 40, 60);
-
-}
-
-function setGradient (x, y, w, h, c1, c2, axis){
-    for (let i = x; i <= x + w; i++) {
-      let inter = map(i, x, x + w, 0, 1);
-      let key = lerpColor(lowMag, highMag, inter);
-      fill(key);
-      rect(i, y, i, 40);
-    }
 }
 
 function setupMap() { 
-    // leafletmap
     mymap = L.map('quake-map').setView([36,-120], 6);
     L.mapbox.styleLayer('mapbox://styles/papermashea/ck3ny0odo61591cmn01hpbyqa', {
         zoomSnap: 0,
@@ -136,226 +76,145 @@ function setupMap() {
 
 }
 
-function addQuakes(){
-//dots for earthquakes
-    for (var i=0; i<table.getRowCount(); i++){
-        var row = table.getRow(i)
+function setGradient (x, y, w, h, c1, c2, axis){
+    for (let i = x; i <= x + w; i++) {
+      let inter = map(i, x, x + w, 0, 1);
+      let key = lerpColor(lowDeph, highDepth, inter);
+      fill(key);
+      rect(i, y, i, 40);
+    }
+}
 
-        // skip over any rows where the magnitude data is missing
-        if (row.get('mag')==''){
+function addQuake(){
+//SHOWS EARTHQUAKE BY DEPTH AND MAGNITUDE
+    for (var i=0; i<quakes.getRowCount(); i++){
+        var row = quakes.getRow(i)
+
+        // SKIP ROWS WHERE DATA IS MISSING
+        if (row.get('depth')==''){
             continue
         }
-
-        // skip over any rows where the latitude data is missing
         if (row.get('latitude')==''){
             continue
         }
-
-        // skip over any rows where the longitude data is missing
         if (row.get('longitude')==''){
             continue
         }
 
-        // create a new dot
-        var magCircle = L.circleMarker([row.getNum('latitude'), row.getNum('longitude')], {
-            color: magColor,      // the dot stroke color
-            fill: magColor, // the dot fill color
-            fillOpacity: 1,  // use some transparency so we can see overlaps
-            radius: row.getNum('mag') 
+        // QUAKE DOT
+        var quake = L.circleMarker([row.getNum('latitude'), row.getNum('longitude')], {
+            color: 'none',
+            fillColor: depthColor, 
+            fillOpacity: .5,  
+            radius: row.getNum('mag') * 8
         })
 
-    // color for earthquake magnitude
-      var magnitudeMin = 0.0;
-      var magnitudeMax = columnMax(table, "mag")
-      var magnitudes = columnValues(table, "mag")
+        // COLOR FOR DEPTH
+          var depthMin = 0.0;
+          var depthMax = columnMax(quakes, "depth")
+          var depth = columnValues(quakes, "depth")
 
-    // define a color palette for magnitude
-      let from = color(255,36,160);
-      let to = color(138, 0, 0);
-      let magScale = map(magnitudes[i], magnitudeMin, magnitudeMax, .1, 1.0);
-      var magColor = lerpColor(from, to, magScale);
+        // COLOR PALETTE FOR DEPTH
+          let from = color(255,36,160);
+          let to = color(138, 0, 0);
+          let depthScale = map(depth[i], depthMin, depthMax, .1, 1.0);
+          var depthColor = lerpColor(from, to, depthScale);
 
-    // place the new dot on the map
-        magCircle.addTo(mymap);
+    // ADDING QUAKE WITH DEPTH AND MAGNITUDE
+        quake.addTo(mymap)
     }
 }
 
-function addvulnerableFacilities(){
-        var quake = quakes.getRow(8);
-        
-        // test quakedot
-        L.circleMarker([quake.getNum('latitude'), quake.getNum('longitude')], {
-            weight:0,
-            fillColor:'black',
-            fillOpacity:1,
-            radius:10
-        }).addTo(mymap)
+function addFacility(){
+    for (var r=0; r<quakes.rows.length; r++){
+        var quakeSite = quakes.getRow(r);
 
-        // vulnerable hospitals 
-        for (var r=0; r<hosTable.getRowCount(); r++){
-            var hospital = hosTable.getRow(r);
+    // VULNERABLE HOSPITALS
+    for (var h=0; h<hospitals.getRowCount(); h++){
+        var hospital = hospitals.getRow(h);
 
-            // within 50 km
-            var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
-            if (disancetInKm < 50){
-                L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
-                    weight:0,
-                    fillColor:'red',
-                    fillOpacity:1,
-                    radius:4
-                }).addTo(mymap)
-            }
-        }
-
-        // vulnerable water treatment facilities 
-        for (var r=0; r<watTable.getRowCount(); r++){
-            var treatment = watTable.getRow(r);
-    
-            // within 50 km
-            var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
-            if (disancetInKm < 50){
-                L.circleMarker([treatment.getNum('latitude'), treatment.getNum('longitude')], {
-                    weight:0,
-                    fillColor:'blue',
-                    fillOpacity:1,
-                    radius:4
-                }).addTo(mymap)
-            }
-        }  
-
-        // vulnerable energy plants 
-        // for (var r=0; r<plaTable.getRowCount(); r++){
-        //     var plant = plaTable.getRow(r)
+        // WITHIN 50KM
+        var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
+        if (disancetInKm < 50){
             
-        //     // within 50 km
-        //     var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
-        //     if (disancetInKm < 50){
-        //         L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
-        //             weight:0,
-        //             fillColor:'yellow',
-        //             fillOpacity:1,
-        //             radius:4
-        //         }).addTo(mymap)
-        //     }
-        // } 
-}
+            // DRAW LINE FOR DISTANCE
+            var latlngs = [
+                [hospital.getNum('latitude'), hospital.getNum('longitude')],
+                [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
+            ]
 
-// function getCount() {
-//     var = addvulnerableFacilities()
-//     for (var i=0; i<watTable.getRowCount(); r++){
-//         var watFac = watTable.getRow(r)
+            L.polyline(latlngs, {
+                stroke: 'orange',
+                strokeweight: .5,
+                opacity: .5
+            }).addTo(mymap);
 
-//         // count it if it is near 
-//         var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
-//         if (disancetInKm < 50){
-//             count++;} return 
-//     }
-
-// }
-
-function distanceFrom(srcLat, srcLng, dstLat, dstLng){
-    return L.latLng(srcLat, srcLng).distanceTo(L.latLng(dstLat, dstLng)) / 1000 // in km
-}
-
-
-function addHospitals(){
-    //all hospitals 
-    for (var i=0; i<hosTable.getRowCount(); i++){
-        var row = hosTable.getRow(i)
-
-        // skip over any rows where the latitude data is missing
-        if (row.get('latitude')==''){
-            continue}
-
-        // skip over any rows where the longitude data is missing
-        if (row.get('longitude')==''){
-            continue}
-
-        // create a new dot if within 66km
-        var hosCircle = L.circleMarker([row.getNum('latitude'), row.getNum('longitude')], {
-            color: 'orange',      // the dot stroke color
-            fillColor: 'orange', // the dot fill color
-            radius: 1
-        })    
-
-        //place all hopsitals on the map    
-        var hosCheckBox = document.getElementById("hosBox");
-        if (hosCheckBox.checked == true){
-        hosCircle.addTo(mymap);
-      } else {
-        hosCircle.removeFrom(mymap);
-      }
-    }
-}
-
-//console.log(addvulnerableHospitals(hopsital));
-
-function addWater(){
-    //wastewater treatment
-    for (var i=0; i<watTable.getRowCount(); i++){
-        var row = watTable.getRow(i)
-
-        // skip over any rows where the latitude data is missing
-        if (row.get('latitude')==''){
-            continue
+            // DRAW CIRCLE FOR LOCATION
+            L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
+                weight:0,
+                fillColor:'orange',
+                fillOpacity:.5,
+                radius: 8
+            }).bindTooltip(hospital.getString('NAME')).addTo(mymap)
+            }
         }
 
-        // skip over any rows where the longitude data is missing
-        if (row.get('longitude')==''){
-            continue
-        }
+    // VULNERABLE WATER TREATMENT CENTERS
+    for (var t=0; t<water.getRowCount(); t++){
+        var treatment = water.getRow(t);
 
-        // create a new dot
-        // var disancetInKm = distanceFrom(table.getNum('latitude'), table.getNum('longitude'),watTable.getNum('latitude'), watTable.getNum('longitude'))
-        // if (disancetInKm < 1000){
-        var watCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
-            color: 'blue',      // the dot stroke color
-            fillColor: 'blue', // the dot fill color
-            fillOpacity: 0.25,  // use some transparency so we can see overlaps
-            radius: 1
-        })
+        // WITHIN 50KM
+        var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
+        if (disancetInKm < 50){
 
-        // place all water treatment facillities on the map
-        var watCheckBox = document.getElementById("watBox");
-        if (watCheckBox.checked == true){
-        watCircle.addTo(mymap);
-      } else {
-        watCircle.removeFrom(mymap);
-      }
-        }
-    }
+            // DRAW LINE FOR DISTANCE
+            var latlngs = [
+                [treatment.getNum('latitude'), treatment.getNum('longitude')],
+                [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
+            ]
 
-    // function addPlants(){
-    // //energy plants
-    // for (var i=0; i<plaTable.getRowCount(); i++){
-    //     var row = plaTable.getRow(i)
+            L.polyline(latlngs, {
+                stroke: 'blue',
+                strokeweight: .5,
+                opacity: .5
+            }).addTo(mymap);
 
+            L.circleMarker([treatment.getNum('latitude'), treatment.getNum('longitude')], {
+                weight:0,
+                fillColor:'blue',
+                fillOpacity:.5,
+                radius: 8
+            }).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap)
+            }
+        }    
+
+    // VULNERABLE ENERGY PLANTS
+    // for (var p=0; p<energy.getRowCount(); p++){
+    //     var plant = energy.getRow(p);
     //     // skip over any rows where the latitude data is missing
-    //     if (row.get('latitude')==''){
+    //     if (energy.get('latitude')==''){
     //         continue
     //     }
 
     //     // skip over any rows where the longitude data is missing
-    //     if (row.get('longitude')==''){
+    //     if (plant.get('longitude')==''){
     //         continue
     //     }
+    //     // WITHIN 50KM
+    //     var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
+    //     if (disancetInKm < 20){
+    //         L.circleMarker([treatment.getNum('latitude'), plant.getNum('longitude')], {
+    //             weight:0,
+    //             fillColor:'yellow',
+    //             fillOpacity:.5,
+    //             radius: 8
+    //         }).bindTooltip(plant.getString('name')).addTo(mymap)
+    //         }
+    //     }    
 
-    //     // create a new dot
-    //     var plaCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
-    //         color: 'yellow',      // the dot stroke color
-    //         fillColor: 'yellow', // the dot fill color
-    //         fillOpacity: 0.25,  // use some transparency so we can see overlaps
-    //         radius: 1
-    //     })
+    }
+}        
 
-    //     // place all energy plants on the map
-    //     var plaCheckBox = document.getElementById("plaBox");
-    //     if (plaCheckBox.checked == true){
-    //     plaCircle.addTo(mymap);
-    //   } else {
-    //     plaCircle.removeFrom(mymap);
-    //   }
-    // }
-
-    // }
-
+function distanceFrom(srcLat, srcLng, dstLat, dstLng){
+    return L.latLng(srcLat, srcLng).distanceTo(L.latLng(dstLat, dstLng)) / 1000 // in km
+    }
