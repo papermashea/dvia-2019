@@ -14,9 +14,9 @@ function setup() {
   // convert the raw geoJSON feed we loaded from the USGS into a plain array of objects
   var quakes = unpackJSON(jsonData)
   
-  /* try uncommenting the next line and sorting by different attribute */
+  /* try uncommenting one of the next lines and sorting by different attribute */
   // quakes = sortQuakes(quakes, 'depth') // '-depth' means sort from deepest to shallowest
-  quakes = sortQuakes(quakes, '-mag') // 'mag' means sort from smallest to largest
+  // quakes = sortQuakes(quakes, '-mag') // 'mag' means sort from smallest to largest
 
   print(`${quakes.length} seismic events found`) //anything within curly braces is just javascript
   print(`largest magnitude: ${maxValue(quakes, 'mag')}`)
