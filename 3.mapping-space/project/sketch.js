@@ -11,6 +11,7 @@ var mymap;
 let count;
 let vulnerableHospitals; 
 
+
 //COL MIN AND MAX FOR MAG
 // get the values of a given column as an array of numbers
 function columnValues(tableObject, columnName){
@@ -36,6 +37,10 @@ function preload() {
     hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
     energy = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
+
+        lowDepth = color(255,36,160);
+        highDepth = color(138, 0, 0);
+          noLoop();
 }
 
 function setup() {
@@ -48,8 +53,8 @@ function setup() {
     
     // THIS IS THE COMPLETE DATA
     addQuake();
-        let lowDepth = color(255,36,160);
-        let highDepth = color(138, 0, 0);
+        lowDepth = color(255,36,160);
+        highDepth = color(138, 0, 0);
           noLoop();
 
     // THIS IS THE FILTERED DATA
@@ -87,13 +92,11 @@ function sidebar() {
     //     }
 
     // ADDING CANVAS INFORMATION
-    //MAGNITUDE KEY
-    let lowDepth, highDepth;
-    fill(0,0,0)
-    textSize(21)
-    text(`Magnitude`, 40, 180)
-    setGradient(40, 200, 200, 0, lowDepth, highDepth, 1)
-
+    // MAGNITUDE KEY
+    fill(0,0,0);
+    textSize(21);
+    text(`Magnitude`, 40, 180);
+    // setGradient(40, 250, 200, 50, lowDepth, highDepth, 1);
 }
 
 
@@ -104,6 +107,7 @@ function setGradient (x, y, w, h, c1, c2, axis){
       fill(key);
       rect(i, y, i, 40);
     }
+
 }
 
 function addQuake(){
