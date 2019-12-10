@@ -6,7 +6,10 @@ var hospitals;
 var water;
 var energy;
 var mymap;
+
+// DATA
 let count;
+let vulnerableHospitals; 
 
 //COL MIN AND MAX FOR MAG
 // get the values of a given column as an array of numbers
@@ -33,12 +36,6 @@ function preload() {
     hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
     energy = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
-
-    // QUAKE COLOR SCALE
-    lowMag = color(255,36,160);
-    highMag = color(138, 0, 0);
-      noLoop();
-
 }
 
 function setup() {
@@ -51,19 +48,13 @@ function setup() {
     
     // THIS IS THE COMPLETE DATA
     addQuake();
-        lowDepth = color(255,36,160);
-        highDepth = color(138, 0, 0);
+        let lowDepth = color(255,36,160);
+        let highDepth = color(138, 0, 0);
           noLoop();
 
     // THIS IS THE FILTERED DATA
-    addFacility();
-}
-
-function sidebar() {
-    let canvas = createCanvas(300, 800);
-    canvas.parent('data'); 
-    background('black');
-    noStroke();
+    // addFacility();
+    findFacility();
 }
 
 function setupMap() { 
@@ -75,6 +66,36 @@ function setupMap() {
     }).addTo(mymap);
 
 }
+
+function sidebar() {
+    // CREATE CANVAS
+    let canvas = createCanvas(400, 800);
+    canvas.parent('data'); 
+    background('white');
+    noStroke();
+
+    // let description = createElement('span', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor');
+    // description.parent('data');
+
+    // ADD CANVAS ELEMENTS
+
+    // let key = createElement('h2', 'Depth');
+    // let info = createElement('h2', 'Vulnerable Facilities');
+    //     let D = [title, description,key, info];
+    //     for (let i =0; i < D.length; i ++) {
+    //     D[i].parent('data');
+    //     }
+
+    // ADDING CANVAS INFORMATION
+    //MAGNITUDE KEY
+    let lowDepth, highDepth;
+    fill(0,0,0)
+    textSize(21)
+    text(`Magnitude`, 40, 180)
+    setGradient(40, 200, 200, 0, lowDepth, highDepth, 1)
+
+}
+
 
 function setGradient (x, y, w, h, c1, c2, axis){
     for (let i = x; i <= x + w; i++) {
@@ -88,25 +109,25 @@ function setGradient (x, y, w, h, c1, c2, axis){
 function addQuake(){
 //SHOWS EARTHQUAKE BY DEPTH AND MAGNITUDE
     for (var i=0; i<quakes.getRowCount(); i++){
-        var row = quakes.getRow(i)
+        var quakeData = quakes.getRow(i)
 
         // SKIP ROWS WHERE DATA IS MISSING
-        if (row.get('depth')==''){
+        if (quakeData.get('depth')==''){
             continue
         }
-        if (row.get('latitude')==''){
+        if (quakeData.get('latitude')==''){
             continue
         }
-        if (row.get('longitude')==''){
+        if (quakeData.get('longitude')==''){
             continue
         }
 
         // QUAKE DOT
-        var quake = L.circleMarker([row.getNum('latitude'), row.getNum('longitude')], {
+        var quake = L.circleMarker([quakeData.getNum('latitude'), quakeData.getNum('longitude')], {
             color: 'none',
             fillColor: depthColor, 
             fillOpacity: .5,  
-            radius: row.getNum('mag') * 8
+            radius: quakeData.getNum('mag') * 8
         })
 
         // COLOR FOR DEPTH
@@ -121,11 +142,29 @@ function addQuake(){
           var depthColor = lerpColor(from, to, depthScale);
 
     // ADDING QUAKE WITH DEPTH AND MAGNITUDE
-        quake.addTo(mymap)
+        quake.bindPopup("Location: " + quakeData.getString('place') 
+                        + "<br>Magnitude: " + quakeData.getNum('mag')  
+                        + "<br>Depth: "+ quakeData.getNum('depth')) 
+                        .addTo(mymap)
+        // quake.on("click", function ()
     }
 }
 
-function addFacility(){
+// function addHospital(){
+//     for (var r=0; r<quakes.rows.length; r++){
+//         var quakeSite = quakes.getRow(r);
+
+//     // VULNERABLE HOSPITALS
+//     for (var h=0; h<hospitals.getRowCount(); h++){
+//         var hospital = hospitals.getRow(h);
+
+//         // WITHIN 50KM
+//         var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
+//         if (disancetInKm < 50){
+//             return
+// }
+
+function findFacility(){
     for (var r=0; r<quakes.rows.length; r++){
         var quakeSite = quakes.getRow(r);
 
@@ -144,18 +183,18 @@ function addFacility(){
             ]
 
             L.polyline(latlngs, {
-                stroke: 'orange',
-                strokeweight: .5,
+                color: 'black',
+                weight: .8,
                 opacity: .5
             }).addTo(mymap);
 
             // DRAW CIRCLE FOR LOCATION
             L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
-                weight:0,
+                weight: 0,
                 fillColor:'orange',
                 fillOpacity:.5,
                 radius: 8
-            }).bindTooltip(hospital.getString('NAME')).addTo(mymap)
+            }).bindTooltip(hospital.getString('NAME')).addTo(mymap);
             }
         }
 
@@ -174,8 +213,8 @@ function addFacility(){
             ]
 
             L.polyline(latlngs, {
-                stroke: 'blue',
-                strokeweight: .5,
+                color: 'black',
+                weight: .8,
                 opacity: .5
             }).addTo(mymap);
 
@@ -184,36 +223,12 @@ function addFacility(){
                 fillColor:'blue',
                 fillOpacity:.5,
                 radius: 8
-            }).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap)
+            }).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap);
             }
         }    
-
-    // VULNERABLE ENERGY PLANTS
-    // for (var p=0; p<energy.getRowCount(); p++){
-    //     var plant = energy.getRow(p);
-    //     // skip over any rows where the latitude data is missing
-    //     if (energy.get('latitude')==''){
-    //         continue
-    //     }
-
-    //     // skip over any rows where the longitude data is missing
-    //     if (plant.get('longitude')==''){
-    //         continue
-    //     }
-    //     // WITHIN 50KM
-    //     var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
-    //     if (disancetInKm < 20){
-    //         L.circleMarker([treatment.getNum('latitude'), plant.getNum('longitude')], {
-    //             weight:0,
-    //             fillColor:'yellow',
-    //             fillOpacity:.5,
-    //             radius: 8
-    //         }).bindTooltip(plant.getString('name')).addTo(mymap)
-    //         }
-    //     }    
-
     }
 }        
+
 
 function distanceFrom(srcLat, srcLng, dstLat, dstLng){
     return L.latLng(srcLat, srcLng).distanceTo(L.latLng(dstLat, dstLng)) / 1000 // in km
