@@ -17,42 +17,65 @@ html, body {
       padding: 0;
       margin: 0;    
 }
-.diagram {
-	width: 20%;
+#sidebar {
+	width: 30%;
+	height: 90%;
 	float: left;
 }
 
-	#title {
-		height: 50px;
-		padding: 35px;
+	h1 {
+		margin: 35px;
 		font-family: 'futuralight', 'futura-pt',sans-serif;
-		font-size: 28px;
 	}
 
-	#data {
-		padding: 35px;
+	h2, h3 {
+		margin: 35px;
+		font-family: 'futuralight', 'futura-pt',sans-serif;
+	}
+
+	#key, {
+		font-family: 'futuralight', 'futura-pt',sans-serif;
+		/*margin: 35px;*/
+		font-size: 16px;
+		float: left;
+		font-weight: 300;
+		font-style: normal;	
+	}
+	p {
+		font-family: 'futuralight', 'futura-pt',sans-serif;
+		font-size: 14px;
+		margin-left: 35px;
+		margin-top: 15px;
+		float: left;
+		font-weight: 300;
+		font-style: normal;		 	
+	 }
+
+	input {
+		margin-left: 35px;
+		float: left;
+	 }
+
+	label {
 		font-family: 'futuralight', 'futura-pt',sans-serif;
 		font-size: 16px;
-	}
-	#data p {
-		font-size: 21px;
-		} 
+		float: left;
+		font-weight: 500;
+		font-style: normal;		 	
+	 }
+
 
 #quake-map{
-	width:80%;
-	height:100%;
+	width:70%;
+	height:90%;
 	float: right;
 	font-family: futura-pt, sans-serif;
 	font-weight: 300;
 	font-style: normal;
 }
 
-#defaultCanvas0 {
-	width:20%;
-	height:80%;
+#diagram {
+	width: 100%!important;
 	float: left;
-	font-family: 'futuralight', 'futura-pt', sans-serif;
-	font-weight: 300;
-	font-style: normal;	
 }
 

@@ -7,22 +7,24 @@
 </head>
 
 <body>
-  <!-- The container div for the leaflet map -->
-  <div class="diagram">
-    <div id="title">
-        <p>Earthquakes + Critical Facilities</p>
-      </div>
-    <div id="data">
-    </div>
-  </div>  
+  <!--THE SIDEBAR CONTENT -->
+  <div id="sidebar">
+      <div id="title"></div>
+      <div id="descriptionText"></div>
+      <div id="key"></div>
+ </div>  
+  <!--THE LEAFLET MAP -->
   <div id="quake-map"></div>
+  <!--THE DIAGRAM -->
+  <div id="cities"></div>
  
   <!-- load our dependencies and sketch file -->
-  <script src="libraries/leaflet/leaflet.js"></script>
-  <script src="libraries/p5.dom.min.js"></script>
-  <script src="libraries/leaftlet/leaflet-providers.js"></script>
   <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.dom.min.js"></script>
+  <script src="libraries/leaflet/leaflet.js"></script>
+  <script src="libraries/leaftlet/leaflet-providers.js"></script>
   <script src="libraries/lodash.min.js"></script>
+  <script src="libraries/cities.js"></script>
   <script src="libraries/brewer.js"></script>
   <script src="sketch.js"></script>
   <script src="https://api.mapbox.com/mapbox.js/v3.2.1/mapbox.js"></script>
