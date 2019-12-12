@@ -2,9 +2,12 @@
 var table;
 var quakes;
 var quake;
+var quakePattern;
 var hospitals;
 var water;
 var energy;
+let depthScale;
+var depthColor;
 var mymap;
 let height = window.innerHeight;
 let width = window.innerWidth;
@@ -12,7 +15,7 @@ let hs = 20;
 
 // DATA
 let count;
-let vulnerableHospitals; 
+// let vulnerable; 
 
 
 //COL MIN AND MAX FOR MAG
@@ -37,9 +40,11 @@ function columnMin(tableObject, columnName){
 function preload() {
     // LOAD DATA
     quakes = loadTable("data/all_day.csv", "csv","header");
+    allQuakes = loadTable("data/significant_week.csv", "csv","header");
     hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
     energy = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
+            // d3.csv(quakePattern).then(sidebar);
 
         lowDepth = color(255,36,160);
         highDepth = color(138, 0, 0);
@@ -63,10 +68,14 @@ function setup() {
         lowDepth = color(255,36,160);
         highDepth = color(138, 0, 0);
           noLoop();
+    quakePattern();
 
     // THIS IS THE FILTERED DATA
+    // addHospitals();
+    // findHospitals();
     // addFacility();
-    // findFacility();
+    findFacility();
+    allHospitals();
     // countHospital();
 
 }
@@ -83,7 +92,7 @@ function setupMap() {
 
 function sidebar() {
 // ADD CANVAS
-    let canvas = createCanvas(400, height);
+    let canvas = createCanvas(400, 4000);
     canvas.parent('sidebar');
     background('white');
     noStroke();
@@ -93,14 +102,14 @@ function sidebar() {
         let title = createElement('h1', 'Earthquakes + Critical Facilities');
            title.parent('title');
 
-        let description = createElement('p', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+        let description = createElement('p', 'In October 2019, <a href="https://www.nytimes.com/2019/10/09/us/california-power-outage-PGE.html" target="_blank">Pacific Gas and Electric deliberately turned off power for hundreds of thousands of homes</a> as a precaution against wildfires. In a state where households, companies, and schools are known for cutting-edge technology, the vulnerability of basic infrastructure came as <a href="https://twitter.com/search?q=california%20power%20outage&src=typed_query" target="_blank">a shock.</a>');
            description.parent('descriptionText');
 
         // DETAILS
         // let detailsTitle = createElement('h3', 'Vulnerable Facilities');
         //     detailsTitle.parent('key');
         
-        let details = createElement('p', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+        let details = createElement('p', 'This map explores populations and critical facilities vulnerable earthquakes in the United States. You can explore depth and magnitude of the latest earthquakes of the day in relation to their proximity to critical facilities including <span class="hospitalText">hospitals</span>, <span class="treatmentText">water treatment centers</span>, and <span class="energyText">energy plants</span>.<br><br>');
             details.parent('descriptionText');
 
         // KEY
@@ -123,15 +132,69 @@ function sidebar() {
         fill(0,0,0);
         text('8', 360, 140);
 
-        // ALL DATA
-        let hosBox = createCheckbox('Hospitals', 'true');
+        // ALL DATA INPUTS
+        let hosBox = createCheckbox('Hospitals', '');
             hosBox.type = 'checkbox';
             hosBox.parent('descriptionText');
-            // hosBox.position('descriptionText');
+
+        let watBox = createCheckbox('Water Treatment Facilities', '');
+            watBox.type = 'checkbox';
+            watBox.parent('descriptionText');
+
+        // SIMPLE CHART
+            // var quakeData = quakePattern.getRow(i)        
+            // var quakeDepth = quakeData.getNum('depth')
+            // var quakeMag = quakeData.getNum('mag')
+        //     var quakeDepth = map(function(d) {return d.Depth});
+        // //Set Min for better visiable range
+        //         var minX = d3.min(quakeDepth);
+        //         minX -= 1;
+                
+        //         var chart = new Chart('chart', {
+        //             type: 'horizontalBar',
+        //             data: {
+        //                 labels: Magnitude,
+        //                 datasets: [
+        //                     {
+        //                         data: quakeDepth
+        //                     }
+        //                 ]
+        //             },
+        //             options: {
+        //                 title: {
+        //                     display: true,
+        //                 },
+        //                 legend: {
+        //                     display: false
+        //                 },
+        //                 scales: {
+        //                     xAxes: [
+        //                         {
+        //                             ticks: {
+        //                                 suggestedMin: minX,
+        //                             }
+        //                         }
+        //                     ]
+        //                 }
+        //             }
+        //         });
+        //     }
+
 
         // PRINT VULNERABLE CITIES
+            // CITIES AFFECTED
+            push();
+            fill(0,0,0);
+            textSize(20);
+            textFont("futura-pt");
+            textAlign(LEFT);
+            text('Magnitude', 35, 200);
+            text('Cities Affected', 140, 200);
+            textSize(12);   
+
         var xPos = 35;
-        var yPos = 300;
+        var yPos = 240;
+        // var vulnerableHospitals = findHospitals()
 
           for (var r=0; r<quakes.getRowCount(); r++){
             var row = quakes.getRow(r)
@@ -139,32 +202,66 @@ function sidebar() {
             var lng = row.getNum('longitude')
             var closest = Cities.closestTo(lat, lng)
 
+            // COLOR FOR DEPTH
+            var depthMin = 0.0;
+            var depthMax = columnMax(quakes, "depth")
+            var depth = columnValues(quakes, "depth")
 
-        var y = yPos + r*20
-        var x = xPos
-        text(row.getString('mag'), x, y)
-        
-        x+= 40
-        text(row.getString('place'), x, y)
+            // COLOR PALETTE FOR DEPTH
+            let from = color(255,36,160);
+            let to = color(138, 0, 0);
+            let depthScale = map(depth[r], depthMin, depthMax, .1, 1.0);
+            var depthColor = lerpColor(from, to, depthScale);
 
-        x+= 200
-        text(`closest to: ${closest[0].name}, ${closest[0].country}`, x, y)
+              // for (var h=0; h<vulnerableHospitals.getRow(h); r++){
+              //   var closeHos = vulnerableHospitals.getRow(h)
 
-        x+= 200
-        
-        var pop = closest[0].population
-        if (pop>=1000000){
-          text(`population ${(pop/1000000).toFixed(1)} million`, x, y)
-        }else{
-          text(`population ${numberWithCommas(pop)}`, x, y)
-        }
+            var y = yPos + r*20
+            var x = xPos
+            var quakeMag = row.getNum('mag')
+            fill(depthColor);
+            rect(x, y, quakeMag*4, 8)
+                    push();
+           fill(0,0,0);
+             
+            // x+= 40
+            // text(closeHos.getString('name'), x, y)
 
-        x+= 200
-        text(`distance ${floor(closest[0].distance)} km`, x, y)
+            x+= 110
+            text(`near: ${closest[0].name},`, x, y)
 
-        x+= 200
-        text(`compass direction: ${floor(closest[0].direction)}°`, x, y)
+            x+= 140
+            
+            var pop = closest[0].population
+            if (pop>=1000000){
+              text(`pop.${(pop/1000000).toFixed(1)} million`, x, y)
+            }else{
+              text(`population ${numberWithCommas(pop)}`, x, y)
+            }
+
+        // x+= 200
+        // text(`distance ${floor(closest[0].distance)} km`, x, y)
+
+        // x+= 200
+        // text(`compass direction: ${floor(closest[0].direction)}°`, x, y)
       }
+
+        // WEEKLY THREATS
+            // WEEKLY THREATS
+            // push();
+            // fill(0,0,0);
+            // textSize(20);
+            // textFont("futura-pt");
+            // textAlign(LEFT);
+            // text('Weekly Threas', 35, 600);
+
+            // for (var a=0; a<allQuakes.getRowCount(); a++){ 
+            // var all = allQuakes.getRow(a)
+            // var quakeDepth = all.getNum('depth')
+            // var quakeMag = all.getNum('mag')
+            //   push();
+            //     rect(35, 200, quakeDepth, quakeMag)
+
     }
 
 
@@ -172,6 +269,25 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function quakePattern() {
+        for (var i=0; i<allQuakes.getRowCount(); i++){
+        var quakeData = allQuakes.getRow(i)
+
+        // SKIP ROWS WHERE DATA IS MISSING
+        if (quakeData.get('depth')==''){
+            continue
+        }
+        if (quakeData.get('magnitude')==''){
+            continue
+        }
+        if (quakeData.get('latitude')==''){
+            continue
+        }
+        if (quakeData.get('longitude')==''){
+            continue
+        }
+    }
+}
 
 
 function setGradient (x, y, w, h, c1, c2, axis){
@@ -184,40 +300,46 @@ function setGradient (x, y, w, h, c1, c2, axis){
 
 }
 
-function addData (){
 
-    //ALL HOSPITALS
-    var hostpitalData = L.marker(latlng).addTo(map);
+// function addData (){
+//     //ALL HOSPITALS
+//     var hostpitalData = L.marker(latlng).addTo(map);
 
-    for (var i=0; i<hosTable.getRowCount(); i++){
-        var row = hosTable.getRow(i)
+//     for (var i=0; i<hosTable.getRowCount(); i++){
+//         var row = hosTable.getRow(i)
 
-        // SKIP ROWS WHERE DATA IS MISSING
-        if (row.get('latitude')==''){
-            continue}
+//         // SKIP ROWS WHERE DATA IS MISSING
+//         if (row.get('latitude')==''){
+//             continue}
 
-        // SKIP ROWS WHERE DATA IS MISSING
-        if (row.get('longitude')==''){
-            continue}
+//         // SKIP ROWS WHERE DATA IS MISSING
+//         if (row.get('longitude')==''){
+//             continue}
 
-        // IF BOX IS CHECKED, ADD ALL DATA
-        var hosCheckBox = document.getElementById("hosBox");
-        if (hosCheckBox.checked == true){
-        hosCircle.addTo(mymap);
-      } else {
-        hosCircle.removeFrom(mymap);
-      }
-    }
-}
+//         // IF BOX IS CHECKED, ADD ALL DATA
+//         var hosBox = document.getElementById("89m4luvgb38");
+//         if (hosBox.checked == true){
+//         allHospitals.addTo(mymap);
+//       } else {
+//         hosCircle.removeFrom(mymap);
+//       }
+//         var watBox = document.getElementById("89m4luvgb38");
+//         if (watBox.checked == true){
+//         allWater.addTo(mymap);
+//       } else {
+//         watCircle.removeFrom(mymap);
+//       }
+//     }
+// }
 
-function removeData(){
-//Removes any circles that have been added to the map 
-mymap.eachLayer(function(addData){
-    if (layer instanceof L.Circle){
-        mymap.removeLayer(layer)
-        }
-    })
-}
+// function removeData(){
+// //Removes any circles that have been added to the map 
+// mymap.eachLayer(function(addData){
+//     if (layer instanceof L.Circle){
+//         mymap.removeLayer(layer)
+//         }
+//     })
+// }
 
 function addQuake(){
 //SHOWS EARTHQUAKE BY DEPTH AND MAGNITUDE
@@ -255,7 +377,7 @@ function addQuake(){
           var depthColor = lerpColor(from, to, depthScale);
 
         // ADDING QUAKE WITH DEPTH AND MAGNITUDE
-            quake.bindPopup("Location: " + quakeData.getString('place') 
+            quake.bindPopup(+"Location: " + quakeData.getString('place') 
                             + "<br>Magnitude: " + quakeData.getNum('mag')  
                             + "<br>Depth: "+ quakeData.getNum('depth')) 
                             .addTo(mymap)
@@ -263,122 +385,228 @@ function addQuake(){
     }
 }
 
-function findHospitals(){
-    // HOSPITAL LIST
-    var hospitalIDs = []
-
+function findFacility(){
     for (var r=0; r<quakes.rows.length; r++){
-        var quake = quakes.getRow(r);
+        var quakeSite = quakes.getRow(r);
 
-        for (var h=0; h<hospitals.getRowCount(); h++){
-            var hospital = hospitals.getRow(h);
-
-            var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
-            if (disancetInKm < 50){
-                // CLOSE HOSTPITAL ADDS ID TO LIST
-                hospitalIDs.push(hospital.getNum('ID'))}{
-                    return closeHospitals
-            }
-        }
-    }
-
-    // since the same hospital may be close to multiple quakes, we might have added it to the list repeatedly,
-    // so let's use a lodash function that filters out duplicates and gives us a list where each element only
-    // appears once. _.uniq can only handle simple values like strings and numbers, so that's why we only added
-    // the ID to the array, not the whole row object
-    var uniqueIDs = _.uniq(hospitalIDs)
-    print(`got ${hospitalIDs.length} hits, ${uniqueIDs.length} unique`)
-
-    // create another empty array, this time to be filled with the row objects from the hospitals table that
-    // correspond to the IDs in our filtered list
-    var vulnerable = []
+    // VULNERABLE HOSPITALS
     for (var h=0; h<hospitals.getRowCount(); h++){
-        var hospital = hospitals.getRow(h)
-        if (_.includes(hospitalIDs), hospital.getNum('ID')){
-            vulnerable.push(hospital)
-        }
-    }     return vulnerable }
+        var hospital = hospitals.getRow(h);
 
-
-function addHospitals(){
-    var vulnerable = findHospitals()
-
-    for (var i=0; i<vulnerable.length; i++){
-        L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
-            weight: 0,
-            fillColor:'orange',
-            fillOpacity:.5,
-            radius: 8
-        }).bindTooltip(hospital.getString('NAME')).addTo(mymap);
-    }
-}
-
-// function findFacility(){
-//     for (var r=0; r<quakes.rows.length; r++){
-//         var quakeSite = quakes.getRow(r);
-
-//     // VULNERABLE HOSPITALS
-//     for (var h=0; h<hospitals.getRowCount(); h++){
-//         var hospital = hospitals.getRow(h);
-
-//         // WITHIN 50KM
-//         var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
-//         if (disancetInKm < 50){
+        // WITHIN 50KM
+        var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
+        if (disancetInKm < 50){
             
-//             // DRAW LINE FOR DISTANCE
-//             var latlngs = [
-//                 [hospital.getNum('latitude'), hospital.getNum('longitude')],
-//                 [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
-//             ]
+            // DRAW LINE FOR DISTANCE
+            var hospitallatlngs = [
+                [hospital.getNum('latitude'), hospital.getNum('longitude')],
+                [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
+            ]
 
-//             L.polyline(latlngs, {
-//                 color: 'black',
-//                 weight: .8,
-//                 opacity: .5
-//             }).addTo(mymap);
+            L.polyline(hospitallatlngs, {
+                color: 'black',
+                weight: .8,
+                opacity: .5
+            }).addTo(mymap);
 
-//             // DRAW CIRCLE FOR LOCATION
-//             L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
-//                 weight: 0,
-//                 fillColor:'orange',
-//                 fillOpacity:.5,
-//                 radius: 8
-//             }).bindTooltip(hospital.getString('NAME')).addTo(mymap);
-//             }
-//         }
+            // DRAW CIRCLE FOR LOCATION
+            L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
+                weight: 0,
+                fillColor:'orange',
+                fillOpacity:.5,
+                radius: 8
+            }).bindTooltip(hospital.getString('NAME')).addTo(mymap);
+            }
+        }  
 
     // VULNERABLE WATER TREATMENT CENTERS
-    // for (var t=0; t<water.getRowCount(); t++){
-    //     var treatment = water.getRow(t);
+    for (var t=0; t<water.getRowCount(); t++){
+        var treatment = water.getRow(t);
+
+        // WITHIN 50KM
+        var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
+        if (disancetInKm < 50){
+
+            // DRAW LINE FOR DISTANCE
+            var waterlatlngs = [
+                [treatment.getNum('latitude'), treatment.getNum('longitude')],
+                [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
+            ]
+
+            L.polyline(waterlatlngs, {
+                color: 'black',
+                weight: .8,
+                opacity: .5
+            }).addTo(mymap);
+
+            L.circleMarker([treatment.getNum('latitude'), treatment.getNum('longitude')], {
+                weight:0,
+                fillColor:'blue',
+                fillOpacity:.5,
+                radius: 8
+            }).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap);
+            }
+        }    
+
+    // // VULNERABLE ENERGY PLANTS
+    // for (var s=0; s<energy.getRowCount(); s++){
+    //     var plant = energy.getRow(s);
 
     //     // WITHIN 50KM
-    //     var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), treatment.getNum('latitude'), treatment.getNum('longitude'))
+    //     var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
     //     if (disancetInKm < 50){
 
     //         // DRAW LINE FOR DISTANCE
-    //         var latlngs = [
-    //             [treatment.getNum('latitude'), treatment.getNum('longitude')],
+    //         var plantlatlngs = [
+    //             [plant.getNum('latitude'+), plant.getNum('longitude')],
     //             [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
     //         ]
 
-    //         L.polyline(latlngs, {
+    //         L.polyline(plantlatlngs, {
     //             color: 'black',
     //             weight: .8,
     //             opacity: .5
     //         }).addTo(mymap);
 
-    //         L.circleMarker([treatment.getNum('latitude'), treatment.getNum('longitude')], {
+    //         L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
     //             weight:0,
-    //             fillColor:'blue',
+    //             fillColor:'purple',
     //             fillOpacity:.5,
     //             radius: 8
-    //         }).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap);
+    //         }).bindTooltip(plant.getString('CWP_NAME')).addTo(mymap);
     //         }
     //     }    
+
+
+    }        
+}
+
+// function findHospitals(){
+//     // HOSPITAL LIST
+//     var hospitalIDs = []
+
+//     for (var r=0; r<quakes.rows.length; r++){
+//         var quake = quakes.getRow(r);
+
+//         for (var h=0; h<hospitals.getRowCount(); h++){
+//             var hospital = hospitals.getRow(h);
+
+//             var disancetInKm = distanceFrom(quake.getNum('latitude'), quake.getNum('longitude'), hospital.getNum('latitude'), hospital.getNum('longitude'))
+//             if (disancetInKm < 50){
+//                 // if the hospital is close enough, add just its ID to a list
+//                 hospitalIDs.push(hospital.getNum('ID'))
+//             }
+//         }
 //     }
-// }        
+
+//     // since the same hospital may be close to multiple quakes, we might have added it to the list repeatedly,
+//     // so let's use a lodash function that filters out duplicates and gives us a list where each element only
+//     // appears once. _.uniq can only handle simple values like strings and numbers, so that's why we only added
+//     // the ID to the array, not the whole row object
+//     var uniqueIDs = _.uniq(hospitalIDs)
+//     print(`got ${hospitalIDs.length} hits, ${uniqueIDs.length} unique`)
+
+//     // create another empty array, this time to be filled with the row objects from the hospitals table that
+//     // correspond to the IDs in our filtered list
+//     var vulnerable = []
+//     for (var h=0; h<hospitals.getRowCount(); h++){
+//         var hospital = hospitals.getRow(h)
+//         if (_.includes(hospitalIDs), hospital.getNum('ID')){
+//             vulnerable.push(hospital)
+//         }
+//     }
+
+//     // finally, we need to use the `return` statement to pass the results of all this work back to the caller. this is
+//     // the part that will allow for code like:
+//     //    var vulnerableHospitals = findHospitals()
+//     return vulnerable
+// }     
 
 
+// function countHospitals(){
+//     var vulnerable = findHospitals()
+//     return vulnerable.length
+// }
+
+// function addHospitals(){
+//     var vulnerable = findHospitals()
+
+//     for (var i=0; i<vulnerable.length; i++){
+//         L.circleMarker([hospitals.getNum('latitude'), hospital.getNum('longitude')], {
+//             weight: 0,
+//             fillColor:'orange',
+//             fillOpacity:.5,
+//             radius: 8
+//         }).bindTooltip(hospital.getString('NAME')).addTo(mymap);
+//     }
+// }
+
+function allHospitals(){
+    //all hospitals 
+    for (var h=0; h<hospitals.getRowCount(h); h++){
+        var hospital = hospitals.getRow(h);
+
+        // skip over any rows where the latitude data is missing
+        if (hospital.get('latitude')==''){
+            continue}
+
+        // skip over any rows where the longitude data is missing
+        if (hospital.get('longitude')==''){
+            continue}
+
+        var hosCircle = L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
+            color: 'orange',      // the dot stroke color
+            fillColor: 'orange', // the dot fill color
+            radius: 1,
+            opacity: .6
+        }) 
+
+      //   // IF CHECKED, SHOW ALL HOSPITALS 
+      //   var useHosBox = document.getElementById("89m4luvgb38")
+      //   if (useHosBox.checked == true){
+      //   hosCircle.bindTooltip(hospital.getString('name')).addTo(mymap)  
+      // } else {
+      //   hosCircle.removeFrom(mymap);
+      // }
+    }
+}
+
+//console.log(addvulnerableHospitals(hopsital));
+
+// function addAllWater(){
+//     //wastewater treatment
+//     for (var i=0; i<watTable.getRowCount(); i++){
+//         var row = watTable.getRow(i)
+
+//         // skip over any rows where the latitude data is missing
+//         if (row.get('latitude')==''){
+//             continue
+//         }
+
+//         // skip over any rows where the longitude data is missing
+//         if (row.get('longitude')==''){
+//             continue
+//         }
+
+//         // create a new dot
+//         // var disancetInKm = distanceFrom(table.getNum('latitude'), table.getNum('longitude'),watTable.getNum('latitude'), watTable.getNum('longitude'))
+//         // if (disancetInKm < 1000){
+//         var watCircle = L.circle([row.getNum('latitude'), row.getNum('longitude')], {
+//             color: 'blue',      // the dot stroke color
+//             fillColor: 'blue', // the dot fill color
+//             fillOpacity: 0.25,  // use some transparency so we can see overlaps
+//             radius: 1
+//         })
+
+//         // place all water treatment facillities on the map
+//         var watCheckBox = document.getElementById("89m4luvgb38");
+//         if (watCheckBox.checked == true){
+//         watCircle.addTo(mymap);
+//       } else {
+//         watCircle.removeFrom(mymap);
+//       }
+//         }
+//     }
 
 
 function distanceFrom(srcLat, srcLng, dstLat, dstLng){
