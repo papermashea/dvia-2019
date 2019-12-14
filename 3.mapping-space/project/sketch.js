@@ -40,7 +40,7 @@ function columnMin(tableObject, columnName){
 function preload() {
     // LOAD DATA
     quakes = loadTable("data/all_day.csv", "csv","header");
-    allQuakes = loadTable("data/significant_week.csv", "csv","header");
+    allQuakes = loadTable("data/significant_month.csv", "csv","header");
     hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
     energy = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
@@ -122,22 +122,22 @@ function sidebar() {
         textSize(20);
         textFont("futura-pt");
         textAlign(LEFT);
-        text('Depth', 35, 60);
+        text('Depth (m)', 35, 60);
 
         setGradient(35, 80, 240, 80, lowDepth, highDepth, 1);
         fill(0,0,0);
         textSize(14);
-        text('1', 35, 140);
+        text('.1', 35, 140);
         textSize(14);
         fill(0,0,0);
-        text('8', 360, 140);
+        text('500', 360, 140);
 
         // ALL DATA INPUTS
-        let hosBox = createCheckbox('Hospitals', '');
+        let hosBox = createCheckbox('Hospitals', 'false');
             hosBox.type = 'checkbox';
             hosBox.parent('descriptionText');
 
-        let watBox = createCheckbox('Water Treatment Facilities', '');
+        let watBox = createCheckbox('Water Treatment Facilities', 'false');
             watBox.type = 'checkbox';
             watBox.parent('descriptionText');
 
@@ -189,34 +189,34 @@ function sidebar() {
             textFont("futura-pt");
             textAlign(LEFT);
             text('Magnitude', 35, 200);
-            text('Cities Affected', 140, 200);
+            text('Cities Affected (Month)', 140, 200);
             textSize(12);   
 
         var xPos = 35;
         var yPos = 240;
         // var vulnerableHospitals = findHospitals()
 
-          for (var r=0; r<quakes.getRowCount(); r++){
-            var row = quakes.getRow(r)
+          for (var q=0; q<allQuakes.getRowCount(); q++){
+            var row = allQuakes.getRow(q)
             var lat = row.getNum('latitude')
             var lng = row.getNum('longitude')
             var closest = Cities.closestTo(lat, lng)
 
             // COLOR FOR DEPTH
             var depthMin = 0.0;
-            var depthMax = columnMax(quakes, "depth")
-            var depth = columnValues(quakes, "depth")
+            var depthMax = columnMax(allQuakes, "depth")
+            var depth = columnValues(allQuakes, "depth")
 
             // COLOR PALETTE FOR DEPTH
             let from = color(255,36,160);
             let to = color(138, 0, 0);
-            let depthScale = map(depth[r], depthMin, depthMax, .1, 1.0);
+            let depthScale = map(depth[q], depthMin, depthMax, .1, 1.0);
             var depthColor = lerpColor(from, to, depthScale);
 
               // for (var h=0; h<vulnerableHospitals.getRow(h); r++){
               //   var closeHos = vulnerableHospitals.getRow(h)
 
-            var y = yPos + r*20
+            var y = yPos + q*20
             var x = xPos
             var quakeMag = row.getNum('mag')
             fill(depthColor);
@@ -228,15 +228,15 @@ function sidebar() {
             // text(closeHos.getString('name'), x, y)
 
             x+= 110
-            text(`near: ${closest[0].name},`, x, y)
+            text(`near  ${closest[0].name},${closest[0].country},`, x, y)
 
-            x+= 140
+            x+= 160
             
             var pop = closest[0].population
             if (pop>=1000000){
               text(`pop.${(pop/1000000).toFixed(1)} million`, x, y)
             }else{
-              text(`population ${numberWithCommas(pop)}`, x, y)
+              text(`pop. ${numberWithCommas(pop)}`, x, y)
             }
 
         // x+= 200
@@ -381,7 +381,7 @@ function addQuake(){
                             + "<br>Magnitude: " + quakeData.getNum('mag')  
                             + "<br>Depth: "+ quakeData.getNum('depth')) 
                             .addTo(mymap)
-            // quake.on("click", function ()
+            quake.on("click", function(e){console.log(e)})
     }
 }
 
@@ -561,13 +561,14 @@ function allHospitals(){
             opacity: .6
         }) 
 
-      //   // IF CHECKED, SHOW ALL HOSPITALS 
-      //   var useHosBox = document.getElementById("89m4luvgb38")
-      //   if (useHosBox.checked == true){
-      //   hosCircle.bindTooltip(hospital.getString('name')).addTo(mymap)  
-      // } else {
-      //   hosCircle.removeFrom(mymap);
-      // }
+        // IF CHECKED, SHOW ALL HOSPITALS 
+    //     var hosBox = document.getElementById("us0pcgdijb")
+    //     if (hosBox.checked == true){
+
+    //     hosCircle.bindTooltip(hospital.getString('name')).addTo(mymap)  
+    //   } else {
+    //     hosCircle.removeFrom(mymap);
+    //   }
     }
 }
 
