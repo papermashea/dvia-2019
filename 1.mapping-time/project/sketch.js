@@ -277,24 +277,17 @@ function draw() {
 
 
 // EOTW
-  var future = now.year 
   print(now.year)
-  // let e = .1
-  // var dark = e*=1.5
-  var fade = 0
+  var future = now.year
+  var eotw = now.year - 2020
+  // print(future)
+  var fade = eotw/10
+  print(fade)
 
-  // var end = map(now.year,.01, 1)
-
-for (let d = 0; d < 10; d++){
-      fade++; 
-    console.log(fade)
-
-}
-
-
-if(future<2022){
+if(future < 2020){
   fill (0,0,0, 0)
-  rect(0,0,800,800)}
+  rect(0,0,800,800)
+  } 
   else{
   fill (0,0,0, fade)
   rect(0,0,800,800)
