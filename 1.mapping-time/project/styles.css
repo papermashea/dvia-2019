@@ -1,5 +1,13 @@
+/* fonts */
+@font-face {
+    font-family: futuralight;
+    src: url('design/futuralight.ttf'), format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .teaser {
-	font-family: 'Turret Road', Helvetica, mono;
+	font: futuralight, sans-serif;
 	color: #333;
 	font-size: 28px;
 	position: absolute;
@@ -14,7 +22,7 @@
 
 
 nav {
-	font-family: 'Turret Road', Helvetica, mono;
+	font-family: futuralight, sans-serif;
 }
 
 legend {
@@ -27,7 +35,7 @@ legend {
 table {
     padding: 6%;
     box-shadow: 8px 10px 2px #bbb;
-    font-family: 'Turret Road', Helvetica, mono;
+    font-family: 'futuralight', sans-serif;
     background-color: #ffffff;
     }
 
@@ -59,7 +67,7 @@ th {
  }
 
  .teaser {
-	font-family: 'Turret Road', Helvetica, mono;
+	font-family: futuralight, sans-serif;
 	color: #333;
 	font-size: 28px;
 	position: absolute;
@@ -74,7 +82,7 @@ th {
 
 
 nav {
-	font-family: 'Turret Road', Helvetica, mono;
+	font-family: futuralight, sans-serif;
 }
 
 legend {
@@ -82,12 +90,14 @@ legend {
 	display: block;
 	background-color: #333;
     max-width: 20%;
+        margin-left: 50px;
+
 	}
 
 table {
-    padding: 6%;
+    padding: 8%;
     box-shadow: 8px 10px 2px #bbb;
-    font-family: 'Turret Road', Helvetica, mono;
+    font-family: futuralight, sans-serif;
     background-color: #ffffff;
     }
 
@@ -98,8 +108,7 @@ th {
     }
   
     td {
-        padding-left: 2%;
-        padding-right: 2%;
+        padding: 3%;
         border: 0;
         background-color: #fff;
         text-align: center;

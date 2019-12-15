@@ -5,6 +5,13 @@ html, body {
   background:#e0e0d9;
 }
 
+@font-face {
+    font-family: futuralight;
+    src: url('futuralight.ttf'), format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 main {
   display: flex;
   flex-wrap:wrap;
@@ -27,7 +34,7 @@ nav{
   font-size:13px;
   border-radius:4px;
   box-shadow: 8px 10px 2px #bbb;
-  font-family: 'Turret Road', sans-serif;
+  font-family: 'futuralight', sans-serif;
 }
 
 nav select{
@@ -62,7 +69,7 @@ nav.active{
 }
 
 .teaser {
-  font-family: 'Turret Road', Helvetica, mono;
+  font-family: futuralight, sans-serif;
   color: #333;
   font-size: 28px;
   position: absolute;
@@ -79,20 +86,22 @@ legend {
   }
 
 table {
-    padding: 6%;
-    font-family: 'Turret Road', Helvetica, mono;
+    padding: 18 %;
+    font-family: futuralight, sans-serif;
     background-color: #ffffff;
-    }
+/*    border-radius: 100%;
+*/    }
 
-th {
-    padding: 1%;
+/*th {
+    padding: 2%;
     background-color: #ffffff;
     font-size: 2em;
     }
-  
+*/  
     td {
+
         padding-left: 2%;
-        padding-right: 2%;
+        padding-right: 10%;
         border: 0;
         background-color: #fff;
         text-align: center;

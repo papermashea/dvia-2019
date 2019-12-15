@@ -26,12 +26,14 @@ let amt, startColor, newColor;
 // mountain variables
 var palette 
 var shade
-
-// building variable
+var future
+var futureDate
+var now
 
 
 function setup() {
   createCanvas(800,800);
+  // eotw();
   colorMode(RGB, 255, 255, 255, 1)
     palette = [
       color(206, 250, 110),  // Spring
@@ -58,6 +60,20 @@ function setup() {
     
 }
 
+// function eotw() {
+//   var now = clock()
+//   noStroke()
+
+//   var f = now.year
+//   print(now.year)
+
+//   do {
+//   fill('black');
+//   rect(0,0, 800, 800);
+//   } 
+//   while(f>2020);
+// }
+
 
 function draw() {
   var now = clock()
@@ -69,9 +85,11 @@ function draw() {
   hRot += now.hour/24 * hMax;
   background(240, 70);
 
+
+
 // background
   //fill(faintShade[(now.month-1) % 4]);
-  fill (230,230,230);
+    fill (230,230,230);
   rect(100, 400, 700, 400);
 
   fill(255,255,255);
@@ -160,7 +178,7 @@ function draw() {
     //   vertex(width, -100);
     //   vertex(0, -100);
     //   endShape(CLOSE);
-    
+
 
 // mountains
   // mountain 1
@@ -257,6 +275,56 @@ function draw() {
     fill(112, 128, 144,.5);
     rect(x, y, floodWidth, snowHeight+20);
 
+
+// EOTW
+  var future = now.year 
+  print(now.year)
+  // let e = .1
+  // var dark = e*=1.5
+  var fade = 0
+
+  // var end = map(now.year,.01, 1)
+
+for (let d = 0; d < 10; d++){
+      fade++; 
+    console.log(fade)
+
+}
+
+
+if(future<2022){
+  fill (0,0,0, 0)
+  rect(0,0,800,800)}
+  else{
+  fill (0,0,0, fade)
+  rect(0,0,800,800)
+}
+
+
+  // do {
+  // loop();
+  // push();
+  // fill('red');
+  // rect(0,0, 800, 100);
+ 
+  // } while(f>2024);
+
+// end of the world
+// var futureDate =  moment('2050-01-01')
+// print(futureDate) 
+// print (now.year)
+// if (now.year < 2050) {}
+//   // fill(0,0,0)
+//   // rect(0,0,800, 100)}
+//   else{
+//   fill(red)
+//   rect(-100,-100,800,100)   
+// }
+
+// if (now > future) {
+//   let apocalyse = createElement('div');
+//   apocalyse.parent('time-keeper');
+//  }else() 
 }
 
 function polygon(x, y, radius, npoints) {
