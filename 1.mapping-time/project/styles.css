@@ -1,13 +1,13 @@
 /* fonts */
-@font-face {
+/*@font-face {
     font-family: futuralight;
     src: url('design/futuralight.ttf'), format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 
 .teaser {
-	font: futuralight, sans-serif;
+	font: futura-pt, sans-serif;
 	color: #333;
 	font-size: 28px;
 	position: absolute;
@@ -22,12 +22,12 @@
 
 
 nav {
-	font-family: futuralight, sans-serif;
+	font-family: futura-pt, sans-serif;
 }
 
 legend {
-	margin: 20px;
-	display: block;
+/*	margin: 20px;
+*/	display: block;
 	background-color: #333;
     max-width: 20%;
 	}
@@ -35,8 +35,9 @@ legend {
 table {
     padding: 6%;
     box-shadow: 8px 10px 2px #bbb;
-    font-family: 'futuralight', sans-serif;
+    font-family: 'futura-pt', sans-serif;
     background-color: #ffffff;
+    width: 90%;
     }
 
 th {
@@ -67,7 +68,7 @@ th {
  }
 
  .teaser {
-	font-family: futuralight, sans-serif;
+	font-family: futura-pt, sans-serif;
 	color: #333;
 	font-size: 28px;
 	position: absolute;
@@ -82,7 +83,7 @@ th {
 
 
 nav {
-	font-family: futuralight, sans-serif;
+	font-family: futura-pt, sans-serif;
 }
 
 legend {
@@ -97,7 +98,7 @@ legend {
 table {
     padding: 8%;
     box-shadow: 8px 10px 2px #bbb;
-    font-family: futuralight, sans-serif;
+    font-family: futura-pt, sans-serif;
     background-color: #ffffff;
     }
 
