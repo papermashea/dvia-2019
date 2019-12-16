@@ -1,7 +1,6 @@
 var data
 var padding = 50
 var totals 
-var atmospheric
 var timeframe 
 
 
@@ -19,7 +18,7 @@ function setup(){
 
 // title
   push(); 
-  let t = 'What kinds of nuclear tests are run?'
+  let t = 'Who runs nuclear tests?'
   textSize(40)
   textStyle(BOLD)
   textFont("Open Sans")
@@ -28,9 +27,6 @@ function setup(){
   textAlign(LEFT)
   pop(); 
 
-  var atmosData = atmospheric
-  var underData = underground
-  var hydroData = hydronuclear
   print(totals)
 
 // axes text
@@ -65,15 +61,14 @@ var x = 200
     x += colWidth
   }
 
-// map tests to circles
-// atmospheric tests
+// map all to circles
   x = 200
-  for (var r=0; r<atmosData.getRowCount(); r++){
+  for (var r=0; r<totals.getRowCount(); r++){
     y = 200
-    for (var c=1; c<atmosData.getColumnCount(); c++){
-      var value = atmosData.getNum(r, c)  
+    for (var c=1; c<totals.getColumnCount(); c++){
+      var value = totals.getNum(r, c)  
       if (value > 0) { 
-          fill('purple')
+          fill('yellow')
           circle(x, y, value+25)
         } 
       y += rowHeight
@@ -82,36 +77,6 @@ var x = 200
      }
 
 
-// hydronuclear tests
-  x = 200
-  for (var r=0; r<hydroData.getRowCount(); r++){
-    y = 200
-    for (var c=1; c<hydroData.getColumnCount(); c++){
-      var value = hydroData.getNum(r, c)  
-      if (value > 0) { 
-          fill('blue')
-          circle(x, y, value+25)
-        } 
-      y += rowHeight
-    }
-    x += colWidth
-     }
-
-// underground tests
-  x = 200
-  for (var r=0; r<underData.getRowCount(); r++){
-    y = 200
-    for (var c=1; c<underData.getColumnCount(); c++){
-      var value = underData.getNum(r, c)  
-      if (value > 0) { 
-          fill('green')
-          circle(x, y, value+25)
-        } 
-      y += rowHeight
-    }
-    x += colWidth
-     }
-
-save('concept_2.svg')
+save('concept_1.svg')
 
 }

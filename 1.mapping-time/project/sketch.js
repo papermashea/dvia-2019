@@ -165,7 +165,7 @@ function draw() {
     fill(112, 128, 144,.5);
     rect(x, y, floodWidth, snowHeight);
 
-// mountain cloud
+// mountainsin cloud
     // fill(230, 230, 230,.2);
     //   beginShape();
     //   let xoff = 0; 
