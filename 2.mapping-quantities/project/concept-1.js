@@ -16,17 +16,20 @@ function preload(){
 
 
 function setup(){
-  createCanvas(1500, 1500, SVG)
+  createCanvas(790, 440, SVG)
   background(250)
   colorMode(RGB, 100)
+  reactorColor = color(120,60,40,20) // orange
+  testColor = color(0,20,120,20) // blue
+
 
 // title and intro
   push(); 
-  let title = 'Do nuclear tests lead to nuclear power?'
+  let title = 'Do nuclear tests lead to nuclear power development?'
   textSize(14)
   textFont("futura-pt")
   fill(30)
-  text(title, 200, 30)
+  text(title, 250, 30)
   textAlign(CENTER)
   pop(); 
 
@@ -71,23 +74,37 @@ function setup(){
       y += colWidth
     }
 
-  // TESTS TITLE
-      textSize(8)
+   // TESTS TITLE
+      textStyle(NORMAL)
+      textAlign(CENTER)
       textFont("futura-pt")
       noStroke()      
-      fill(0,20,120,100) // blue
-      textStyle(NORMAL)
-      textAlign(CENTER)
-      text('Nuclear Tests Run', 130, 50)
+      textSize(6)
+      fill(testColor)
+      text('(', 362, 50) 
+      circle(365, 48, 1)
+      text('= 4 tests)', 380, 50) 
+      textSize(8)
+      fill(0,20,120,100) // blue 100%
+      text('Nuclear Tests Run', 330, 50)
+
 
   // REACTORS TITLE
-      textSize(8)
-      textFont("futura-pt")
-      noStroke()
-      fill(120,60,40,100) // orange
       textStyle(NORMAL)
       textAlign(CENTER)
-      text('Nuclear Reactors Connected', 550, 50)
+      textFont("futura-pt")
+      noStroke()      
+      textSize(6)
+      fill(reactorColor)
+      text('(', 502, 50) 
+      fill(reactorColor)
+      circle(505, 48, 1)
+      text('= 1 reactor)', 525, 50) 
+      textSize(8)
+      textFont("futura-pt")
+      fill(120,60,40,100) // orange 100%
+      text('Nuclear Reactors Connected', 450, 50)
+
 
 
   // LABEL COUNTRIES FOR TESTS
@@ -112,7 +129,7 @@ function setup(){
       if(value>0)
       // text(value, x, y)
           noStroke()
-          fill(0,20,120,20) // blue
+          fill(testColor) // blue
           circle(x, y, value/5)
           y += rowHeight
         }
@@ -140,7 +157,7 @@ function setup(){
       var value = reactors.getNum(r, c)
       if(value>0)
           noStroke()
-          fill(120,60,40,20) // orange        
+          fill(reactorColor) // orange        
           circle(x, y, value)
         // text(value, x, y)
           y += rowHeight
