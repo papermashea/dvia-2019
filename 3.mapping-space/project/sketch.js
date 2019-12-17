@@ -133,13 +133,13 @@ function sidebar() {
         text('500', 360, 140);
 
         // ALL DATA INPUTS
-        let hosBox = createCheckbox('Hospitals', 'false');
-            hosBox.type = 'checkbox';
-            hosBox.parent('descriptionText');
+        // let hosBox = createCheckbox('Hospitals', 'false');
+        //     hosBox.type = 'checkbox';
+        //     hosBox.parent('descriptionText');
 
-        let watBox = createCheckbox('Water Treatment Facilities', 'false');
-            watBox.type = 'checkbox';
-            watBox.parent('descriptionText');
+        // let watBox = createCheckbox('Water Treatment Facilities', 'false');
+        //     watBox.type = 'checkbox';
+        //     watBox.parent('descriptionText');
 
         // SIMPLE CHART
             // var quakeData = quakePattern.getRow(i)        
@@ -201,6 +201,7 @@ function sidebar() {
             var lat = row.getNum('latitude')
             var lng = row.getNum('longitude')
             var closest = Cities.closestTo(lat, lng)
+            print(row)
 
             // COLOR FOR DEPTH
             var depthMin = 0.0;
