@@ -173,6 +173,7 @@ textStyle(NORMAL)
 text('Energy consumption data begins in 1990', 1200, 820)
 circle(1050, 800, 25)
 
-// save('Types of Nuclear Tests and Energy Consumption')
+ save('Types of Nuclear Tests and Energy Consumption.svg')
+
 
 }

@@ -4,6 +4,31 @@ var reactors
 var palette
 var testData
 
+// WORKAROUND PALETTE
+// CHINA - peach
+// rgb(237, 182, 119)
+
+// FRANCE - light blue
+// rgb(101, 184, 199)
+
+// PAKISTAN - yellow
+// rgb(240, 226, 131)
+
+// INDIA - purple
+// rgb(192, 128, 182)
+
+// NORTH KOREA - teal
+// rgb(146, 231, 201)
+
+// RUSSIA - pea green
+// rgb(184, 199, 101)
+
+// USA - red
+// rgb(210, 116, 116)
+
+// UK - blue
+// rgb(101, 135, 199)
+
 function preload(){
   // tests = loadTable('data/tests_country_decadeRow.csv', 'csv', 'header');
   tests = loadTable('data/tests_country_decadeCol.csv', 'csv', 'header');
@@ -15,17 +40,89 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(1000, 2000, SVG)
+  createCanvas(1000, 2100, SVG)
   background(250)
 
   // var USA = (210, 116, 116)
 
-// TITLE
-  textSize(14)
-  textFont("futura-pt")
+// TITLE & INTRO
   fill('black')
-  text('Do nuclear tests lead to nuclear power development?', 200, 100)
-  textAlign(CENTER)
+  textSize(28)
+  textStyle(NORMAL)
+  textFont('futura-pt')
+  text('Does nuclear weapons testing lead to nuclear power development?', 150, 350)
+
+  fill('black')
+  textSize(16)
+  textStyle(NORMAL)
+  textFont('futura-pt')
+  text('This data examines nuclear testing numbers and nuclear reaction numbers of several countries between 1950 and 2010', 140, 450)
+
+  fill('black')
+  textSize(16)
+  textStyle(NORMAL)
+  textFont('futura-pt')
+  text('The color dominating each decade is the leading country for that field, that decade', 280, 480)
+
+
+// KEY
+  s = 10
+  x = 50
+  y = 550
+  noStroke()
+  fill(237, 182, 119)
+  rect(x, y, s, s)
+  fill('black')
+  textSize(16)
+  textStyle(NORMAL)
+  textFont('futura-pt')
+  text('China', x+20, y+10)
+
+  x = 50 + 100
+  fill(101, 184, 199)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('Frace', x+20, y+10)
+
+  x = 50 + 200
+  fill(192, 128, 182)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('India', x+20, y+10)
+
+  x = 50 + 300
+  fill(146, 231, 201)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('North Korea', x+20, y+10)
+
+  x = 50 + 450
+  fill(184, 199, 101)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('Pakistan', x+20, y+10)
+
+  x = 50 + 550
+  fill(237, 182, 119)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('Russia', x+20, y+10)
+
+  x = 50 + 650
+  fill(101, 135, 199)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('UK', x+20, y+10)
+
+  x = 50 + 750
+  fill(210, 116, 116)
+  rect(x, y, 10, 10)
+  fill('black')
+  text('USA', x+20, y+10)
+
+
+
+
 
 // SETUP CHART
   var rowHeight = 50
@@ -44,6 +141,25 @@ function setup(){
  //      rect(x-testBar*10, r * 20 + 400, testBar*10, 10)
  //    }
 
+
+// YEAR LABELS
+  noStroke()
+  fill('black')
+  textSize(22)
+  text('1950', 475, 633)
+  text('1960', 475, 833)
+  text('1970', 475, 1033)
+  text('1980', 475, 1233)
+  text('1990', 475, 1433)
+  text('2000', 475, 1633)
+  text('2010', 475, 1833)
+
+
+// COUNTRIES
+  textSize(14)
+  textStyle(NORMAL)
+
+
 // 1950 TESTS
  for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
@@ -51,7 +167,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(210, 116, 116) // USA
-      rect(testX-testBar*10, r * 20 + 600, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 650, testBar*10, 10)
     }
 
 // 1960 TESTS
@@ -61,7 +177,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(210, 116, 116) // USA
-      rect(testX-testBar*10, r * 20 + 800, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 850, testBar*10, 10)
     }    
 
 // 1970 TESTS
@@ -71,7 +187,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(184, 199, 101) // RUSSIA
-      rect(testX-testBar*10, r * 20 + 1000, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 1050, testBar*10, 10)
     }    
 
 // 1980 TESTS
@@ -81,7 +197,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(184, 199, 101) // RUSSIA
-      rect(testX-testBar*10, r * 20 + 1200, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 1250, testBar*10, 10)
     } 
 
 // 1990 TESTS
@@ -91,7 +207,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(210, 116, 116) // USA
-      rect(testX-testBar*10, r * 20 + 1400, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 1450, testBar*10, 10)
     }  
 
 // 2000 TESTS
@@ -101,7 +217,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(210, 116, 116) // USA
-      rect(testX-testBar*10, r * 20 + 1600, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 1650, testBar*10, 10)
     }  
 
 // 2010 TESTS
@@ -111,7 +227,7 @@ function setup(){
     var country = tests.getRowCount('Country')
       noStroke()
       fill(146, 231, 201) //CHINA
-      rect(testX-testBar*10, r * 20 + 1800, testBar*10, 10)
+      rect(testX-testBar*10, r * 20 + 1850, testBar*10, 10)
     }
 
 // REACTOR CHART 
@@ -133,10 +249,10 @@ function setup(){
     var country = reactors.getRowCount('Country')
       noStroke()
       fill(101, 135, 199) // UK
-      rect(reactX, r * 20 + 600, reactorBar*10, 10)
+      rect(reactX, r * 20 + 650, reactorBar*10, 10)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 610)
+      text(reactors.getString(r, 0), 500, r * 20 + 660)
     }
 
 // 1960 REACTORS
@@ -146,11 +262,11 @@ function setup(){
     var country = reactors.getRowCount('Country')
       noStroke()
       fill(101, 135, 199) // UK BUT TIED WITH US
-      rect(reactX, r * 20 + 800, reactorBar*10, 10)
+      rect(reactX, r * 20 + 850, reactorBar*10, 10)
       fill(210, 116, 116)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 810)
+      text(reactors.getString(r, 0), 500, r * 20 + 860)
     }    
 
 // 1970 REACTORS
@@ -160,10 +276,10 @@ function setup(){
     var country = reactors.getRowCount('Country')
       noStroke()
       fill(210, 116, 116) // USA
-      rect(reactX, r * 20 + 1000, reactorBar*10, 10)
+      rect(reactX, r * 20 + 1050, reactorBar*10, 10)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 1010)
+      text(reactors.getString(r, 0), 500, r * 20 + 1060)
     }    
 
 // 1980 REACTORS
@@ -173,10 +289,10 @@ function setup(){
     var country = reactors.getRowCount('Country')
       noStroke()
       fill(210, 116, 116) // USA
-      rect(reactX, r * 20 + 1200, reactorBar*10, 10)
+      rect(reactX, r * 20 + 1250, reactorBar*10, 10)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 1210)
+      text(reactors.getString(r, 0), 500, r * 20 + 1260)
     } 
 
 // 1990 REACTORS
@@ -186,10 +302,10 @@ function setup(){
     var country = reactors.getRowCount('Country')
       noStroke()
       fill(101, 184, 199) // FRANCE
-      rect(reactX, r * 20 + 1400, reactorBar*10, 10)
+      rect(reactX, r * 20 + 1450, reactorBar*10, 10)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 1410)
+      text(reactors.getString(r, 0), 500, r * 20 + 1460)
     }  
 
 // 2000 REACTORS
@@ -199,10 +315,10 @@ function setup(){
     var country = reactors.getRowCount('Country')
       noStroke()
       fill(101, 184, 199) // FRANCE
-      rect(reactX, r * 20 + 1600, reactorBar*10, 10)
+      rect(reactX, r * 20 + 1650, reactorBar*10, 10)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 1610)
+      text(reactors.getString(r, 0), 500, r * 20 + 1660)
     }  
 
 // 2010 REACTORS
@@ -213,13 +329,13 @@ function setup(){
     // print(reactorData)
      noStroke()
       fill(237, 182, 119) // CHINA
-      rect(reactX, r * 20 + 1800, reactorBar*10, 10)
+      rect(reactX, r * 20 + 1850, reactorBar*10, 10)
       textAlign(CENTER)
       fill('black')
-      text(reactors.getString(r, 0), 500, r * 20 + 1810)
+      text(reactors.getString(r, 0), 500, r * 20 + 1860)
     }  
 
-
+   save('Global Leader in Nuclear Testing and Reactor Connection.svg')
 
 
 }
@@ -326,9 +442,4 @@ function setup(){
 // }
 // } 
 
-
-
-
-
- // save('Nuclear Tests & Reactors by Decade: Bars.svg')
  // }
