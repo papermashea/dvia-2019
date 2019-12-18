@@ -49,7 +49,8 @@ html, body {
 		margin-top: 15px;
 		float: left;
 		font-weight: 300;
-		font-style: normal;		 	
+		font-style: normal;
+		padding-right: 20px;		 	
 	 }
 
 	a {
