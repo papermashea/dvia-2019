@@ -1,65 +1,67 @@
-var data
-var tests 
-var reactors
-var testing =[]
+var totals
+var atmospheric
+var underground
 
 function preload(){
-  // tests = loadTable('data/tests_country_decadeRow.csv', 'csv', 'header');
-  tests = loadTable('data/tests_country_decadeCol.csv', 'csv', 'header');
-  // print(tests)
-  reactors = loadTable('data/reactors_country_decadeRow.csv', 'csv', 'header');
-  // reactorData = loadTable('data/reactors_country_decadeCol.csv', 'csv', 'header');
-  // print(reactors)
-}
-
-function palette(){
-
+  totals = loadTable('data/totals.csv', 'csv', 'header')
+  atmospheric = loadTable('data/atmospheric.csv', 'csv', 'header')
+  underground = loadTable('data/underground.csv', 'csv', 'header')
 }
 
 function setup(){
-  createCanvas(800, 1200, SVG)
-  background(250)
-  colorMode(RGB, 100)
+  createCanvas(3200, 600)
+  background(230)
+  var palette = Brewer.qualitative('Paired', 9);
+
+  // pick one of the three data files to work with and call it 'table'
+  var table = totals
+
+  // log the whole dataset to the console so we can poke around in it
+  print(table)
+
+  // set up typography
+  textFont("Rokkitt")
+  textSize(16)
+  fill(30)
+  noStroke()
+
+  var x = 200
+  var y = 100
+  var rowHeight = 60
+  var colWidth = 40
+
+  // draw country name labels on the left edge of the table
+  textStyle(BOLD)
+  textAlign(RIGHT)
+  for (var c=1; c<table.getColumnCount(); c++){
+    text(table.columns[c], x-colWidth, y)
+    y += rowHeight
+  }
 
 
-// title and intro
-  // push(); 
-  // let title = 'Do nuclear tests lead to nuclear power development?'
-  // textSize(14)
-  // textFont("futura-pt")
-  // fill(30)
-  // text(title, 70, 30)
-  // textAlign(CENTER)
-  // pop(); 
+  // draw year labels in the header row
+  x = 200
+  y = 100
+  textStyle(NORMAL)
+  textAlign(BOLD)
+  for (var r=0; r<table.getRowCount(); r++){
+    var year = table.getString(r, 0)
+    text(year, x, y-rowHeight)
+    x += colWidth
+  }
 
-  // TEST CHART
-  // decade = tests.getRow();
-  // decades = tests.getColumnCount();
-  // countries = tests.getColumn() 
-  // print(countryData)
+  // print out the total for each country, one column at a time
+  x = 200
+  for (var r=0; r<table.getRowCount(); r++){
+    y = 100
+    for (var c=1; c<table.getColumnCount(); c++){
+      var value = table.getNum(r, c)
+      var color = palette.colorForValue(r) 
+      fill(color)
+      circle(x, y, value)
+      y += rowHeight
+    }
+    x += colWidth
+  }
 
-  countryRows = tests.getRowCount();
-  fourties = tests.getColumnCount();
-  // print(fourties)
-
-  // // DECADE
-  // for (var d = 0; d < decades; d++) {
-  //   text(tests.getString(d, 0), 200, d * 20 + 400);
-
-  // COUNTRIES
-  for (var c = 0; c < countryRows; c++) {
-    text(tests.getString(c, 0), 200, c * 20 + 400);
-
-  for (var d = 0; d < fourties; d++) {
-    text(tests.getString(d, 0), 220, d * 20 + 400);
-}
-  
-//     // 1940s
-//   for (var e = 1; e < fourties; e++) {
-//       fourtiesBar = fourties.getNum()
-//       fill(black)
-//       rect(220, c * 20 + 400, fourtiesBar * 10, 10);
-// }
-} 
- // save('Nuclear Tests & Reactors by Decade: Bars.svg')
 }

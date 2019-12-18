@@ -17,276 +17,246 @@ function preload(){
 function setup(){
   createCanvas(1000, 2000, SVG)
   background(250)
-  colorMode(RGB, 100)
-  // palette = Brewer.qualitative('Paired', );
-  // palette = Brewer.qualitative('Paired', 8);
-    // print(palette)
+
+  // var USA = (210, 116, 116)
 
 // TITLE
-  // push(); 
-  // let title = 'Do nuclear tests lead to nuclear power development?'
-  // textSize(14)
-  // textFont("futura-pt")
-  // fill(30)
-  // text(title, 70, 30)
-  // textAlign(CENTER)
-  // pop(); 
+  textSize(14)
+  textFont("futura-pt")
+  fill('black')
+  text('Do nuclear tests lead to nuclear power development?', 200, 100)
+  textAlign(CENTER)
 
 // SETUP CHART
-
-  var x = 200
-  var y = 300
   var rowHeight = 50
   var colWidth = 40
+  testX = 450;
+  reactX = 550;
 
-  
-// for (var c=0; c< tests.getColumnCount(); c++) { // RUNNING THROUGH THE ROWS
-//     var key = tests.getColumn(c)
-//       var country = key.getRow(c)
-//       // print (country)
-//       // var color = palette.colorForValue(testData)
-//       print(key)
+// TEST CHART  
+// 1940 TESTS
+ // for (var r=0; r<tests.getRowCount(); r++) {   
+ //    var testData = tests.getRow(r)
+ //    var testBar = testData.getNum('1940')
+ //    var country = tests.getRowCount('Country')
+ //      noStroke()
+ //      fill(210, 116, 116) // USA
+ //      rect(x-testBar*10, r * 20 + 400, testBar*10, 10)
+ //    }
 
-// TEST DATA
-
-  for (var r=0; r< tests.getRowCount(); r++) { // RUNNING THROUGH THE ROWS
-      var testData = tests.getRow(r)
-      var testBar = testData.getNum('1940')
-      // var country = tests.getRow(r)
-      // print(country)    
-      // var color = palette.colorForValue(8)
-      // print(color)    
-      noStroke()
-      fill('red')
-      rect(700, r * 20 + 400, testBar*10, 10)
-      text(tests.getString(r, 0), 600, r * 20 + 410)
-
-      // print(testData)
-    }
-
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 1950 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('1950')
     var country = tests.getRowCount('Country')
       noStroke()
-      fill('orange')
-      rect(700, r * 20 + 600, testBar*10, 10)
-      text(tests.getString(r, 0), 600, r * 20 + 610)
-
-      // print(testData)
+      fill(210, 116, 116) // USA
+      rect(testX-testBar*10, r * 20 + 600, testBar*10, 10)
     }
 
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 1960 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('1960')
     var country = tests.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
-      fill('yellow')
-      rect(700, r * 20 + 800, testBar*10, 10)
-      text(tests.getString(r, 0), 600, r * 20 + 810)
-
-      // print(testData)
+      fill(210, 116, 116) // USA
+      rect(testX-testBar*10, r * 20 + 800, testBar*10, 10)
     }    
 
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 1970 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('1970')
     var country = tests.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
-      fill('green')
-      rect(700, r * 20 + 1000, testBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-      text(tests.getString(r, 0), 600, r * 20 + 1010)
-
-      // print(testData)
+      fill(184, 199, 101) // RUSSIA
+      rect(testX-testBar*10, r * 20 + 1000, testBar*10, 10)
     }    
 
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 1980 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('1980')
     var country = tests.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
-      fill('blue')
-      rect(700, r * 20 + 1200, testBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-      text(tests.getString(r, 0), 600, r * 20 + 1210)
-
-      // print(testData)
+      fill(184, 199, 101) // RUSSIA
+      rect(testX-testBar*10, r * 20 + 1200, testBar*10, 10)
     } 
 
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 1990 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('1990')
     var country = tests.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
-      fill('purple')
-      rect(700, r * 20 + 1400, testBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-      text(tests.getString(r, 0), 600, r * 20 + 1410)
-
-      // print(testData)
+      fill(210, 116, 116) // USA
+      rect(testX-testBar*10, r * 20 + 1400, testBar*10, 10)
     }  
 
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 2000 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('2000')
     var country = tests.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
-      fill('pink')
-      rect(700, r * 20 + 1600, testBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-      text(tests.getString(r, 0), 600, r * 20 + 1610)
-
-      // print(testData)
+      fill(210, 116, 116) // USA
+      rect(testX-testBar*10, r * 20 + 1600, testBar*10, 10)
     }  
 
-  for (var r=0; r<tests.getRowCount(); r++) {   
+// 2010 TESTS
+ for (var r=0; r<tests.getRowCount(); r++) {   
     var testData = tests.getRow(r)
     var testBar = testData.getNum('2010')
     var country = tests.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
-      fill('brown')
-      rect(700, r * 20 + 1800, testBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-      text(tests.getString(r, 0), 600, r * 20 + 1810)
-
-      // print(testData)
-    }  
-
-
-// REACTOR CHART
-
-x = 300;
-
-  for (var r=0; r<reactors.getRowCount(); r++) {   
-    var reactorData = reactors.getRow(r)
-    var reactorBar = reactorData.getNum('1940')
-    var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
-      noStroke()
-      fill('black')
-      rect(x-reactorBar*10, r * 20 + 400, reactorBar*10, 10)
-
-      // print(reactorData)
+      fill(146, 231, 201) //CHINA
+      rect(testX-testBar*10, r * 20 + 1800, testBar*10, 10)
     }
 
+// REACTOR CHART 
+// 1940 REACTORS
+  // for (var r=0; r< reactors.getRowCount(); r++) { // RUNNING THROUGH THE ROWS
+  //     var reactorData = reactors.getRow(r)
+  //     var reactorBar = reactorData.getNum('1940')
+  //     noStroke()
+  //     fill(122) // no data
+  //     rect(700, r * 20 + 400, reactorBar*10, 10)
+  //     textAlign(CENTER)
+  //     text(reactors.getString(r, 0), 600, r * 20 + 410)
+  //   }
+
+// 1950 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('1950')
-    // print(country)    
-    // var color = palette.colorForValue()
+    var country = reactors.getRowCount('Country')
       noStroke()
+      fill(101, 135, 199) // UK
+      rect(reactX, r * 20 + 600, reactorBar*10, 10)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 600, reactorBar*10, 10)
-      // text(reactors.getString(r, 0), 600, r * 20 + 610)
-
-      // print(reactorData)
+      text(reactors.getString(r, 0), 500, r * 20 + 610)
     }
 
+// 1960 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('1960')
     var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
+      fill(101, 135, 199) // UK BUT TIED WITH US
+      rect(reactX, r * 20 + 800, reactorBar*10, 10)
+      fill(210, 116, 116)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 800, reactorBar*10, 10)
-
-      // print(reactorData)
+      text(reactors.getString(r, 0), 500, r * 20 + 810)
     }    
 
+// 1970 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('1970')
     var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
+      fill(210, 116, 116) // USA
+      rect(reactX, r * 20 + 1000, reactorBar*10, 10)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 1000, reactorBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-
-      // print(reactorData)
+      text(reactors.getString(r, 0), 500, r * 20 + 1010)
     }    
 
+// 1980 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('1980')
     var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
+      fill(210, 116, 116) // USA
+      rect(reactX, r * 20 + 1200, reactorBar*10, 10)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 1200, reactorBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-
-      // print(reactorData)
+      text(reactors.getString(r, 0), 500, r * 20 + 1210)
     } 
 
+// 1990 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('1990')
     var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
+      fill(101, 184, 199) // FRANCE
+      rect(reactX, r * 20 + 1400, reactorBar*10, 10)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 1400, reactorBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-
-      // print(reactorData)
+      text(reactors.getString(r, 0), 500, r * 20 + 1410)
     }  
 
+// 2000 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('2000')
     var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
       noStroke()
+      fill(101, 184, 199) // FRANCE
+      rect(reactX, r * 20 + 1600, reactorBar*10, 10)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 1600, reactorBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
-
-      // print(reactorData)
+      text(reactors.getString(r, 0), 500, r * 20 + 1610)
     }  
 
+// 2010 REACTORS
   for (var r=0; r<reactors.getRowCount(); r++) {   
     var reactorData = reactors.getRow(r)
     var reactorBar = reactorData.getNum('2010')
     var country = reactors.getRowCount('Country')
-    // print(country)    
-    // var color = palette.colorForValue()
-      noStroke()
+    // print(reactorData)
+     noStroke()
+      fill(237, 182, 119) // CHINA
+      rect(reactX, r * 20 + 1800, reactorBar*10, 10)
+      textAlign(CENTER)
       fill('black')
-      rect(x-reactorBar*10, r * 20 + 1800, reactorBar*10, 10)
-      // text(getNum, , 200, r * 20 + 610)
+      text(reactors.getString(r, 0), 500, r * 20 + 1810)
+    }  
 
-      // print(reactorData)
-    }
+
+
 
 }
 
+// [[[[[[[[[[[[[[[ WORKING ON ]]]]]]]]]]]]]]]
 
 
 
+// [[[[[[[[[[[[[[ WORKING ON THE BREWER PALETTE]]]]]]]]]]]]]]
+
+  // var palette = Brewer.qualitative('Paired', 8);
+  // var numColor = 8
+  // var palette = Brewer.qualitative('Paired', numColor);
+    // print(palette)
 
 
+      // var value = testBar *2
+      // print(testBar)
+      // var value = ['(120,60,40,.5)','(220,60,40,.5)','(120,60,40,.5)','(120,60,40,.5)','(220,60,40,.5)','(120,60,40,.5)']
+      // var value = tests.getColumn(r)
+      // print(value)
+      // var color = palette.colorForValue(value)
+      // print(color)    
 
+
+      //   for (var c=1; c < tests.getColumnCount(); c++) { // RUNNING THROUGH THE COLUMNS
+//     for (var r=1; r < tests.getRowCount(); r++) { // RUNNING THROUGH THE ROWS
+//       var key = tests.getColumn(c)
+//       // var value = tests.getNum(c)
+//       // var color = palette.colorForValue(value)
+//       print(key)
+//       // print(color)
+//       // print(value)
+// }}
+
+
+// [[[[[[[[[[[[[ WORKING ON CHANGING VARIABLES]]]]]]]]]]]]]
 
 
 // }
@@ -361,4 +331,4 @@ x = 300;
 
 
  // save('Nuclear Tests & Reactors by Decade: Bars.svg')
- 
+ // }
