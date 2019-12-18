@@ -38,9 +38,12 @@ function columnMin(tableObject, columnName){
 }
 
 function preload() {
-    // LOAD DATA
-    quakes = loadTable("data/all_day.csv", "csv","header");
-    allQuakes = loadTable("data/significant_month.csv", "csv","header");
+    // STATIC DATA
+    // quakes = loadTable("data/all_day.csv", "csv","header");
+    // allQuakes = loadTable("data/significant_month.csv", "csv","header");
+    // LIVE DATA
+    quakes = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.csv","csv", "header");
+    allQuakes = loadTable("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv","csv", "header");
     hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
     energy = loadTable("data/PlantLocations_Supertrimmed.csv", "csv", "header");
@@ -68,7 +71,7 @@ function setup() {
         lowDepth = color(255,36,160);
         highDepth = color(138, 0, 0);
           noLoop();
-    quakePattern();
+    // quakePattern();
 
     // THIS IS THE FILTERED DATA
     // addHospitals();
@@ -77,7 +80,6 @@ function setup() {
     findFacility();
     allHospitals();
     // countHospital();
-
 }
 
 function setupMap() { 
@@ -120,7 +122,7 @@ function sidebar() {
         // let detailsTitle = createElement('h3', 'Vulnerable Facilities');
         //     detailsTitle.parent('key');
         
-        let details = createElement('p', 'This map explores populations and critical facilities vulnerable earthquakes in the United States. You can explore depth and magnitude of the latest earthquakes of the day in relation to their proximity to critical facilities including <span class="hospitalText">hospitals</span>, <span class="treatmentText">water treatment centers</span>, and <span class="energyText">energy plants</span>.<br><br>');
+        let details = createElement('p', 'This map explores populations and critical facilities vulnerable earthquakes in the United States. You can explore depth and magnitude (measured in various comparable scales of 1-10 ML/MS/Mb/mw) of the latest earthquakes of the day in relation to their proximity to critical facilities including <span class="hospitalText">hospitals</span>, <span class="treatmentText">water treatment centers</span>, and <span class="energyText">energy plants</span>.<br><br>Sources: <a href="https://earthquake.usgs.gov" target="_blank">USGS</a>,<a href="https://hifld-geoplatform.opendata.arcgis.com/" target="_blank">Homeland Infrastructure Foundation-Level Data</a>,<a href="https://edg.epa.gov/metadata/catalog/search/resource/details.page?uuid=%7B86C00471-0D39-4352-B629-14E3C0E2D042%7D" target="_blank">United States Environmental Protection Agency</a>, <a href="eia.gov" target="_blank">US Energy Information Administration</a>.<br><br>');
             details.parent('descriptionText');
 
         // KEY
@@ -141,7 +143,7 @@ function sidebar() {
         text('.1', 35, 140);
         textSize(14);
         fill(0,0,0);
-        text('500', 360, 140);
+        text('500', 375, 140);
 
         // ALL DATA INPUTS
         // let hosBox = createCheckbox('Hospitals', 'false');
@@ -199,25 +201,29 @@ function sidebar() {
             textSize(20);
             textFont("futura-pt");
             textAlign(LEFT);
-            text('Magnitude', 35, 200);
-            text('Cities Affected (Month)', 140, 200);
+            text('Mag.', 35, 200);
+            text('Potentially affected this month', 116, 200);
             textSize(12);   
 
+        sortedQuakes = sortTable(allQuakes, '-mag')    
+    
         var xPos = 35;
-        var yPos = 240;
+        var yPos = 230;
         // var vulnerableHospitals = findHospitals()
 
-          for (var q=0; q<allQuakes.getRowCount(); q++){
-            var row = allQuakes.getRow(q)
+          for (var q=0; q<sortedQuakes.getRowCount(); q++){
+            var row = sortedQuakes.getRow(q)
             var lat = row.getNum('latitude')
             var lng = row.getNum('longitude')
             var closest = Cities.closestTo(lat, lng)
+
+
             print(row)
 
             // COLOR FOR DEPTH
             var depthMin = 0.0;
-            var depthMax = columnMax(allQuakes, "depth")
-            var depth = columnValues(allQuakes, "depth")
+            var depthMax = columnMax(sortedQuakes, "depth")
+            var depth = columnValues(sortedQuakes, "depth")
 
             // COLOR PALETTE FOR DEPTH
             let from = color(255,36,160);
@@ -232,20 +238,22 @@ function sidebar() {
             var x = xPos
             var quakeMag = row.getNum('mag')
             fill(depthColor);
-            rect(x, y, quakeMag*4, 8)
-                    push();
-           fill(0,0,0);
+            text(quakeMag, x, y)
+            rect(x+20, y-8, quakeMag*4, 8)
+                push();
+            fill(0,0,0);
              
             // x+= 40
             // text(closeHos.getString('name'), x, y)
 
-            x+= 110
-            text(`near  ${closest[0].name},${closest[0].country},`, x, y)
+            x+= 80
+            text(`${closest[0].name},${closest[0].country}`, x, y)
 
-            x+= 160
+            x+= 165
             
             var pop = closest[0].population
             if (pop>=1000000){
+              fill('red')
               text(`pop.${(pop/1000000).toFixed(1)} million`, x, y)
             }else{
               text(`pop. ${numberWithCommas(pop)}`, x, y)
@@ -281,25 +289,26 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function quakePattern() {
-        for (var i=0; i<allQuakes.getRowCount(); i++){
-        var quakeData = allQuakes.getRow(i)
+// function quakePattern() {
 
-        // SKIP ROWS WHERE DATA IS MISSING
-        if (quakeData.get('depth')==''){
-            continue
-        }
-        if (quakeData.get('magnitude')==''){
-            continue
-        }
-        if (quakeData.get('latitude')==''){
-            continue
-        }
-        if (quakeData.get('longitude')==''){
-            continue
-        }
-    }
-}
+//         for (var i=0; i<sortedQuakes.getRowCount(); i++){
+//         var quakeData = sortedQuakes.getRow(i)
+
+//         // SKIP ROWS WHERE DATA IS MISSING
+//         if (quakeData.get('depth')==''){
+//             continue
+//         }
+//         if (quakeData.get('magnitude')==''){
+//             continue
+//         }
+//         if (quakeData.get('latitude')==''){
+//             continue
+//         }
+//         if (quakeData.get('longitude')==''){
+//             continue
+//         }
+//     }
+// }
 
 
 function setGradient (x, y, w, h, c1, c2, axis){
@@ -422,7 +431,7 @@ function findFacility(){
             }).addTo(mymap);
 
             // DRAW CIRCLE FOR LOCATION
-            L.marker([hospital.getNum('latitude'), hospital.getNum('longitude')], {icon: hospitalIcon}).bindTooltip(hospital.getString('NAME')).addTo(mymap);
+            L.marker([hospital.getNum('latitude'), hospital.getNum('longitude')], {icon: hospitalIcon}).bindTooltip(hospital.getString('name')).addTo(mymap);
             }
         }  
 
@@ -446,7 +455,7 @@ function findFacility(){
                 opacity: .5
             }).addTo(mymap);
 
-            L.marker([treatment.getNum('latitude'), treatment.getNum('longitude')], { icon: waterIcon}).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap);
+            L.marker([treatment.getNum('latitude'), treatment.getNum('longitude')], { icon: waterIcon}).bindTooltip(treatment.getString('name')).addTo(mymap);
             }
         }    
 
@@ -605,6 +614,22 @@ function allHospitals(){
 //       }
 //         }
 //     }
+
+function sortTable(origTable, columnName){
+  // Returns a copy of a Table object whose rows are ordered according to values in the specified column
+  // 
+  // By default the rows in the table will be sorted in ascending order. If you pass a 
+  // column name with a '-' at the start of it, the rows will be sorted in descending order.
+  // 
+  const key = _.trim(columnName,'-'),
+        table = _.extend(new p5.Table(), {columns:origTable.columns}),
+        columnVal = ({obj}) => _.isNaN(_.toNumber(obj[key])) ? obj[key] : _.toNumber(obj[key]),
+        cloneRow = ({obj, arr}) => _.extend(new p5.TableRow(), {obj, arr, table}),
+        sorted = _.sortBy(origTable.rows, columnVal).map(cloneRow),
+        rows = _.startsWith(columnName, '-') ? _.reverse(sorted) : sorted;
+
+  return _.extend(table, {rows})
+}
 
 
 function distanceFrom(srcLat, srcLng, dstLat, dstLng){
