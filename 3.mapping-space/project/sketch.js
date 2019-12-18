@@ -50,6 +50,7 @@ function preload() {
           noLoop();
 }
 
+
 function setup() {
     color(RGB);
     // THIS IS THE SIDEBAR
@@ -88,6 +89,17 @@ function setupMap() {
     }).addTo(mymap);
 
 }
+
+var facilityIcon = L.Icon.extend({
+    options: {
+        iconSize: [30, 30],
+    }
+});
+
+var hospitalIcon = new facilityIcon({iconUrl: 'design/Hospital.svg'}),
+    waterIcon = new facilityIcon({iconUrl: 'design/Water.svg'}),
+    plantIcon = new facilityIcon({iconUrl: 'design/Plant.svg'});
+
 
 function sidebar() {
 // ADD CANVAS
@@ -377,7 +389,7 @@ function addQuake(){
           var depthColor = lerpColor(from, to, depthScale);
 
         // ADDING QUAKE WITH DEPTH AND MAGNITUDE
-            quake.bindPopup(+"Location: " + quakeData.getString('place') 
+            quake.bindPopup("Location: " + quakeData.getString('place') 
                             + "<br>Magnitude: " + quakeData.getNum('mag')  
                             + "<br>Depth: "+ quakeData.getNum('depth')) 
                             .addTo(mymap)
@@ -410,16 +422,11 @@ function findFacility(){
             }).addTo(mymap);
 
             // DRAW CIRCLE FOR LOCATION
-            L.circleMarker([hospital.getNum('latitude'), hospital.getNum('longitude')], {
-                weight: 0,
-                fillColor:'orange',
-                fillOpacity:.5,
-                radius: 8
-            }).bindTooltip(hospital.getString('NAME')).addTo(mymap);
+            L.marker([hospital.getNum('latitude'), hospital.getNum('longitude')], {icon: hospitalIcon}).bindTooltip(hospital.getString('NAME')).addTo(mymap);
             }
         }  
 
-    // // VULNERABLE WATER TREATMENT CENTERS
+    // VULNERABLE WATER TREATMENT CENTERS
     for (var t=0; t<water.getRowCount(); t++){
         var treatment = water.getRow(t);
 
@@ -439,12 +446,7 @@ function findFacility(){
                 opacity: .5
             }).addTo(mymap);
 
-            L.circleMarker([treatment.getNum('latitude'), treatment.getNum('longitude')], {
-                weight:0,
-                fillColor:'blue',
-                fillOpacity:.5,
-                radius: 8
-            }).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap);
+            L.marker([treatment.getNum('latitude'), treatment.getNum('longitude')], { icon: waterIcon}).bindTooltip(treatment.getString('CWP_NAME')).addTo(mymap);
             }
         }    
 
@@ -468,12 +470,7 @@ function findFacility(){
                 opacity: .5
             }).addTo(mymap);
 
-            L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
-                weight:0,
-                fillColor:'greenyellow',
-                fillOpacity:.5,
-                radius: 8
-            }).bindTooltip(plant.getString('name')).addTo(mymap);
+            L.marker([plant.getNum('latitude'), plant.getNum('longitude')], {icon: plantIcon}).bindTooltip(plant.getString('name')).addTo(mymap);
             }
         }         
 
