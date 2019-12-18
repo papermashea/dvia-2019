@@ -14,354 +14,362 @@
 	.st8{fill:#B8C765;}
 	.st9{fill:#6587C7;}
 	.st10{fill:#D27474;}
-	.st11{font-size:22px;}
-	.st12{font-size:14px;}
+	.st11{fill:#7A7A7A;}
+	.st12{font-family:'FuturaPT-BookObl';}
+	.st13{font-size:22px;}
+	.st14{font-size:14px;}
 </style>
 <g transform="scale(1,1)">
 	<g transform="scale(1,1)">
-		<rect x="0" y="0" class="st0" width="1000" height="1865.8"/>
+		<rect class="st0" width="1000" height="1872"/>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 150 115.8447)" class="st1 st2">Does nuclear weapons testing lead to nuclear power development?</text>
+		<text transform="matrix(1 0 0 1 150 139)" class="st1 st2">Does nuclear weapons testing lead to nuclear power development?</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 140 215.8447)" class="st1 st3">This data examines nuclear testing numbers and nuclear reaction numbers of several countries between 1950 and 2010</text>
+		<text transform="matrix(1 0 0 1 140 239)" class="st1 st3">This data examines nuclear testing numbers and nuclear reaction numbers of several countries between 1950 and 2010</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 280 245.8447)" class="st1 st3">The color dominating each decade is the leading country for that field, that decade</text>
+		<text transform="matrix(1 0 0 1 280 269)" class="st1 st3">The color dominating each decade is the leading country for that field, that decade</text>
 	</g>
-	<path class="st4" d="M50,315.8h10v10H50V315.8z"/>
+	<path class="st4" d="M50,339h10v10H50V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 70 325.8446)" class="st1 st3">China</text>
+		<text transform="matrix(1 0 0 1 70 349)" class="st1 st3">China</text>
 	</g>
-	<path class="st5" d="M150,315.8h10v10h-10V315.8z"/>
+	<path class="st5" d="M150,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 170 325.8446)" class="st1 st3">Frace</text>
+		<text transform="matrix(1 0 0 1 170 349)" class="st1 st3">Frace</text>
 	</g>
-	<path class="st6" d="M250,315.8h10v10h-10V315.8z"/>
+	<path class="st6" d="M250,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 270 325.8446)" class="st1 st3">India</text>
+		<text transform="matrix(1 0 0 1 270 349)" class="st1 st3">India</text>
 	</g>
-	<path class="st7" d="M350,315.8h10v10h-10V315.8z"/>
+	<path class="st7" d="M350,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 370 325.8446)" class="st1 st3">North Korea</text>
+		<text transform="matrix(1 0 0 1 370 349)" class="st1 st3">North Korea</text>
 	</g>
-	<path class="st8" d="M500,315.8h10v10h-10V315.8z"/>
+	<path class="st8" d="M500,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 520 325.8446)" class="st1 st3">Pakistan</text>
+		<text transform="matrix(1 0 0 1 520 349)" class="st1 st3">Pakistan</text>
 	</g>
-	<path class="st4" d="M600,315.8h10v10h-10V315.8z"/>
+	<path class="st4" d="M600,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 620 325.8446)" class="st1 st3">Russia</text>
+		<text transform="matrix(1 0 0 1 620 349)" class="st1 st3">Russia</text>
 	</g>
-	<path class="st9" d="M700,315.8h10v10h-10V315.8z"/>
+	<path class="st9" d="M700,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 720 325.8446)" class="st1 st3">UK</text>
+		<text transform="matrix(1 0 0 1 720 349)" class="st1 st3">UK</text>
 	</g>
-	<path class="st10" d="M800,315.8h10v10h-10V315.8z"/>
+	<path class="st10" d="M800,339h10v10h-10V339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 820 325.8446)" class="st1 st3">USA</text>
+		<text transform="matrix(1 0 0 1 820 349)" class="st1 st3">USA</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 398.8446)" class="st1 st11">1950</text>
+		<text transform="matrix(1 0 0 1 125 409)" class="st11 st12 st3">Number of Nuclear Weapons Tests</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 598.8446)" class="st1 st11">1960</text>
+		<text transform="matrix(1 0 0 1 690 409)" class="st11 st12 st3">Number of Nuclear Reactors</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 798.8447)" class="st1 st11">1970</text>
+		<text transform="matrix(1 0 0 1 475 422)" class="st12 st13">1950</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 998.8447)" class="st1 st11">1980</text>
+		<text transform="matrix(1 0 0 1 475 622)" class="st12 st13">1960</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 1198.8446)" class="st1 st11">1990</text>
+		<text transform="matrix(1 0 0 1 475 822)" class="st12 st13">1970</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 1398.8446)" class="st1 st11">2000</text>
+		<text transform="matrix(1 0 0 1 475 1022)" class="st12 st13">1980</text>
 	</g>
 	<g>
-		<text transform="matrix(1 0 0 1 475 1598.8447)" class="st1 st11">2010</text>
+		<text transform="matrix(1 0 0 1 475 1222)" class="st12 st13">1990</text>
 	</g>
-	<path class="st10" d="M450,415.8L450,415.8v10l0,0V415.8z"/>
-	<path class="st10" d="M450,435.8L450,435.8v10l0,0V435.8z"/>
-	<path class="st10" d="M450,455.8L450,455.8v10l0,0V455.8z"/>
-	<path class="st10" d="M450,475.8L450,475.8v10l0,0V475.8z"/>
-	<path class="st10" d="M450,495.8L450,495.8v10l0,0V495.8z"/>
-	<path class="st10" d="M-390,515.8h840v10h-840V515.8z"/>
-	<path class="st10" d="M240,535.8h210v10H240V535.8z"/>
-	<path class="st10" d="M-1430,555.8H450v10h-1880V555.8z"/>
-	<path class="st10" d="M350,615.8h100v10H350V615.8z"/>
-	<path class="st10" d="M140,635.8h310v10H140V635.8z"/>
-	<path class="st10" d="M450,655.8L450,655.8v10l0,0V655.8z"/>
-	<path class="st10" d="M450,675.8L450,675.8v10l0,0V675.8z"/>
-	<path class="st10" d="M450,695.8L450,695.8v10l0,0V695.8z"/>
-	<path class="st10" d="M-2390,715.8H450v10h-2840V715.8z"/>
-	<path class="st10" d="M260,735.8h190v10H260V735.8z"/>
-	<path class="st10" d="M-4330,755.8H450v10h-4780V755.8z"/>
-	<path class="st8" d="M290,815.8h160v10H290V815.8z"/>
-	<path class="st8" d="M140,835.8h310v10H140V835.8z"/>
-	<path class="st8" d="M440,855.8h10v10h-10V855.8z"/>
-	<path class="st8" d="M450,875.8L450,875.8v10l0,0V875.8z"/>
-	<path class="st8" d="M450,895.8L450,895.8v10l0,0V895.8z"/>
-	<path class="st8" d="M-1980,915.8H450v10h-2430V915.8z"/>
-	<path class="st8" d="M400,935.8h50v10h-50V935.8z"/>
-	<path class="st8" d="M-1870,955.8H450v10h-2320V955.8z"/>
-	<path class="st8" d="M370,1015.8h80v10h-80V1015.8z"/>
-	<path class="st8" d="M-470,1035.8h920v10h-920V1035.8z"/>
-	<path class="st8" d="M450,1055.8L450,1055.8v10l0,0V1055.8z"/>
-	<path class="st8" d="M450,1075.8L450,1075.8v10l0,0V1075.8z"/>
-	<path class="st8" d="M450,1095.8L450,1095.8v10l0,0V1095.8z"/>
-	<path class="st8" d="M-1420,1115.8H450v10h-1870V1115.8z"/>
-	<path class="st8" d="M330,1135.8h120v10H330V1135.8z"/>
-	<path class="st8" d="M-1100,1155.8H450v10h-1550V1155.8z"/>
-	<path class="st10" d="M310,1215.8h140v10H310V1215.8z"/>
-	<path class="st10" d="M270,1235.8h180v10H270V1235.8z"/>
-	<path class="st10" d="M430,1255.8h20v10h-20V1255.8z"/>
-	<path class="st10" d="M450,1275.8L450,1275.8v10l0,0V1275.8z"/>
-	<path class="st10" d="M430,1295.8h20v10h-20V1295.8z"/>
-	<path class="st10" d="M310,1315.8h140v10H310V1315.8z"/>
-	<path class="st10" d="M430,1335.8h20v10h-20V1335.8z"/>
-	<path class="st10" d="M160,1355.8h290v10H160V1355.8z"/>
-	<path class="st10" d="M410,1415.8h40v10h-40V1415.8z"/>
-	<path class="st10" d="M450,1435.8L450,1435.8v10l0,0V1435.8z"/>
-	<path class="st10" d="M450,1455.8L450,1455.8v10l0,0V1455.8z"/>
-	<path class="st10" d="M430,1475.8h20v10h-20V1475.8z"/>
-	<path class="st10" d="M450,1495.8L450,1495.8v10l0,0V1495.8z"/>
-	<path class="st10" d="M400,1515.8h50v10h-50V1515.8z"/>
-	<path class="st10" d="M430,1535.8h20v10h-20V1535.8z"/>
-	<path class="st10" d="M320,1555.8h130v10H320V1555.8z"/>
-	<path class="st7" d="M450,1615.8L450,1615.8v10l0,0V1615.8z"/>
-	<path class="st7" d="M450,1635.8L450,1635.8v10l0,0V1635.8z"/>
-	<path class="st7" d="M450,1655.8L450,1655.8v10l0,0V1655.8z"/>
-	<path class="st7" d="M410,1675.8h40v10h-40V1675.8z"/>
-	<path class="st7" d="M450,1695.8L450,1695.8v10l0,0V1695.8z"/>
-	<path class="st7" d="M450,1715.8L450,1715.8v10l0,0V1715.8z"/>
-	<path class="st7" d="M450,1735.8L450,1735.8v10l0,0V1735.8z"/>
-	<path class="st7" d="M450,1755.8L450,1755.8v10l0,0V1755.8z"/>
-	<path class="st9" d="M550,415.8L550,415.8v10l0,0V415.8z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 425.8446)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 475 1422)" class="st12 st13">2000</text>
 	</g>
-	<path class="st9" d="M550,435.8h10v10h-10V435.8z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 445.8446)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 475 1622)" class="st12 st13">2010</text>
 	</g>
-	<path class="st9" d="M550,455.8L550,455.8v10l0,0V455.8z"/>
+	<path class="st10" d="M450,439L450,439v10l0,0V439z"/>
+	<path class="st10" d="M450,459L450,459v10l0,0V459z"/>
+	<path class="st10" d="M450,479L450,479v10l0,0V479z"/>
+	<path class="st10" d="M450,499L450,499v10l0,0V499z"/>
+	<path class="st10" d="M450,519L450,519v10l0,0V519z"/>
+	<path class="st10" d="M-390,539h840v10h-840V539z"/>
+	<path class="st10" d="M240,559h210v10H240V559z"/>
+	<path class="st10" d="M-1430,579H450v10h-1880V579z"/>
+	<path class="st10" d="M350,639h100v10H350V639z"/>
+	<path class="st10" d="M140,659h310v10H140V659z"/>
+	<path class="st10" d="M450,679L450,679v10l0,0V679z"/>
+	<path class="st10" d="M450,699L450,699v10l0,0V699z"/>
+	<path class="st10" d="M450,719L450,719v10l0,0V719z"/>
+	<path class="st10" d="M-2390,739H450v10h-2840V739z"/>
+	<path class="st10" d="M260,759h190v10H260V759z"/>
+	<path class="st10" d="M-4330,779H450v10h-4780V779z"/>
+	<path class="st8" d="M290,839h160v10H290V839z"/>
+	<path class="st8" d="M140,859h310v10H140V859z"/>
+	<path class="st8" d="M440,879h10v10h-10V879z"/>
+	<path class="st8" d="M450,899L450,899v10l0,0V899z"/>
+	<path class="st8" d="M450,919L450,919v10l0,0V919z"/>
+	<path class="st8" d="M-1980,939H450v10h-2430V939z"/>
+	<path class="st8" d="M400,959h50v10h-50V959z"/>
+	<path class="st8" d="M-1870,979H450v10h-2320V979z"/>
+	<path class="st8" d="M370,1039h80v10h-80V1039z"/>
+	<path class="st8" d="M-470,1059h920v10h-920V1059z"/>
+	<path class="st8" d="M450,1079L450,1079v10l0,0V1079z"/>
+	<path class="st8" d="M450,1099L450,1099v10l0,0V1099z"/>
+	<path class="st8" d="M450,1119L450,1119v10l0,0V1119z"/>
+	<path class="st8" d="M-1420,1139H450v10h-1870V1139z"/>
+	<path class="st8" d="M330,1159h120v10H330V1159z"/>
+	<path class="st8" d="M-1100,1179H450v10h-1550V1179z"/>
+	<path class="st10" d="M310,1239h140v10H310V1239z"/>
+	<path class="st10" d="M270,1259h180v10H270V1259z"/>
+	<path class="st10" d="M430,1279h20v10h-20V1279z"/>
+	<path class="st10" d="M450,1299L450,1299v10l0,0V1299z"/>
+	<path class="st10" d="M430,1319h20v10h-20V1319z"/>
+	<path class="st10" d="M310,1339h140v10H310V1339z"/>
+	<path class="st10" d="M430,1359h20v10h-20V1359z"/>
+	<path class="st10" d="M160,1379h290v10H160V1379z"/>
+	<path class="st10" d="M410,1439h40v10h-40V1439z"/>
+	<path class="st10" d="M450,1459L450,1459v10l0,0V1459z"/>
+	<path class="st10" d="M450,1479L450,1479v10l0,0V1479z"/>
+	<path class="st10" d="M430,1499h20v10h-20V1499z"/>
+	<path class="st10" d="M450,1519L450,1519v10l0,0V1519z"/>
+	<path class="st10" d="M400,1539h50v10h-50V1539z"/>
+	<path class="st10" d="M430,1559h20v10h-20V1559z"/>
+	<path class="st10" d="M320,1579h130v10H320V1579z"/>
+	<path class="st7" d="M450,1639L450,1639v10l0,0V1639z"/>
+	<path class="st7" d="M450,1659L450,1659v10l0,0V1659z"/>
+	<path class="st7" d="M450,1679L450,1679v10l0,0V1679z"/>
+	<path class="st7" d="M410,1699h40v10h-40V1699z"/>
+	<path class="st7" d="M450,1719L450,1719v10l0,0V1719z"/>
+	<path class="st7" d="M450,1739L450,1739v10l0,0V1739z"/>
+	<path class="st7" d="M450,1759L450,1759v10l0,0V1759z"/>
+	<path class="st7" d="M450,1779L450,1779v10l0,0V1779z"/>
+	<path class="st9" d="M550,439L550,439v10l0,0V439z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 465.8446)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 449)" class="st1 st14">China</text>
 	</g>
-	<path class="st9" d="M550,475.8L550,475.8v10l0,0V475.8z"/>
+	<path class="st9" d="M550,459h10v10h-10V459z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 485.8446)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 469)" class="st1 st14">France</text>
 	</g>
-	<path class="st9" d="M550,495.8L550,495.8v10l0,0V495.8z"/>
+	<path class="st9" d="M550,479L550,479v10l0,0V479z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 505.8446)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 489)" class="st1 st14">India</text>
 	</g>
-	<path class="st9" d="M550,515.8h10v10h-10V515.8z"/>
+	<path class="st9" d="M550,499L550,499v10l0,0V499z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 525.8446)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 509)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st9" d="M550,535.8h70v10h-70V535.8z"/>
+	<path class="st9" d="M550,519L550,519v10l0,0V519z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 545.8446)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 529)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st9" d="M550,555.8h20v10h-20V555.8z"/>
+	<path class="st9" d="M550,539h10v10h-10V539z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 565.8446)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 549)" class="st1 st14">Russia</text>
 	</g>
-	<path class="st9" d="M550,615.8L550,615.8v10l0,0V615.8z"/>
+	<path class="st9" d="M550,559h70v10h-70V559z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 625.8446)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 491.5021 569)" class="st1 st14">UK</text>
 	</g>
-	<path class="st9" d="M550,635.8h70v10h-70V635.8z"/>
+	<path class="st9" d="M550,579h20v10h-20V579z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 645.8446)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 491.8521 589)" class="st1 st14">US</text>
 	</g>
-	<path class="st9" d="M550,655.8h20v10h-20V655.8z"/>
+	<path class="st9" d="M550,639L550,639v10l0,0V639z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 665.8446)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 649)" class="st1 st14">China</text>
 	</g>
-	<path class="st9" d="M550,675.8L550,675.8v10l0,0V675.8z"/>
+	<path class="st9" d="M550,659h70v10h-70V659z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 685.8446)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 669)" class="st1 st14">France</text>
 	</g>
-	<path class="st9" d="M550,695.8L550,695.8v10l0,0V695.8z"/>
+	<path class="st9" d="M550,679h20v10h-20V679z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 705.8446)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 689)" class="st1 st14">India</text>
 	</g>
-	<path class="st9" d="M550,715.8h40v10h-40V715.8z"/>
+	<path class="st9" d="M550,699L550,699v10l0,0V699z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 725.8446)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 709)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st9" d="M550,735.8h200v10H550V735.8z"/>
+	<path class="st9" d="M550,719L550,719v10l0,0V719z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 745.8446)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 729)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st9" d="M550,755.8h20v10h-20V755.8z"/>
+	<path class="st9" d="M550,739h40v10h-40V739z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 765.8446)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 749)" class="st1 st14">Russia</text>
 	</g>
-	<path class="st10" d="M550,815.8L550,815.8v10l0,0V815.8z"/>
+	<path class="st9" d="M550,759h200v10H550V759z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 825.8447)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 491.5021 769)" class="st1 st14">UK</text>
 	</g>
-	<path class="st10" d="M550,835.8h90v10h-90V835.8z"/>
+	<path class="st9" d="M550,779h20v10h-20V779z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 845.8447)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 491.8521 789)" class="st1 st14">US</text>
 	</g>
-	<path class="st10" d="M550,855.8h10v10h-10V855.8z"/>
+	<path class="st10" d="M550,839L550,839v10l0,0V839z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 865.8447)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 849)" class="st1 st14">China</text>
 	</g>
-	<path class="st10" d="M550,875.8L550,875.8v10l0,0V875.8z"/>
+	<path class="st10" d="M550,859h90v10h-90V859z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 885.8447)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 869)" class="st1 st14">France</text>
 	</g>
-	<path class="st10" d="M550,895.8h10v10h-10V895.8z"/>
+	<path class="st10" d="M550,879h10v10h-10V879z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 905.8447)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 889)" class="st1 st14">India</text>
 	</g>
-	<path class="st10" d="M550,915.8h130v10H550V915.8z"/>
+	<path class="st10" d="M550,899L550,899v10l0,0V899z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 925.8447)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 909)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st10" d="M550,935.8h70v10h-70V935.8z"/>
+	<path class="st10" d="M550,919h10v10h-10V919z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 945.8447)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 929)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st10" d="M550,955.8h590v10H550V955.8z"/>
+	<path class="st10" d="M550,939h130v10H550V939z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 965.8447)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 949)" class="st1 st14">Russia</text>
 	</g>
-	<path class="st10" d="M550,1015.8L550,1015.8v10l0,0V1015.8z"/>
+	<path class="st10" d="M550,959h70v10h-70V959z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 1025.8447)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 491.5021 969)" class="st1 st14">UK</text>
 	</g>
-	<path class="st10" d="M550,1035.8h430v10H550V1035.8z"/>
+	<path class="st10" d="M550,979h590v10H550V979z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 1045.8447)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 491.8521 989)" class="st1 st14">US</text>
 	</g>
-	<path class="st10" d="M550,1055.8h40v10h-40V1055.8z"/>
+	<path class="st10" d="M550,1039L550,1039v10l0,0V1039z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 1065.8447)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 1049)" class="st1 st14">China</text>
 	</g>
-	<path class="st10" d="M550,1075.8L550,1075.8v10l0,0V1075.8z"/>
+	<path class="st10" d="M550,1059h430v10H550V1059z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 1085.8447)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 1069)" class="st1 st14">France</text>
 	</g>
-	<path class="st10" d="M550,1095.8L550,1095.8v10l0,0V1095.8z"/>
+	<path class="st10" d="M550,1079h40v10h-40V1079z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 1105.8447)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 1089)" class="st1 st14">India</text>
 	</g>
-	<path class="st10" d="M550,1115.8h140v10H550V1115.8z"/>
+	<path class="st10" d="M550,1099L550,1099v10l0,0V1099z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 1125.8447)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 1109)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st10" d="M550,1135.8h100v10H550V1135.8z"/>
+	<path class="st10" d="M550,1119L550,1119v10l0,0V1119z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 1145.8447)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 1129)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st10" d="M550,1155.8h470v10H550V1155.8z"/>
+	<path class="st10" d="M550,1139h140v10H550V1139z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 1165.8446)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 1149)" class="st1 st14">Russia</text>
 	</g>
-	<path class="st5" d="M550,1215.8h30v10h-30V1215.8z"/>
+	<path class="st10" d="M550,1159h100v10H550V1159z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 1225.8446)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 491.5021 1169)" class="st1 st14">UK</text>
 	</g>
-	<path class="st5" d="M550,1235.8h100v10H550V1235.8z"/>
+	<path class="st10" d="M550,1179h470v10H550V1179z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 1245.8446)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 491.8521 1189)" class="st1 st14">US</text>
 	</g>
-	<path class="st5" d="M550,1255.8h40v10h-40V1255.8z"/>
+	<path class="st5" d="M550,1239h30v10h-30V1239z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 1265.8446)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 1249)" class="st1 st14">China</text>
 	</g>
-	<path class="st5" d="M550,1275.8L550,1275.8v10l0,0V1275.8z"/>
+	<path class="st5" d="M550,1259h100v10H550V1259z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 1285.8446)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 1269)" class="st1 st14">France</text>
 	</g>
-	<path class="st5" d="M550,1295.8L550,1295.8v10l0,0V1295.8z"/>
+	<path class="st5" d="M550,1279h40v10h-40V1279z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 1305.8446)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 1289)" class="st1 st14">India</text>
 	</g>
-	<path class="st5" d="M550,1315.8h20v10h-20V1315.8z"/>
+	<path class="st5" d="M550,1299L550,1299v10l0,0V1299z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 1325.8446)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 1309)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st5" d="M550,1335.8h10v10h-10V1335.8z"/>
+	<path class="st5" d="M550,1319L550,1319v10l0,0V1319z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 1345.8446)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 1329)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st5" d="M550,1355.8h40v10h-40V1355.8z"/>
+	<path class="st5" d="M550,1339h20v10h-20V1339z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 1365.8446)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 1349)" class="st1 st14">Russia</text>
 	</g>
-	<path class="st5" d="M550,1415.8h80v10h-80V1415.8z"/>
+	<path class="st5" d="M550,1359h10v10h-10V1359z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 1425.8446)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 491.5021 1369)" class="st1 st14">UK</text>
 	</g>
-	<path class="st5" d="M550,1435.8L550,1435.8v10l0,0V1435.8z"/>
+	<path class="st5" d="M550,1379h40v10h-40V1379z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 1445.8446)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 491.8521 1389)" class="st1 st14">US</text>
 	</g>
-	<path class="st5" d="M550,1455.8h70v10h-70V1455.8z"/>
+	<path class="st5" d="M550,1439h80v10h-80V1439z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 1465.8447)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 1449)" class="st1 st14">China</text>
 	</g>
-	<path class="st5" d="M550,1475.8L550,1475.8v10l0,0V1475.8z"/>
+	<path class="st5" d="M550,1459L550,1459v10l0,0V1459z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 1485.8447)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 1469)" class="st1 st14">France</text>
 	</g>
-	<path class="st5" d="M550,1495.8h10v10h-10V1495.8z"/>
+	<path class="st5" d="M550,1479h70v10h-70V1479z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 1505.8447)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 1489)" class="st1 st14">India</text>
 	</g>
-	<path class="st5" d="M550,1515.8h20v10h-20V1515.8z"/>
+	<path class="st5" d="M550,1499L550,1499v10l0,0V1499z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 1525.8447)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 1509)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st5" d="M550,1535.8L550,1535.8v10l0,0V1535.8z"/>
+	<path class="st5" d="M550,1519h10v10h-10V1519z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 1545.8447)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 1529)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st5" d="M550,1555.8L550,1555.8v10l0,0V1555.8z"/>
+	<path class="st5" d="M550,1539h20v10h-20V1539z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 1565.8447)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 1549)" class="st1 st14">Russia</text>
 	</g>
-	<path class="st4" d="M550,1615.8h370v10H550V1615.8z"/>
+	<path class="st5" d="M550,1559L550,1559v10l0,0V1559z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.7604 1625.8447)" class="st1 st12">China</text>
+		<text transform="matrix(1 0 0 1 491.5021 1569)" class="st1 st14">UK</text>
 	</g>
-	<path class="st4" d="M550,1635.8L550,1635.8v10l0,0V1635.8z"/>
+	<path class="st5" d="M550,1579L550,1579v10l0,0V1579z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 481.7794 1645.8447)" class="st1 st12">France</text>
+		<text transform="matrix(1 0 0 1 491.8521 1589)" class="st1 st14">US</text>
 	</g>
-	<path class="st4" d="M550,1655.8h40v10h-40V1655.8z"/>
+	<path class="st4" d="M550,1639h370v10H550V1639z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 486.2384 1665.8447)" class="st1 st12">India</text>
+		<text transform="matrix(1 0 0 1 483.7604 1649)" class="st1 st14">China</text>
 	</g>
-	<path class="st4" d="M550,1675.8L550,1675.8v10l0,0V1675.8z"/>
+	<path class="st4" d="M550,1659L550,1659v10l0,0V1659z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 466.0228 1685.8447)" class="st1 st12">North Korea</text>
+		<text transform="matrix(1 0 0 1 481.7794 1669)" class="st1 st14">France</text>
 	</g>
-	<path class="st4" d="M550,1695.8h30v10h-30V1695.8z"/>
+	<path class="st4" d="M550,1679h40v10h-40V1679z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 477.9225 1705.8447)" class="st1 st12">Pakistan</text>
+		<text transform="matrix(1 0 0 1 486.2384 1689)" class="st1 st14">India</text>
 	</g>
-	<path class="st4" d="M550,1715.8h80v10h-80V1715.8z"/>
+	<path class="st4" d="M550,1699L550,1699v10l0,0V1699z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 483.3054 1725.8447)" class="st1 st12">Russia</text>
+		<text transform="matrix(1 0 0 1 466.0228 1709)" class="st1 st14">North Korea</text>
 	</g>
-	<path class="st4" d="M550,1735.8L550,1735.8v10l0,0V1735.8z"/>
+	<path class="st4" d="M550,1719h30v10h-30V1719z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.5021 1745.8447)" class="st1 st12">UK</text>
+		<text transform="matrix(1 0 0 1 477.9225 1729)" class="st1 st14">Pakistan</text>
 	</g>
-	<path class="st4" d="M550,1755.8h10v10h-10V1755.8z"/>
+	<path class="st4" d="M550,1739h80v10h-80V1739z"/>
 	<g>
-		<text transform="matrix(1 0 0 1 491.8521 1765.8447)" class="st1 st12">US</text>
+		<text transform="matrix(1 0 0 1 483.3054 1749)" class="st1 st14">Russia</text>
+	</g>
+	<path class="st4" d="M550,1759L550,1759v10l0,0V1759z"/>
+	<g>
+		<text transform="matrix(1 0 0 1 491.5021 1769)" class="st1 st14">UK</text>
+	</g>
+	<path class="st4" d="M550,1779h10v10h-10V1779z"/>
+	<g>
+		<text transform="matrix(1 0 0 1 491.8521 1789)" class="st1 st14">US</text>
 	</g>
 </g>
 </svg>

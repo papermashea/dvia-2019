@@ -120,7 +120,15 @@ function setup(){
   fill('black')
   text('USA', x+20, y+10)
 
+// CHART LABELS
 
+  textSize(16)
+  fill(122)
+  textStyle(ITALIC)
+  text('Number of Nuclear Weapons Tests', 125, 620)
+
+  textStyle(ITALIC)
+  text('Number of Nuclear Reactors', 690, 620)
 
 
 

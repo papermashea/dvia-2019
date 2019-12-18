@@ -43,8 +43,7 @@ function preload() {
     allQuakes = loadTable("data/significant_month.csv", "csv","header");
     hospitals = loadTable("data/HospitalLocations_trimmed.csv", "csv", "header");    
     water = loadTable("data/WastewaterLocations_trimmed.csv", "csv", "header");    
-    energy = loadTable("data/PlantLocations_trimmed.csv", "csv", "header");
-            // d3.csv(quakePattern).then(sidebar);
+    energy = loadTable("data/PlantLocations_Supertrimmed.csv", "csv", "header");
 
         lowDepth = color(255,36,160);
         highDepth = color(138, 0, 0);
@@ -420,7 +419,7 @@ function findFacility(){
             }
         }  
 
-    // VULNERABLE WATER TREATMENT CENTERS
+    // // VULNERABLE WATER TREATMENT CENTERS
     for (var t=0; t<water.getRowCount(); t++){
         var treatment = water.getRow(t);
 
@@ -449,34 +448,34 @@ function findFacility(){
             }
         }    
 
-    // // VULNERABLE ENERGY PLANTS
-    // for (var s=0; s<energy.getRowCount(); s++){
-    //     var plant = energy.getRow(s);
+    // VULNERABLE ENERGY PLANTS
+    for (var t=0; t<energy.getRowCount(); t++){
+        var plant = energy.getRow(t);
 
-    //     // WITHIN 50KM
-    //     var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
-    //     if (disancetInKm < 50){
+        // WITHIN 50KM
+        var disancetInKm = distanceFrom(quakeSite.getNum('latitude'), quakeSite.getNum('longitude'), plant.getNum('latitude'), plant.getNum('longitude'))
+        if (disancetInKm < 50){
 
-    //         // DRAW LINE FOR DISTANCE
-    //         var plantlatlngs = [
-    //             [plant.getNum('latitude'+), plant.getNum('longitude')],
-    //             [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
-    //         ]
+            // DRAW LINE FOR DISTANCE
+            var plantlatlngs = [
+                [plant.getNum('latitude'), plant.getNum('longitude')],
+                [quakeSite.getNum('latitude'), quakeSite.getNum('longitude')] 
+            ]
 
-    //         L.polyline(plantlatlngs, {
-    //             color: 'black',
-    //             weight: .8,
-    //             opacity: .5
-    //         }).addTo(mymap);
+            L.polyline(plantlatlngs, {
+                color: 'black',
+                weight: .8,
+                opacity: .5
+            }).addTo(mymap);
 
-    //         L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
-    //             weight:0,
-    //             fillColor:'purple',
-    //             fillOpacity:.5,
-    //             radius: 8
-    //         }).bindTooltip(plant.getString('CWP_NAME')).addTo(mymap);
-    //         }
-    //     }    
+            L.circleMarker([plant.getNum('latitude'), plant.getNum('longitude')], {
+                weight:0,
+                fillColor:'greenyellow',
+                fillOpacity:.5,
+                radius: 8
+            }).bindTooltip(plant.getString('name')).addTo(mymap);
+            }
+        }         
 
 
     }        
